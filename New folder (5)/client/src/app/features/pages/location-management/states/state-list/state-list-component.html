@@ -13,13 +13,13 @@
         <input
           [ngModel]="search()"
           (ngModelChange)="onSearchChange($event)"
-          type="text"
+          type="search"
           placeholder="Search states..."
           class="px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all w-full sm:w-64"
         />
         <button
           (click)="openModal()"
-          class="bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-2.5 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2"
+          class="bg-linear-to-r cursor-pointer from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-2.5 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2"
         >
           <lucide-icon [img]="Plus" [size]="20"></lucide-icon>
           Add State
@@ -85,21 +85,21 @@
               <div class="flex items-center gap-3">
                 <button
                   (click)="openEditModal($event, state)"
-                  class="text-blue-600 hover:text-blue-800 font-medium text-sm transition-colors"
+                  class="text-blue-600 cursor-pointer hover:text-blue-800 font-medium text-sm transition-colors"
                   title="Edit State"
                 >
                   <lucide-icon [img]="Edit" [size]="20"></lucide-icon>
                 </button>
                 <button
                   (click)="viewStateCities($event, state.id)"
-                  class="text-green-600 hover:text-green-800 font-medium text-sm transition-colors"
+                  class="text-green-600 cursor-pointer hover:text-green-800 font-medium text-sm transition-colors"
                   title="View Cities"
                 >
                   <lucide-icon [img]="Eye" [size]="20"></lucide-icon>
                 </button>
                 <button
                   (click)="confirmDelete($event, state.id)"
-                  class="text-red-600 hover:text-red-800 font-medium text-sm transition-colors"
+                  class="text-red-600 cursor-pointer hover:text-red-800 font-medium text-sm transition-colors"
                   title="Delete State"
                 >
                   <lucide-icon [img]="Trash2" [size]="20"></lucide-icon>
@@ -114,23 +114,27 @@
 
     @if (states().length === 0) {
     <div class="flex flex-col items-center justify-center py-16">
-      <lucide-icon [img]="Frown" [size]="64" class="text-gray-400 mb-4"></lucide-icon>
+      <lucide-icon
+        [img]="Frown"
+        [size]="64"
+        class="text-gray-400 mb-4"
+      ></lucide-icon>
       <h3 class="text-lg font-semibold text-gray-700 mb-1">No States Found</h3>
       <p class="text-sm text-gray-500">
         Try adjusting your search or add a new state.
       </p>
     </div>
     }
-    
+
     <!-- Pagination -->
     @if (states().length > 0) {
-      <app-pagination
-        [currentPage]="currentPage()"
-        [totalPages]="totalPages()"
-        [total]="totalItems()"
-        [pageSize]="pageSize()"
-        (pageChange)="onPageChange($event)"
-      ></app-pagination>
+    <app-pagination
+      [currentPage]="currentPage()"
+      [totalPages]="totalPages()"
+      [total]="totalItems()"
+      [pageSize]="pageSize()"
+      (pageChange)="onPageChange($event)"
+    ></app-pagination>
     }
   </div>
 </div>
@@ -150,7 +154,7 @@
       </h3>
       <button
         (click)="closeModal(true)"
-        class="text-gray-400 hover:text-gray-600 transition-colors"
+        class="text-gray-400 cursor-pointer hover:text-gray-600 transition-colors"
       >
         <lucide-icon [img]="X" [size]="24"></lucide-icon>
       </button>

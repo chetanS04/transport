@@ -49,13 +49,13 @@ import { LucideAngularModule, Trash2, AlertTriangle, Info } from 'lucide-angular
             <button
               type="button"
               (click)="onCancel()"
-              class="flex-1 py-3 px-4 bg-gray-100 text-gray-700 font-semibold rounded-lg hover:bg-gray-200 transition-colors">
+              class="flex-1 py-3 cursor-pointer px-4 bg-gray-100 text-gray-700 font-semibold rounded-lg hover:bg-gray-200 transition-colors">
               {{ cancelText() }}
             </button>
             <button
               type="button"
               (click)="onConfirm()"
-              class="flex-1 py-3 px-4 font-semibold rounded-lg transition-all shadow-md hover:shadow-lg"
+              class="flex-1 py-3 px-4 cursor-pointer font-semibold rounded-lg transition-all shadow-md hover:shadow-lg"
               [ngClass]="{
                 'bg-red-600 hover:bg-red-700 text-white': type() === 'danger',
                 'bg-yellow-600 hover:bg-yellow-700 text-white': type() === 'warning',
@@ -80,7 +80,6 @@ export class ConfirmationModalComponent {
   confirmed = output<void>();
   cancelled = output<void>();
 
-  // Lucide icons
   readonly Trash2Icon = Trash2;
   readonly AlertTriangleIcon = AlertTriangle;
   readonly InfoIcon = Info;

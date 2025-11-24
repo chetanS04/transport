@@ -1,4 +1,4 @@
-import { Component, OnInit, signal, effect } from '@angular/core';
+import { Component, OnInit, signal, effect, inject } from '@angular/core';
 import { City } from '../../../../../shared/models/interface';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
@@ -12,6 +12,7 @@ import { PaginationComponent } from '../../../../../shared/components/pagination
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { LucideAngularModule, Plus, Edit, Trash2, Frown, X } from 'lucide-angular';
+import { FlashMessageService } from '../../../../../core/services/flash-message.service';
 
 @Component({
   selector: 'app-cities-list-component',
@@ -34,41 +35,36 @@ export class CitiesListComponent implements OnInit {
   search = signal<string>('');
   editModal = signal<City | null>(null);
   showCompletionModal = signal<boolean>(false);
-  
-  // Pagination
+
   currentPage = signal<number>(1);
   pageSize = signal<number>(10);
   totalItems = signal<number>(0);
   totalPages = signal<number>(0);
-  
-  // Delete confirmation modal
+
   showDeleteModal = signal<boolean>(false);
   cityToDelete = signal<number | null>(null);
-  
-  // Search with debounce
+
   private searchSubject = new Subject<string>();
 
-  // Lucide icons
+  private flashService = inject(FlashMessageService);
+  private route = inject(ActivatedRoute);
+  private cityService = inject(StateCitiesService);
+
   readonly Plus = Plus;
   readonly Edit = Edit;
   readonly Trash2 = Trash2;
   readonly Frown = Frown;
   readonly X = X;
 
-  // breadcrumb
   breadcrumbItems = [
     { label: 'Dashboard', link: '/' },
     { label: 'States', link: '/locations' },
     { label: '' },
   ];
 
-  constructor(
-    private route: ActivatedRoute,
-    private cityService: StateCitiesService
-  ) {
+  constructor() {
     this.state_id = Number(this.route.snapshot.paramMap.get('state_id'));
-    
-    // Setup debounced search
+
     this.searchSubject.pipe(debounceTime(300)).subscribe(() => {
       this.currentPage.set(1);
       this.getCitiesByState();
@@ -79,7 +75,6 @@ export class CitiesListComponent implements OnInit {
     this.getCitiesByState();
   }
 
-  // get all cities by state
   getCitiesByState(): void {
     this.cityService.getAllCitiesByState(
       this.state_id,
@@ -98,18 +93,15 @@ export class CitiesListComponent implements OnInit {
     });
   }
 
-  // Dynamically set the breadcrumb when stateName is available
   setBreadcrumb(): void {
     this.breadcrumbItems[2].label = `Cities - ${this.stateName()}`;
   }
 
-  // search with debounce
   onSearchChange(value: string): void {
     this.search.set(value);
     this.searchSubject.next(value);
   }
-  
-  // pagination
+
   onPageChange(page: number): void {
     this.currentPage.set(page);
     this.getCitiesByState();
@@ -120,7 +112,6 @@ export class CitiesListComponent implements OnInit {
     this.showCompletionModal.set(true);
   }
 
-  // close modal
   closeModal(e: boolean): void {
     this.showCompletionModal.set(false);
     if (e) {
@@ -134,13 +125,12 @@ export class CitiesListComponent implements OnInit {
     this.showCompletionModal.set(true);
   }
 
-  // delete city by id
   confirmDelete(event: Event, city_id: number): void {
     event.stopPropagation();
     this.cityToDelete.set(city_id);
     this.showDeleteModal.set(true);
   }
-  
+
   deleteCity(): void {
     const city_id = this.cityToDelete();
     if (city_id) {
@@ -148,15 +138,17 @@ export class CitiesListComponent implements OnInit {
         next: () => {
           this.showDeleteModal.set(false);
           this.getCitiesByState();
+          this.flashService.show('City deleted successfully.', "success");
         },
         error: (err) => {
           console.error('Error deleting city:', err);
           this.showDeleteModal.set(false);
+          this.flashService.show('Failed to delete city.', "error");
         },
       });
     }
   }
-  
+
   cancelDelete(): void {
     this.showDeleteModal.set(false);
     this.cityToDelete.set(null);

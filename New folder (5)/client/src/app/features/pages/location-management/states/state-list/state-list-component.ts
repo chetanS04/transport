@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { State } from '../../../../../shared/models/interface';
@@ -10,6 +10,7 @@ import { ConfirmationModalComponent } from '../../../../../shared/components/con
 import { PaginationComponent } from '../../../../../shared/components/pagination/pagination.component';
 import { debounceTime, Subject } from 'rxjs';
 import { LucideAngularModule, Plus, Eye, Edit, Trash2, Frown, X } from 'lucide-angular';
+import { FlashMessageService } from '../../../../../core/services/flash-message.service';
 
 @Component({
   selector: 'app-state-list-component',
@@ -24,16 +25,19 @@ export class StateListComponent implements OnInit {
   showCompletionModal = signal<boolean>(false);
   showDeleteModal = signal<boolean>(false);
   stateToDelete = signal<number | null>(null);
-  
-  // Pagination
+
   currentPage = signal<number>(1);
   pageSize = signal<number>(10);
   totalItems = signal<number>(0);
   totalPages = signal<number>(0);
-  
+
+  private flashService = inject(FlashMessageService);
+  private stateService = inject(StateService);
+  private router = inject(Router);
+
+
   private searchSubject = new Subject<string>();
 
-  // Lucide icons
   readonly Plus = Plus;
   readonly Eye = Eye;
   readonly Edit = Edit;
@@ -43,15 +47,11 @@ export class StateListComponent implements OnInit {
 
   breadcrumbItems = [{ label: 'Dashboard', link: '/' }, { label: 'States' }];
 
-  constructor(
-    private stateService: StateService,
-    private router: Router
-  ) {
-    // Setup debounced search
+  constructor() {
     this.searchSubject.pipe(
       debounceTime(300)
     ).subscribe(() => {
-      this.currentPage.set(1); // Reset to first page on search
+      this.currentPage.set(1);
       this.getAllStates();
     });
   }
@@ -60,7 +60,6 @@ export class StateListComponent implements OnInit {
     this.getAllStates();
   }
 
-  // get all states with pagination
   getAllStates(): void {
     this.stateService.getAllStates(this.currentPage(), this.pageSize(), this.search()).subscribe({
       next: (response) => {
@@ -72,19 +71,16 @@ export class StateListComponent implements OnInit {
     });
   }
 
-  // search states
   onSearchChange(searchTerm: string): void {
     this.search.set(searchTerm);
     this.searchSubject.next(searchTerm);
   }
-  
-  // Handle page change
+
   onPageChange(page: number): void {
     this.currentPage.set(page);
     this.getAllStates();
   }
 
-  // view state cities
   viewStateCities(event: Event, state_id: number) {
     event.stopPropagation();
     this.router.navigate(['locations', state_id, 'cities']);
@@ -95,7 +91,6 @@ export class StateListComponent implements OnInit {
     this.showCompletionModal.set(true);
   }
 
-  // close model
   closeModal(e: boolean): void {
     this.showCompletionModal.set(false);
     if (e) {
@@ -123,11 +118,13 @@ export class StateListComponent implements OnInit {
           this.showDeleteModal.set(false);
           this.stateToDelete.set(null);
           this.getAllStates();
+          this.flashService.show('State deleted successfully.', "success");
         },
         error: (err) => {
           console.error('Error deleting state:', err);
           this.showDeleteModal.set(false);
           this.stateToDelete.set(null);
+          this.flashService.show('Failed to delete state.', "error");
         },
       });
     }

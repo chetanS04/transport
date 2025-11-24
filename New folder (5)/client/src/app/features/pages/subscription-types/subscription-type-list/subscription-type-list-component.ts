@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { SubscriptionTypes } from '../../../../shared/models/interface';
@@ -11,6 +11,7 @@ import { PaginationComponent } from '../../../../shared/components/pagination/pa
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { LucideAngularModule, Plus, Edit, Trash2, CreditCard, X } from 'lucide-angular';
+import { FlashMessageService } from '../../../../core/services/flash-message.service';
 
 @Component({
   selector: 'app-subscription-type-list-component',
@@ -33,31 +34,27 @@ export class SubscriptionTypeListComponent implements OnInit {
   showCompletionModal = signal<boolean>(false);
   search = signal<string>('');
   breadcrumbItems = [{ label: 'Dashboard', link: '/' }, { label: 'Subscription Types' }];
-  
-  // Pagination
+
   currentPage = signal<number>(1);
   pageSize = signal<number>(10);
   totalItems = signal<number>(0);
   totalPages = signal<number>(0);
-  
-  // Delete confirmation modal
+
   showDeleteModal = signal<boolean>(false);
   subscriptionTypeToDelete = signal<number | null>(null);
-  
-  // Search with debounce
+
   private searchSubject = new Subject<string>();
 
-  // Lucide icons
   readonly Plus = Plus;
   readonly Edit = Edit;
   readonly Trash2 = Trash2;
   readonly CreditCard = CreditCard;
   readonly X = X;
 
-  constructor(
-    private subscriptionTypesService: SubscriptionTypesService
-  ) {
-    // Setup debounced search
+  private subscriptionTypesService = inject(SubscriptionTypesService);
+  private flashService = inject(FlashMessageService);
+
+  constructor() {
     this.searchSubject.pipe(debounceTime(300)).subscribe(() => {
       this.currentPage.set(1);
       this.getAllSubscriptionTypes();
@@ -68,7 +65,6 @@ export class SubscriptionTypeListComponent implements OnInit {
     this.getAllSubscriptionTypes();
   }
 
-  // get all subscription types
   getAllSubscriptionTypes(): void {
     this.subscriptionTypesService.getAllSubscriptionTypes(
       this.currentPage(),
@@ -83,14 +79,12 @@ export class SubscriptionTypeListComponent implements OnInit {
       error: (e) => console.error(e),
     });
   }
-  
-  // search with debounce
+
   onSearchChange(value: string): void {
     this.search.set(value);
     this.searchSubject.next(value);
   }
-  
-  // pagination
+
   onPageChange(page: number): void {
     this.currentPage.set(page);
     this.getAllSubscriptionTypes();
@@ -101,7 +95,6 @@ export class SubscriptionTypeListComponent implements OnInit {
     this.showCompletionModal.set(true);
   }
 
-  // close model
   closeModal(e: boolean): void {
     this.showCompletionModal.set(false);
     if (e) {
@@ -120,7 +113,7 @@ export class SubscriptionTypeListComponent implements OnInit {
     this.subscriptionTypeToDelete.set(id);
     this.showDeleteModal.set(true);
   }
-  
+
   deleteSubscriptionType(): void {
     const id = this.subscriptionTypeToDelete();
     if (id) {
@@ -128,15 +121,17 @@ export class SubscriptionTypeListComponent implements OnInit {
         next: () => {
           this.showDeleteModal.set(false);
           this.getAllSubscriptionTypes();
+          this.flashService.show('Subscription type deleted successfully.', "success");
         },
         error: (err) => {
           console.error('Error deleting subscription type:', err);
           this.showDeleteModal.set(false);
+          this.flashService.show('Failed to delete subscription type.', "error");
         },
       });
     }
   }
-  
+
   cancelDelete(): void {
     this.showDeleteModal.set(false);
     this.subscriptionTypeToDelete.set(null);

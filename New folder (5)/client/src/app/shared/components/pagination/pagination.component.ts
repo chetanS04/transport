@@ -40,7 +40,7 @@ import { LucideAngularModule, ChevronLeft, ChevronRight } from 'lucide-angular';
             <button
               (click)="onPageChange(currentPage() - 1)"
               [disabled]="currentPage() === 1"
-              class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-l-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+              class="relative inline-flex cursor-pointer items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-l-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
               <lucide-icon [img]="ChevronLeftIcon" [size]="20"></lucide-icon>
             </button>
 
@@ -54,8 +54,8 @@ import { LucideAngularModule, ChevronLeft, ChevronRight } from 'lucide-angular';
                 <button
                   (click)="onPageChange(page)"
                   [class]="page === currentPage() 
-                    ? 'relative inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-blue-600 hover:bg-blue-700'
-                    : 'relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-50'">
+                    ? 'relative inline-flex cursor-pointer items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-blue-600 hover:bg-blue-700'
+                    : 'relative inline-flex items-center cursor-pointer px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-50'">
                   {{ page }}
                 </button>
               }
@@ -65,7 +65,7 @@ import { LucideAngularModule, ChevronLeft, ChevronRight } from 'lucide-angular';
             <button
               (click)="onPageChange(currentPage() + 1)"
               [disabled]="currentPage() === totalPages()"
-              class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-r-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+              class="relative cursor-pointer inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-r-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
               <lucide-icon [img]="ChevronRightIcon" [size]="20"></lucide-icon>
             </button>
           </nav>
@@ -82,7 +82,6 @@ export class PaginationComponent {
   
   pageChange = output<number>();
 
-  // Lucide icons
   readonly ChevronLeftIcon = ChevronLeft;
   readonly ChevronRightIcon = ChevronRight;
 
@@ -107,19 +106,16 @@ export class PaginationComponent {
     const total = this.totalPages();
 
     if (total <= 7) {
-      // Show all pages if total is 7 or less
       for (let i = 1; i <= total; i++) {
         pages.push(i);
       }
     } else {
-      // Always show first page
       pages.push(1);
 
       if (current > 3) {
         pages.push('...');
       }
 
-      // Show pages around current
       const start = Math.max(2, current - 1);
       const end = Math.min(total - 1, current + 1);
 
@@ -131,7 +127,6 @@ export class PaginationComponent {
         pages.push('...');
       }
 
-      // Always show last page
       pages.push(total);
     }
 
