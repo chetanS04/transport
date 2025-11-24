@@ -1,46 +1,64 @@
-<aside 
-  [class]="'fixed lg:static inset-y-0 left-0 z-30 w-72 bg-white shadow-lg lg:shadow-none transition-all duration-300 ease-in-out transform flex flex-col h-screen ' + (isOpen() ? 'translate-x-0' : '-translate-x-full lg:translate-x-0 lg:w-20')">
-  
-  <!-- Sidebar Header -->
-  <div class="flex items-center justify-start h-16 px-6 border-b border-gray-100 shrink-0">
+<aside
+  [class]="'fixed lg:static inset-y-0 left-0 z-30 w-72 bg-white shadow-lg lg:shadow-none transition-all duration-300 ease-in-out transform flex flex-col h-screen ' + (isOpen() ? 'translate-x-0' : '-translate-x-full lg:translate-x-0 lg:w-20')"
+>
+  <div
+    class="flex items-center justify-start h-16 px-6 border-b border-gray-100 shrink-0"
+  >
     <div class="flex items-center gap-3">
-      <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center shadow-md">
-        <lucide-icon [img]="LayoutDashboard" class="w-6 h-6 text-white"></lucide-icon>
+      <div
+        class="w-10 h-10 bg-linear-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center shadow-md"
+      >
+        <lucide-icon
+          [img]="LayoutDashboard"
+          class="w-6 h-6 text-white"
+        ></lucide-icon>
       </div>
       @if (isOpen()) {
-        <span class="text-xl font-bold text-gray-800 tracking-tight">Admin Panel</span>
+      <span class="text-xl font-bold text-gray-800 tracking-tight"
+        >Admin Panel</span
+      >
       }
     </div>
   </div>
 
-  <!-- Navigation Menu -->
   <nav class="flex-1 overflow-y-auto px-3 py-4 space-y-1">
     @for (item of menuItems; track item.route) {
-      <a 
-        [routerLink]="item.route"
-        routerLinkActive="bg-blue-600 text-white shadow-sm"
-        [routerLinkActiveOptions]="{exact: item.route === '/'}"
-        (click)="onItemClick()"
-        class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-50 active:scale-95 transition-all duration-200 group cursor-pointer">
-        <lucide-icon [img]="item.icon" class="w-5 h-5 shrink-0 group-[.active]:text-white"></lucide-icon>
-        @if (isOpen()) {
-          <span class="text-sm font-medium">{{ item.label }}</span>
-        }
-      </a>
+    <a
+      [routerLink]="item.route"
+      routerLinkActive="bg-blue-600 text-white shadow-sm"
+      [routerLinkActiveOptions]="{exact: item.route === '/'}"
+      (click)="onItemClick()"
+      class="flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-50 active:scale-95 transition-all duration-200 group cursor-pointer"
+    >
+      <lucide-icon
+        [img]="item.icon"
+        class="w-5 h-5 shrink-0 group-[.active]:text-white"
+      ></lucide-icon>
+      @if (isOpen()) {
+      <span class="text-sm font-medium">{{ item.label }}</span>
+      }
+    </a>
     }
   </nav>
 
-  <!-- User Profile Section -->
   <div class="border-t border-gray-100 p-4 shrink-0">
-    <div [class]="isOpen() ? 'flex items-center gap-3 px-3 py-2' : 'flex items-center justify-center px-3 py-2'">
-      <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white font-semibold text-sm shadow-md">
+    <div
+      [class]="isOpen() ? 'flex items-center gap-3 px-3 py-2' : 'flex items-center justify-center px-3 py-2'"
+    >
+      <div
+        class="w-10 h-10 bg-linear-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white font-semibold text-sm shadow-md"
+      >
         AU
       </div>
       @if (isOpen()) {
-        <div class="flex-1 min-w-0">
-          <p class="text-sm font-semibold text-gray-900 truncate">Admin User</p>
-          <button class="text-xs text-gray-500 hover:text-blue-600 transition-colors">Logout</button>
-        </div>
+      <div class="flex-1 min-w-0">
+        <p class="text-sm font-semibold text-gray-900 truncate">Admin User</p>
+        <button
+          class="text-xs text-gray-500 hover:text-blue-600 transition-colors"
+        >
+          Logout
+        </button>
+      </div>
       }
     </div>
   </div>

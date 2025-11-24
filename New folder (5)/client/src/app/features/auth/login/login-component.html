@@ -3,11 +3,9 @@
   *ngIf="!isLoggedIn()"
 >
   <div class="w-full max-w-md">
-    <!-- Login Card -->
     <div
       class="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 animate-in fade-in slide-in-from-bottom-4 duration-500"
     >
-      <!-- Logo & Title -->
       <div class="text-center mb-8">
         <div
           class="inline-flex items-center justify-center w-16 h-16 bg-linear-to-br from-blue-600 to-blue-700 rounded-2xl shadow-lg mb-4"
@@ -21,9 +19,7 @@
         <p class="text-gray-600 text-sm">Sign in to your admin account</p>
       </div>
 
-      <!-- Login Form -->
       <form [formGroup]="rForm" (ngSubmit)="onSubmit()" class="space-y-5">
-        <!-- Email -->
         <div>
           <label
             for="email"
@@ -59,7 +55,6 @@
           </p>
         </div>
 
-        <!-- Password -->
         <div>
           <label
             for="password"
@@ -106,7 +101,6 @@
           </p>
         </div>
 
-        <!-- Remember Me -->
         <div class="flex items-center justify-between">
           <label class="flex items-center">
             <input
@@ -124,7 +118,6 @@
           </a>
         </div>
 
-        <!-- Login Button -->
         <button
           type="submit"
           [disabled]="isLoading()"
@@ -145,7 +138,6 @@
       </form>
     </div>
 
-    <!-- Footer -->
     <p class="text-center text-sm text-gray-500 mt-6">
       © 2025 Admin Panel. All rights reserved.
     </p>

@@ -6,7 +6,6 @@
     'bg-red-50 border-red-200 text-red-800': flash.type() === 'error'
   }"
 >
-  <!-- Icon -->
   <div>
     <ng-container [ngSwitch]="flash.type()">
       <lucide-icon
@@ -23,10 +22,8 @@
     </ng-container>
   </div>
 
-  <!-- Message -->
   <div class="flex-1 text-sm font-medium">{{ flash.message() }}</div>
 
-  <!-- Close Button -->
   <button
     class="text-gray-500 hover:text-gray-700 transition"
     (click)="close()"

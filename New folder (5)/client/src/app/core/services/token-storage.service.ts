@@ -17,7 +17,6 @@ interface DecodedToken extends JwtPayload {
 })
 export class TokenStorageService {
 
-  // Signals (Reactive)
   private _isLoggedIn = signal<boolean>(this.hasValidToken());
   isLoggedIn = computed(() => this._isLoggedIn());
 
@@ -26,9 +25,6 @@ export class TokenStorageService {
 
   constructor() { }
 
-  // -------------------------------
-  // LOGOUT
-  // -------------------------------
   signOut(): void {
     localStorage.removeItem(TOKEN_KEY);
     localStorage.removeItem(REFRESH_KEY);
@@ -38,9 +34,6 @@ export class TokenStorageService {
     this._user.set(null);
   }
 
-  // -------------------------------
-  // SAVE TOKEN
-  // -------------------------------
   public saveToken(token: string): void {
     localStorage.setItem(TOKEN_KEY, token);
 
@@ -50,14 +43,10 @@ export class TokenStorageService {
     }
   }
 
-  // SAVE REFRESH TOKEN (optional)
   public saveRefreshToken(refresh: string): void {
     localStorage.setItem(REFRESH_KEY, refresh);
   }
 
-  // -------------------------------
-  // GET TOKEN
-  // -------------------------------
   public getToken(): string | null {
     return localStorage.getItem(TOKEN_KEY);
   }
@@ -66,25 +55,16 @@ export class TokenStorageService {
     return localStorage.getItem(REFRESH_KEY);
   }
 
-  // -------------------------------
-  // SAVE USER
-  // -------------------------------
   public saveUser(user: User): void {
     localStorage.setItem(USER_KEY, JSON.stringify(user));
     this._user.set(user);
   }
 
-  // -------------------------------
-  // GET USER
-  // -------------------------------
   public getStoredUser(): User | null {
     const stored = localStorage.getItem(USER_KEY);
     return stored ? JSON.parse(stored) : null;
   }
 
-  // -------------------------------
-  // SAFE TOKEN DECODE
-  // -------------------------------
   private safeDecodeToken(token: string): DecodedToken | null {
     try {
       return jwtDecode<DecodedToken>(token);
@@ -94,9 +74,6 @@ export class TokenStorageService {
     }
   }
 
-  // -------------------------------
-  // AUTH CHECK
-  // -------------------------------
   public isAuthenticated(): boolean {
     const token = this.getToken();
     if (!token) return false;
@@ -114,9 +91,6 @@ export class TokenStorageService {
     return true;
   }
 
-  // -------------------------------
-  // INTERNAL VALIDATION
-  // -------------------------------
   private hasValidToken(): boolean {
     return this.isAuthenticated();
   }

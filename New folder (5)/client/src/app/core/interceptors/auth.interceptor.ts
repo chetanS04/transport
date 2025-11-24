@@ -15,7 +15,6 @@ export function AuthInterceptor(
   const tokenService = inject(TokenStorageService);
   const token = tokenService.getToken();
 
-  // Clone request only if token exists
   const authReq = token
     ? req.clone({
       setHeaders: {

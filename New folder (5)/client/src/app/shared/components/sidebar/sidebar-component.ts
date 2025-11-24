@@ -61,7 +61,6 @@ export class SidebarComponent {
   ];
 
   onItemClick() {
-    // Close sidebar on mobile when item is clicked
     if (window.innerWidth < 1024) {
       this.closeSidebar.emit();
     }

@@ -27,7 +27,6 @@ import { CommonModule } from '@angular/common';
   ]
 })
 export class FlashMessageComponent {
-  
   X = X;
   AlertCircle = AlertCircle;
   CheckCircle = CheckCircle;

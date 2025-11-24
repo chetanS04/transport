@@ -25,13 +25,12 @@ import { LoaderService } from '../../../core/services/loader.service';
         animation: fadeIn 0.15s ease-out;
       }
 
-      /* Clean Modern Dual-ring Loader */
       .loader {
         width: 70px;
         height: 70px;
         border-radius: 50%;
         border: 6px solid transparent;
-        border-top-color: #3b82f6; /* blue-500 */
+        border-top-color: #3b82f6;
         border-bottom-color: #3b82f6;
         animation: spin 1s linear infinite;
         position: relative;
