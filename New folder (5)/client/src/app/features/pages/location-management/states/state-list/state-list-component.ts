@@ -1,0 +1,140 @@
+import { CommonModule } from '@angular/common';
+import { Component, OnInit, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import { State } from '../../../../../shared/models/interface';
+import { StateService } from '../../../../../core/services/state.service';
+import { BreadcrumbComponent } from "../../../../../shared/components/breadcrumb/breadcrumb-component";
+import { StateFormComponent } from "../state-form/state-form-component";
+import { ConfirmationModalComponent } from '../../../../../shared/components/confirmation-modal/confirmation-modal.component';
+import { PaginationComponent } from '../../../../../shared/components/pagination/pagination.component';
+import { debounceTime, Subject } from 'rxjs';
+import { LucideAngularModule, Plus, Eye, Edit, Trash2, Frown, X } from 'lucide-angular';
+
+@Component({
+  selector: 'app-state-list-component',
+  imports: [CommonModule, RouterModule, FormsModule, BreadcrumbComponent, StateFormComponent, ConfirmationModalComponent, PaginationComponent, LucideAngularModule],
+  templateUrl: './state-list-component.html',
+  standalone: true,
+})
+export class StateListComponent implements OnInit {
+  states = signal<State[]>([]);
+  search = signal<string>('');
+  editModal = signal<State | null>(null);
+  showCompletionModal = signal<boolean>(false);
+  showDeleteModal = signal<boolean>(false);
+  stateToDelete = signal<number | null>(null);
+  
+  // Pagination
+  currentPage = signal<number>(1);
+  pageSize = signal<number>(10);
+  totalItems = signal<number>(0);
+  totalPages = signal<number>(0);
+  
+  private searchSubject = new Subject<string>();
+
+  // Lucide icons
+  readonly Plus = Plus;
+  readonly Eye = Eye;
+  readonly Edit = Edit;
+  readonly Trash2 = Trash2;
+  readonly Frown = Frown;
+  readonly X = X;
+
+  breadcrumbItems = [{ label: 'Dashboard', link: '/' }, { label: 'States' }];
+
+  constructor(
+    private stateService: StateService,
+    private router: Router
+  ) {
+    // Setup debounced search
+    this.searchSubject.pipe(
+      debounceTime(300)
+    ).subscribe(() => {
+      this.currentPage.set(1); // Reset to first page on search
+      this.getAllStates();
+    });
+  }
+
+  ngOnInit(): void {
+    this.getAllStates();
+  }
+
+  // get all states with pagination
+  getAllStates(): void {
+    this.stateService.getAllStates(this.currentPage(), this.pageSize(), this.search()).subscribe({
+      next: (response) => {
+        this.states.set(response.data);
+        this.totalItems.set(response.pagination.total);
+        this.totalPages.set(response.pagination.totalPages);
+      },
+      error: (e) => console.error(e),
+    });
+  }
+
+  // search states
+  onSearchChange(searchTerm: string): void {
+    this.search.set(searchTerm);
+    this.searchSubject.next(searchTerm);
+  }
+  
+  // Handle page change
+  onPageChange(page: number): void {
+    this.currentPage.set(page);
+    this.getAllStates();
+  }
+
+  // view state cities
+  viewStateCities(event: Event, state_id: number) {
+    event.stopPropagation();
+    this.router.navigate(['locations', state_id, 'cities']);
+  }
+
+  openModal(): void {
+    this.editModal.set(null);
+    this.showCompletionModal.set(true);
+  }
+
+  // close model
+  closeModal(e: boolean): void {
+    this.showCompletionModal.set(false);
+    if (e) {
+      this.getAllStates();
+    }
+  }
+
+  openEditModal(event: Event, state: State): void {
+    event.stopPropagation();
+    this.editModal.set(state);
+    this.showCompletionModal.set(true);
+  }
+
+  confirmDelete(event: Event, state_id: number): void {
+    event.stopPropagation();
+    this.stateToDelete.set(state_id);
+    this.showDeleteModal.set(true);
+  }
+
+  deleteState(): void {
+    const id = this.stateToDelete();
+    if (id) {
+      this.stateService.deleteState(id).subscribe({
+        next: () => {
+          this.showDeleteModal.set(false);
+          this.stateToDelete.set(null);
+          this.getAllStates();
+        },
+        error: (err) => {
+          console.error('Error deleting state:', err);
+          this.showDeleteModal.set(false);
+          this.stateToDelete.set(null);
+        },
+      });
+    }
+  }
+
+  cancelDelete(): void {
+    this.showDeleteModal.set(false);
+    this.stateToDelete.set(null);
+  }
+}

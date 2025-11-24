@@ -1,0 +1,82 @@
+import { CommonModule } from '@angular/common';
+import { Component, input, output, OnInit, effect } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { State } from '../../../../../shared/models/interface';
+import { StateService } from '../../../../../core/services/state.service';
+import { ValidateAllFormFields } from '../../../../../core/utils/CustomValidator';
+import { ToggleSwitchComponent } from '../../../../../shared/components/toggle-switch/toggle-switch.component';
+
+@Component({
+  selector: 'app-state-form-component',
+  imports: [CommonModule, ReactiveFormsModule, ToggleSwitchComponent],
+  templateUrl: './state-form-component.html',
+  standalone: true,
+})
+export class StateFormComponent implements OnInit {
+  rForm: FormGroup;
+  data = input<State | null>(null);
+  panelClosed = output<boolean>();
+
+  constructor(
+    private fb: FormBuilder,
+    private stateService: StateService
+  ) {
+    this.rForm = this.fb.group({
+      name: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(50),
+        ]),
+      ],
+      status: [false],
+    });
+
+    // Use effect to watch for data changes
+    effect(() => {
+      const currentData = this.data();
+      if (currentData) {
+        this.rForm.patchValue(currentData);
+      }
+    });
+  }
+
+  ngOnInit(): void {
+    if (this.data()) {
+      this.rForm.patchValue(this.data()!);
+    }
+  }
+
+  // close modal
+  closeModal(action: boolean): void {
+    this.panelClosed.emit(action);
+  }
+
+  // Submit form (create and update)
+  onSubmit(): void {
+    if (this.rForm.valid) {
+      const formData = this.rForm.value;
+      const currentData = this.data();
+      if (currentData) {
+        // Update existing option
+        this.stateService.updateState(currentData.id, formData).subscribe({
+          next: () => {
+            this.closeModal(true);
+          },
+          error: (err) => console.log(err),
+        });
+      } else {
+        // Create new option
+        this.stateService.createState(formData).subscribe({
+          next: () => {
+            this.closeModal(true);
+          },
+          error: (err) => console.log(err),
+        });
+      }
+    } else {
+      ValidateAllFormFields.validateAll(this.rForm);
+    }
+  }
+}

@@ -1,0 +1,95 @@
+import { Component, output, input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { LucideAngularModule, Trash2, AlertTriangle, Info } from 'lucide-angular';
+
+@Component({
+  selector: 'app-confirmation-modal',
+  standalone: true,
+  imports: [CommonModule, LucideAngularModule],
+  template: `
+    @if (isOpen()) {
+      <div class="fixed inset-0 z-115 flex items-center justify-center p-4">
+        <!-- Backdrop -->
+        <div 
+          class="absolute inset-0 backdrop-blur-sm bg-opacity-50 transition-opacity"
+          (click)="onCancel()">
+        </div>
+        
+        <!-- Modal -->
+        <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-md transform transition-all">
+          <!-- Icon -->
+          <div class="flex justify-center pt-8 pb-4">
+            <div class="w-16 h-16 rounded-full flex items-center justify-center" [ngClass]="{
+              'bg-red-100': type() === 'danger',
+              'bg-yellow-100': type() === 'warning',
+              'bg-blue-100': type() === 'info'
+            }">
+              @if (type() === 'danger') {
+                <lucide-icon [img]="Trash2Icon" [size]="32" class="text-red-600"></lucide-icon>
+              } @else if (type() === 'warning') {
+                <lucide-icon [img]="AlertTriangleIcon" [size]="32" class="text-yellow-600"></lucide-icon>
+              } @else {
+                <lucide-icon [img]="InfoIcon" [size]="32" class="text-blue-600"></lucide-icon>
+              }
+            </div>
+          </div>
+          
+          <!-- Content -->
+          <div class="px-8 pb-6 text-center">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+              {{ title() }}
+            </h3>
+            <p class="text-gray-600">
+              {{ message() }}
+            </p>
+          </div>
+          
+          <!-- Actions -->
+          <div class="flex gap-3 px-8 pb-8">
+            <button
+              type="button"
+              (click)="onCancel()"
+              class="flex-1 py-3 px-4 bg-gray-100 text-gray-700 font-semibold rounded-lg hover:bg-gray-200 transition-colors">
+              {{ cancelText() }}
+            </button>
+            <button
+              type="button"
+              (click)="onConfirm()"
+              class="flex-1 py-3 px-4 font-semibold rounded-lg transition-all shadow-md hover:shadow-lg"
+              [ngClass]="{
+                'bg-red-600 hover:bg-red-700 text-white': type() === 'danger',
+                'bg-yellow-600 hover:bg-yellow-700 text-white': type() === 'warning',
+                'bg-blue-600 hover:bg-blue-700 text-white': type() === 'info'
+              }">
+              {{ confirmText() }}
+            </button>
+          </div>
+        </div>
+      </div>
+    }
+  `
+})
+export class ConfirmationModalComponent {
+  isOpen = input<boolean>(false);
+  title = input<string>('Confirm Action');
+  message = input<string>('Are you sure you want to proceed?');
+  type = input<'danger' | 'warning' | 'info'>('danger');
+  confirmText = input<string>('Confirm');
+  cancelText = input<string>('Cancel');
+  
+  confirmed = output<void>();
+  cancelled = output<void>();
+
+  // Lucide icons
+  readonly Trash2Icon = Trash2;
+  readonly AlertTriangleIcon = AlertTriangle;
+  readonly InfoIcon = Info;
+
+  onConfirm() {
+    this.confirmed.emit();
+  }
+
+  onCancel() {
+    this.cancelled.emit();
+  }
+}

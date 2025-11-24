@@ -7,6 +7,7 @@ require("dotenv").config();
 const session = require("express-session");
 const { secret } = require("./config/auth.config");
 const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
+const { fixAllSequences } = require("./utils/sequenceHelper");
 
 const app = express();
 
@@ -41,6 +42,13 @@ app.use(notFound);
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`Server is running on port ${PORT}.`);
+  
+  // Fix all database sequences on startup
+  try {
+    await fixAllSequences();
+  } catch (error) {
+    console.error('Error fixing sequences on startup:', error);
+  }
 });
