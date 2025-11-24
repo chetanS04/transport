@@ -22,7 +22,6 @@ export class StateFormComponent implements OnInit {
   private fb = inject(FormBuilder);
   private stateService = inject(StateService);
 
-
   constructor() {
     this.rForm = this.fb.group({
       name: [
@@ -36,7 +35,6 @@ export class StateFormComponent implements OnInit {
       status: [false],
     });
 
-    // Use effect to watch for data changes
     effect(() => {
       const currentData = this.data();
       if (currentData) {
@@ -51,18 +49,15 @@ export class StateFormComponent implements OnInit {
     }
   }
 
-  // close modal
   closeModal(action: boolean): void {
     this.panelClosed.emit(action);
   }
 
-  // Submit form (create and update)
   onSubmit(): void {
     if (this.rForm.valid) {
       const formData = this.rForm.value;
       const currentData = this.data();
       if (currentData) {
-        // Update existing option
         this.stateService.updateState(currentData.id, formData).subscribe({
           next: () => {
             this.closeModal(true);
@@ -70,11 +65,10 @@ export class StateFormComponent implements OnInit {
           },
           error: (err) => {
             console.log(err),
-            this.flashService.show('Failed to update state.', "error");
+              this.flashService.show('Failed to update state.', "error");
           },
         });
       } else {
-        // Create new option
         this.stateService.createState(formData).subscribe({
           next: () => {
             this.closeModal(true);

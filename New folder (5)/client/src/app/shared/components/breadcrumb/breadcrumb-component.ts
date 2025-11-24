@@ -36,5 +36,4 @@ export interface BreadcrumbItem {
 export class BreadcrumbComponent {
     items = input<BreadcrumbItem[]>([]);
     readonly ChevronRight = ChevronRight;
-
 }

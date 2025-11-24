@@ -36,7 +36,6 @@ import { LucideAngularModule, ChevronLeft, ChevronRight } from 'lucide-angular';
         </div>
         <div>
           <nav class="relative z-0 inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
-            <!-- Previous Button -->
             <button
               (click)="onPageChange(currentPage() - 1)"
               [disabled]="currentPage() === 1"
@@ -44,7 +43,6 @@ import { LucideAngularModule, ChevronLeft, ChevronRight } from 'lucide-angular';
               <lucide-icon [img]="ChevronLeftIcon" [size]="20"></lucide-icon>
             </button>
 
-            <!-- Page Numbers -->
             @for (page of getPageNumbers(); track page) {
               @if (page === '...') {
                 <span class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300">
@@ -61,7 +59,6 @@ import { LucideAngularModule, ChevronLeft, ChevronRight } from 'lucide-angular';
               }
             }
 
-            <!-- Next Button -->
             <button
               (click)="onPageChange(currentPage() + 1)"
               [disabled]="currentPage() === totalPages()"

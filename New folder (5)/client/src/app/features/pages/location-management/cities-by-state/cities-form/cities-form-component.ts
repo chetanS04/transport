@@ -25,7 +25,6 @@ export class CitiesFormComponent implements OnInit {
   private citiesService = inject(StateCitiesService);
   private route = inject(ActivatedRoute);
 
-
   constructor() {
     this.rForm = this.fb.group({
       name: [

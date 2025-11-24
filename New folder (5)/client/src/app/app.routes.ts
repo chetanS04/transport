@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { NotFoundComponent } from './shared/components/not-found/not-found-component';
+import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
     {
@@ -15,4 +17,6 @@ export const routes: Routes = [
                 (m) => m.dashboardRoutes
             ),
     },
+    { path: 'not-found', component: NotFoundComponent, canActivate: [authGuard] },
+    { path: '**', redirectTo: 'not-found' }
 ];

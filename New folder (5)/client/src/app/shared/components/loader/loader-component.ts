@@ -7,9 +7,11 @@ import { LoaderService } from '../../../core/services/loader.service';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div *ngIf="loader.isLoading()" class="loader-overlay">
+  @if (loader.isLoading()) {
+    <div class="loader-overlay">
       <div class="loader"></div>
     </div>
+  }
   `,
   styles: [
     `
@@ -65,5 +67,5 @@ import { LoaderService } from '../../../core/services/loader.service';
   ],
 })
 export class LoaderComponent {
-  constructor(public loader: LoaderService) {}
+  constructor(public loader: LoaderService) { }
 }

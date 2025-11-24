@@ -3,21 +3,18 @@ import { CommonModule } from '@angular/common';
 import { LucideAngularModule, Trash2, AlertTriangle, Info } from 'lucide-angular';
 
 @Component({
-  selector: 'app-confirmation-modal',
-  standalone: true,
-  imports: [CommonModule, LucideAngularModule],
-  template: `
+    selector: 'app-confirmation-modal',
+    standalone: true,
+    imports: [CommonModule, LucideAngularModule],
+    template: `
     @if (isOpen()) {
       <div class="fixed inset-0 z-115 flex items-center justify-center p-4">
-        <!-- Backdrop -->
         <div 
           class="absolute inset-0 backdrop-blur-sm bg-opacity-50 transition-opacity"
           (click)="onCancel()">
         </div>
         
-        <!-- Modal -->
         <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-md transform transition-all">
-          <!-- Icon -->
           <div class="flex justify-center pt-8 pb-4">
             <div class="w-16 h-16 rounded-full flex items-center justify-center" [ngClass]="{
               'bg-red-100': type() === 'danger',
@@ -34,7 +31,6 @@ import { LucideAngularModule, Trash2, AlertTriangle, Info } from 'lucide-angular
             </div>
           </div>
           
-          <!-- Content -->
           <div class="px-8 pb-6 text-center">
             <h3 class="text-xl font-bold text-gray-900 mb-2">
               {{ title() }}
@@ -44,7 +40,6 @@ import { LucideAngularModule, Trash2, AlertTriangle, Info } from 'lucide-angular
             </p>
           </div>
           
-          <!-- Actions -->
           <div class="flex gap-3 px-8 pb-8">
             <button
               type="button"
@@ -70,25 +65,25 @@ import { LucideAngularModule, Trash2, AlertTriangle, Info } from 'lucide-angular
   `
 })
 export class ConfirmationModalComponent {
-  isOpen = input<boolean>(false);
-  title = input<string>('Confirm Action');
-  message = input<string>('Are you sure you want to proceed?');
-  type = input<'danger' | 'warning' | 'info'>('danger');
-  confirmText = input<string>('Confirm');
-  cancelText = input<string>('Cancel');
-  
-  confirmed = output<void>();
-  cancelled = output<void>();
+    isOpen = input<boolean>(false);
+    title = input<string>('Confirm Action');
+    message = input<string>('Are you sure you want to proceed?');
+    type = input<'danger' | 'warning' | 'info'>('danger');
+    confirmText = input<string>('Confirm');
+    cancelText = input<string>('Cancel');
 
-  readonly Trash2Icon = Trash2;
-  readonly AlertTriangleIcon = AlertTriangle;
-  readonly InfoIcon = Info;
+    confirmed = output<void>();
+    cancelled = output<void>();
 
-  onConfirm() {
-    this.confirmed.emit();
-  }
+    readonly Trash2Icon = Trash2;
+    readonly AlertTriangleIcon = AlertTriangle;
+    readonly InfoIcon = Info;
 
-  onCancel() {
-    this.cancelled.emit();
-  }
+    onConfirm() {
+        this.confirmed.emit();
+    }
+
+    onCancel() {
+        this.cancelled.emit();
+    }
 }

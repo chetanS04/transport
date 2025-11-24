@@ -35,7 +35,6 @@ export class StateListComponent implements OnInit {
   private stateService = inject(StateService);
   private router = inject(Router);
 
-
   private searchSubject = new Subject<string>();
 
   readonly Plus = Plus;

@@ -1,7 +1,6 @@
 <app-breadcrumb-component [items]="breadcrumbItems"></app-breadcrumb-component>
 
 <div class="space-y-6">
-  <!-- Header Card -->
   <div class="bg-white rounded-xl shadow-sm border border-gray-200 px-6 py-5">
     <div
       class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
@@ -33,7 +32,6 @@
     </div>
   </div>
 
-  <!-- Table -->
   <div
     class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden"
   >
@@ -115,7 +113,6 @@
       </table>
     </div>
 
-    <!-- Pagination -->
     @if (cities().length > 0) {
     <div class="px-6 py-4 border-t border-gray-200">
       <app-pagination
@@ -143,7 +140,6 @@
   </div>
 </div>
 
-<!-- Form Modal -->
 @if (showCompletionModal()) {
 <div
   class="fixed inset-0 backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-115 p-4"
@@ -173,7 +169,6 @@
 </div>
 }
 
-<!-- Delete Confirmation Modal -->
 <app-confirmation-modal
   [isOpen]="showDeleteModal()"
   [title]="'Delete City'"

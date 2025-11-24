@@ -1,6 +1,6 @@
+@if (!isLoggedIn()) {
 <div
   class="min-h-screen bg-linear-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center p-4"
-  *ngIf="!isLoggedIn()"
 >
   <div class="w-full max-w-md">
     <div
@@ -46,13 +46,12 @@
               class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-sm"
             />
           </div>
-
-          <p
-            class="text-red-500 font-medium text-sm mt-1"
-            *ngIf="rForm.get('email')?.touched && rForm.get('email')?.hasError('required')"
-          >
+          @if (rForm.get('email')?.touched &&
+          rForm.get('email')?.hasError('required')) {
+          <p class="text-red-500 font-medium text-sm mt-1">
             Email is required!
           </p>
+          }
         </div>
 
         <div>
@@ -93,12 +92,12 @@
             </button>
           </div>
 
-          <p
-            class="text-red-500 font-medium text-sm mt-1"
-            *ngIf="rForm.get('password')?.touched && rForm.get('password')?.hasError('required')"
-          >
+          @if (rForm.get('password')?.touched &&
+          rForm.get('password')?.hasError('required')) {
+          <p class="text-red-500 font-medium text-sm mt-1">
             Password is required!
           </p>
+          }
         </div>
 
         <div class="flex items-center justify-between">
@@ -143,3 +142,4 @@
     </p>
   </div>
 </div>
+}
