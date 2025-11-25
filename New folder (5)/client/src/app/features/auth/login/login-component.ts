@@ -1,7 +1,7 @@
 import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { LucideAngularModule, Mail, Lock, Eye, EyeOff, ShieldCheck, Loader } from 'lucide-angular';
 
 import { AuthService } from '../../../core/services/auth.service';
@@ -18,7 +18,8 @@ import { InputValidationErrorMessage } from "../../../shared/components/input-va
     CommonModule,
     ReactiveFormsModule,
     LucideAngularModule,
-    InputValidationErrorMessage
+    InputValidationErrorMessage,
+    RouterLink
 ],
   templateUrl: './login-component.html'
 })
@@ -48,7 +49,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.tokenStorageService.isAuthenticated()) {
-      this.router.navigate(['']);
+      this.router.navigate(['my-dashboard']);
       return;
     }
     this.rForm = this.fb.group({
@@ -58,7 +59,6 @@ export class LoginComponent implements OnInit {
 
     this.redirectTo = this.route.snapshot.queryParamMap.get('redirectTo') || '/';
   }
-
 
   togglePasswordVisibility() {
     this.showPasswordState.update(v => !v);

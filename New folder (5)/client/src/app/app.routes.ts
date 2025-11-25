@@ -11,6 +11,20 @@ export const routes: Routes = [
             ),
     },
     {
+        path: 'forgot-password',
+        loadComponent: () =>
+            import('./features/auth/forgot-password/forgot-password-component').then(
+                (m) => m.ForgotPasswordComponent
+            ),
+    },
+    {
+        path: 'reset-password/:token',
+        loadComponent: () =>
+            import('./features/auth/reset-password/reset-password-component').then(
+                (m) => m.ResetPasswordComponent
+            ),
+    },
+    {
         path: 'my-dashboard',
         loadChildren: () =>
             import('./shared/layouts/dashboard/dashboard-routing-module').then(

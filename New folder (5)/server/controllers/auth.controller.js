@@ -3,8 +3,9 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const config = require("../config/auth.config");
-const { User } = require("../models");
+const { User, PasswordReset } = require("../models");
 const asyncHandler = require("../middlewares/asyncHandler");
+const sendForgetPasswordToken = require("./helpers/forgetPassword");
 
 const login = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
@@ -60,7 +61,69 @@ const logout = asyncHandler(async (req, res) => {
   return res.status(200).send({ message: "You've been logged out!" });
 });
 
+const forgotPassword = asyncHandler(async (req, res) => {
+  const { email } = req.body;
+
+  const user = await User.findOne({ where: { email } });
+  if (!user)
+    return res.status(400).send({
+      message: "User not found! Please enter a valid email address.",
+    });
+
+  const existingToken = await PasswordReset.findOne({ where: { email } });
+
+  if (existingToken && new Date(existingToken.expires_at) > new Date()) {
+    return res.status(400).send({
+      message: "We already sent a link. Please check your email!",
+    });
+  }
+  const frontendBaseUrl =
+    req.headers.origin || process.env.FRONTEND_URL || "http://localhost:4200";
+  await sendForgetPasswordToken(email, frontendBaseUrl);
+  res.status(200).json({
+    message: "Reset password link has been sent to your email address.",
+  });
+});
+
+const resetPassword = asyncHandler(async (req, res) => {
+  const { token } = req.params;
+  const { password, confirmPassword } = req.body;
+
+  console.log("token", token);
+
+  const resetToken = await PasswordReset.findOne({ where: { token } });
+
+  if (!resetToken || new Date(resetToken.expires_at) < new Date()) {
+    return res.status(400).json({ message: "Invalid or expired token!" });
+  }
+
+  if (password !== confirmPassword) {
+    return res.status(400).json({ message: "Passwords do not match!" });
+  }
+
+  const hashedPassword = bcrypt.hashSync(password, 8);
+
+  const user = await User.findOne({ where: { email: resetToken.email } });
+
+  if (!user) {
+    return res.status(404).json({ message: "User not found." });
+  }
+
+  await User.update(
+    { password: hashedPassword },
+    { where: { email: resetToken.email } }
+  );
+
+  await PasswordReset.destroy({ where: { token } });
+
+  return res.status(200).json({
+    message: "Password updated successfully. Redirecting to home page!",
+  });
+});
+
 module.exports = {
   login,
   logout,
+  forgotPassword,
+  resetPassword,
 };

@@ -12,5 +12,7 @@ authRouter.use((req, res, next) => {
 
 authRouter.post("/login", authController.login);
 authRouter.post("/logout", authController.logout);
+authRouter.post("/forgot-password", authController.forgotPassword);
+authRouter.route("/reset-password/:token").post(authController.resetPassword);
 
 module.exports = authRouter;
