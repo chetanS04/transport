@@ -10,5 +10,5 @@ import { LoaderComponent } from "./shared/components/loader/loader-component";
   styleUrl: './app.css'
 })
 export class App {
-  protected title = 'client';
+  protected title = 'Transport Admin';
 }
