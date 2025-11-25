@@ -18,6 +18,7 @@ db.City = require("./cities")(sequelize, DataTypes);
 db.Subscription = require("./subscriptions")(sequelize, DataTypes);
 db.SubscriptionType = require("./subscription-types")(sequelize, DataTypes);
 db.Settings = require("./settings")(sequelize, DataTypes);
+db.PasswordReset = require("./password-resets")(sequelize, DataTypes);
 
 require("./associations")(db);
 
