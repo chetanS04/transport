@@ -10,20 +10,10 @@
       placeholder="Enter subscription name"
       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
     />
-    @if (rForm.get('name')?.hasError('required') && rForm.get('name')?.touched)
-    {
-    <p class="mt-2 text-sm text-red-600 font-medium">
-      Subscription name is required
-    </p>
-    } @if (rForm.get('name')?.hasError('minlength')) {
-    <p class="mt-2 text-sm text-red-600 font-medium">
-      Name must be at least 2 characters
-    </p>
-    } @if (rForm.get('name')?.hasError('maxlength')) {
-    <p class="mt-2 text-sm text-red-600 font-medium">
-      Name must not exceed 50 characters
-    </p>
-    }
+    <input-validation-error-message
+      [control]="rForm.get('name')"
+      fieldName="Subscription Name"
+    />
   </div>
 
   <div>
@@ -42,14 +32,10 @@
         class="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
       />
     </div>
-    @if (rForm.get('price')?.hasError('required') &&
-    rForm.get('price')?.touched) {
-    <p class="mt-2 text-sm text-red-600 font-medium">Price is required</p>
-    } @if (rForm.get('price')?.hasError('min')) {
-    <p class="mt-2 text-sm text-red-600 font-medium">
-      Price must be at least $1
-    </p>
-    }
+    <input-validation-error-message
+      [control]="rForm.get('price')"
+      fieldName="Price"
+    />
   </div>
 
   <div>
@@ -70,16 +56,17 @@
       <option value="halfYear">6 Months</option>
       <option value="year">1 Year</option>
     </select>
-    @if (rForm.get('duration')?.hasError('required') &&
-    rForm.get('duration')?.touched) {
-    <p class="mt-2 text-sm text-red-600 font-medium">Duration is required</p>
-    }
+    <input-validation-error-message
+      [control]="rForm.get('duration')"
+      fieldName="Duration"
+    />
   </div>
 
-  <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-    <label for="status" class="text-sm font-medium text-gray-700">
-      Active Status
-    </label>
+  <div
+    class="flex items-center justify-between p-4 bg-gray-50 rounded-lg cursor-pointer select-none"
+    (click)="toggleStatus()"
+  >
+    <label class="text-sm cursor-pointer font-medium text-gray-700"> Active Status </label>
     <app-toggle-switch formControlName="status"></app-toggle-switch>
   </div>
 

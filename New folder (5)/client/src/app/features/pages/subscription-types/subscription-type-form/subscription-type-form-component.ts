@@ -6,10 +6,11 @@ import { SubscriptionTypesService } from '../../../../core/services/subscription
 import { ValidateAllFormFields } from '../../../../core/utils/CustomValidator';
 import { ToggleSwitchComponent } from '../../../../shared/components/toggle-switch/toggle-switch.component';
 import { FlashMessageService } from '../../../../core/services/flash-message.service';
+import { InputValidationErrorMessage } from "../../../../shared/components/input-validation-error-message/input-validation-error-message-component";
 
 @Component({
   selector: 'app-subscription-type-form-component',
-  imports: [CommonModule, ReactiveFormsModule, ToggleSwitchComponent],
+  imports: [CommonModule, ReactiveFormsModule, ToggleSwitchComponent, InputValidationErrorMessage],
   templateUrl: './subscription-type-form-component.html',
   standalone: true,
 })
@@ -89,5 +90,10 @@ export class SubscriptionTypeFormComponent implements OnInit {
     } else {
       ValidateAllFormFields.validateAll(this.rForm);
     }
+  }
+
+  toggleStatus() {
+    const current = this.rForm.controls['status'].value;
+    this.rForm.controls['status'].setValue(!current);
   }
 }

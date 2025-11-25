@@ -6,10 +6,11 @@ import { StateService } from '../../../../../core/services/state.service';
 import { ValidateAllFormFields } from '../../../../../core/utils/CustomValidator';
 import { ToggleSwitchComponent } from '../../../../../shared/components/toggle-switch/toggle-switch.component';
 import { FlashMessageService } from '../../../../../core/services/flash-message.service';
+import { InputValidationErrorMessage } from "../../../../../shared/components/input-validation-error-message/input-validation-error-message-component";
 
 @Component({
   selector: 'app-state-form-component',
-  imports: [CommonModule, ReactiveFormsModule, ToggleSwitchComponent],
+  imports: [CommonModule, ReactiveFormsModule, ToggleSwitchComponent, InputValidationErrorMessage],
   templateUrl: './state-form-component.html',
   standalone: true,
 })
@@ -84,4 +85,10 @@ export class StateFormComponent implements OnInit {
       ValidateAllFormFields.validateAll(this.rForm);
     }
   }
+
+  toggleStatus() {
+    const current = this.rForm.controls['status'].value;
+    this.rForm.controls['status'].setValue(!current);
+  }
+
 }

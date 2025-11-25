@@ -8,6 +8,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import { TokenStorageService } from '../../../core/services/token-storage.service';
 import { ValidateAllFormFields } from '../../../core/utils/CustomValidator';
 import { FlashMessageService } from '../../../core/services/flash-message.service';
+import { InputValidationErrorMessage } from "../../../shared/components/input-validation-error-message/input-validation-error-message-component";
 
 
 @Component({
@@ -16,8 +17,9 @@ import { FlashMessageService } from '../../../core/services/flash-message.servic
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    LucideAngularModule
-  ],
+    LucideAngularModule,
+    InputValidationErrorMessage
+],
   templateUrl: './login-component.html'
 })
 export class LoginComponent implements OnInit {

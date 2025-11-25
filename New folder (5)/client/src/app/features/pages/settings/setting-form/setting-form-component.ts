@@ -78,4 +78,9 @@ export class SettingFormComponent {
       ValidateAllFormFields.validateAll(this.rForm);
     }
   }
+
+  toggleStatus() {
+    const current = this.rForm.controls['status'].value;
+    this.rForm.controls['status'].setValue(!current);
+  }
 }

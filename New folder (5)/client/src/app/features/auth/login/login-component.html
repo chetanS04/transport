@@ -46,12 +46,10 @@
               class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-sm"
             />
           </div>
-          @if (rForm.get('email')?.touched &&
-          rForm.get('email')?.hasError('required')) {
-          <p class="text-red-500 font-medium text-sm mt-1">
-            Email is required!
-          </p>
-          }
+          <input-validation-error-message
+            [control]="rForm.get('email')"
+            fieldName="Email"
+          />
         </div>
 
         <div>
@@ -92,12 +90,10 @@
             </button>
           </div>
 
-          @if (rForm.get('password')?.touched &&
-          rForm.get('password')?.hasError('required')) {
-          <p class="text-red-500 font-medium text-sm mt-1">
-            Password is required!
-          </p>
-          }
+          <input-validation-error-message
+            [control]="rForm.get('password')"
+            fieldName="Password"
+          />
         </div>
 
         <div class="flex items-center justify-between">
