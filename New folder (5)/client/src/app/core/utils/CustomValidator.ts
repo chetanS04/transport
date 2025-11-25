@@ -12,7 +12,6 @@ export class CustomValidator {
   }
 }
 
-
 export class ValidateAllFormFields {
 
   static validateAll(formGroup: FormGroup | FormArray): void {

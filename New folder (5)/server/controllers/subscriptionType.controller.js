@@ -3,19 +3,16 @@ const { SubscriptionType } = require("../models");
 const { fixSequence } = require("../utils/sequenceHelper");
 const { Op } = require("sequelize");
 
-// Create a new subscription type
 const createSubscriptionType = asyncHandler(async (req, res) => {
   try {
     const { name, price, duration, status } = req.body;
 
-    // Validate input
     if (!name || !price || !duration) {
       return res
         .status(400)
         .json({ success: false, message: "Missing required fields" });
     }
 
-    // Fix sequence before creating
     await fixSequence('subscription_types');
 
     const newSubscription = await SubscriptionType.create({
@@ -29,7 +26,6 @@ const createSubscriptionType = asyncHandler(async (req, res) => {
   } catch (err) {
     console.error("Error creating subscription type:", err);
     
-    // If it's a unique constraint error, try fixing the sequence
     if (err.name === 'SequelizeUniqueConstraintError') {
       try {
         await fixSequence('subscription_types');
@@ -48,14 +44,12 @@ const createSubscriptionType = asyncHandler(async (req, res) => {
   }
 });
 
-// Get all subscription types
 const getAllSubscriptionTypes = asyncHandler(async (req, res) => {
   try {
     const { page = 1, limit = 10, search = '' } = req.query;
     
     const offset = (page - 1) * limit;
     
-    // Build where clause for search
     const whereClause = search
       ? {
           name: {
@@ -88,7 +82,6 @@ const getAllSubscriptionTypes = asyncHandler(async (req, res) => {
   }
 });
 
-// Get subscription type by ID
 const getSubscriptionTypeById = asyncHandler(async (req, res) => {
   try {
     const { id } = req.params;
@@ -109,7 +102,6 @@ const getSubscriptionTypeById = asyncHandler(async (req, res) => {
   }
 });
 
-// Update a subscription type by ID
 const updateSubscriptionType = asyncHandler(async (req, res) => {
   try {
     const { id } = req.params;
@@ -139,7 +131,6 @@ const updateSubscriptionType = asyncHandler(async (req, res) => {
   }
 });
 
-// Delete a subscription type by ID
 const deleteSubscriptionType = asyncHandler(async (req, res) => {
   try {
     const { id } = req.params;

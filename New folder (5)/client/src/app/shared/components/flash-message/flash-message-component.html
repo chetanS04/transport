@@ -7,7 +7,6 @@
   }"
 >
   <div>
-    <!-- Success Icon -->
     @if (flash.type() === 'success') {
     <lucide-icon
       [img]="CheckCircle"
@@ -15,7 +14,6 @@
     ></lucide-icon
     >}
 
-    <!-- Error Icon -->
     @if (flash.type() === 'error') {
     <lucide-icon [img]="AlertCircle" class="w-5 h-5 text-red-600"></lucide-icon
     >}

@@ -37,8 +37,8 @@ export class ToggleSwitchComponent implements ControlValueAccessor {
   disabled = input<boolean>(false);
   value: boolean = false;
 
-  private onChange: (value: boolean) => void = () => {};
-  private onTouched: () => void = () => {};
+  private onChange: (value: boolean) => void = () => { };
+  private onTouched: () => void = () => { };
 
   toggle(): void {
     if (!this.disabled()) {
@@ -60,7 +60,5 @@ export class ToggleSwitchComponent implements ControlValueAccessor {
     this.onTouched = fn;
   }
 
-  setDisabledState(isDisabled: boolean): void {
-    // Handle disabled state if needed
-  }
+  setDisabledState(isDisabled: boolean): void { }
 }

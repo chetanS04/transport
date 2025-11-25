@@ -17,7 +17,6 @@ const getCitiesByState = asyncHandler(async (req, res) => {
 
     const offset = (page - 1) * limit;
     
-    // Build where clause for search
     const whereClause = {
       state_id: state_id
     };
@@ -58,7 +57,6 @@ const getCitiesByState = asyncHandler(async (req, res) => {
   }
 });
 
-// CREATE a new city
 const createCity = asyncHandler(async (req, res) => {
   try {
     const { name, pincode, status } = req.body;
@@ -70,7 +68,6 @@ const createCity = asyncHandler(async (req, res) => {
         .json({ success: false, message: "Name and State ID are required" });
     }
 
-    // Fix sequence before creating
     await fixSequence('cities');
 
     const newCity = await City.create({ name, state_id, pincode, status });
@@ -78,7 +75,6 @@ const createCity = asyncHandler(async (req, res) => {
   } catch (err) {
     console.error("Error creating City:", err);
     
-    // If it's a unique constraint error, try fixing the sequence
     if (err.name === 'SequelizeUniqueConstraintError') {
       try {
         await fixSequence('cities');
@@ -95,7 +91,6 @@ const createCity = asyncHandler(async (req, res) => {
   }
 });
 
-// UPDATE a city
 const updateCity = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const { name, pincode, status } = req.body;
@@ -113,7 +108,6 @@ const updateCity = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, city });
 });
 
-// DELETE a city
 const deleteCity = asyncHandler(async (req, res) => {
   const { id } = req.params;
 

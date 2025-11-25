@@ -3,7 +3,6 @@ const { State } = require("../models");
 const { fixSequence } = require("../utils/sequenceHelper");
 const { Op } = require("sequelize");
 
-// Create a new state
 const createState = asyncHandler(async (req, res) => {
   try {
     const { name, status } = req.body;
@@ -14,7 +13,6 @@ const createState = asyncHandler(async (req, res) => {
         .json({ success: false, message: "name is required" });
     }
 
-    // Fix sequence before creating
     await fixSequence('states');
 
     const newState = await State.create({ name, status });
@@ -23,7 +21,6 @@ const createState = asyncHandler(async (req, res) => {
   } catch (err) {
     console.error("Error creating State:", err);
     
-    // If it's a unique constraint error, try fixing the sequence and retry
     if (err.name === 'SequelizeUniqueConstraintError') {
       try {
         await fixSequence('states');
@@ -46,7 +43,6 @@ const getAllStates = asyncHandler(async (req, res) => {
     
     const offset = (page - 1) * limit;
     
-    // Build where clause for search
     const whereClause = search
       ? {
           name: {
@@ -77,7 +73,6 @@ const getAllStates = asyncHandler(async (req, res) => {
   }
 });
 
-// Get State by ID
 const getStateById = asyncHandler(async (req, res) => {
   try {
     const { id } = req.params;
@@ -96,7 +91,6 @@ const getStateById = asyncHandler(async (req, res) => {
   }
 });
 
-// Update a state by id
 const updateState = asyncHandler(async (req, res) => {
   try {
     const { id } = req.params;
@@ -121,7 +115,6 @@ const updateState = asyncHandler(async (req, res) => {
   }
 });
 
-// Delete a state by ID
 const deleteState = asyncHandler(async (req, res) => {
   try {
     const { id } = req.params;

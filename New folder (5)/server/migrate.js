@@ -5,14 +5,13 @@ const config = require("./config/db.config");
 
 const execAsync = util.promisify(exec);
 
-// Default connection (connect to postgres system DB)
 const sequelize = new Sequelize({
   username: config.USER,
   password: config.PASSWORD,
   host: config.HOST,
   dialect: config.dialect,
   port: config.port,
-  database: "postgres",  // MUST connect to existing DB to create another one
+  database: "postgres",
   logging: false,
 });
 
@@ -21,7 +20,6 @@ async function run() {
     await sequelize.authenticate();
     console.log("Connected to PostgreSQL server.");
 
-    // Check if DB exists
     const dbExists = await sequelize.query(
       `SELECT 1 FROM pg_database WHERE datname='${config.DB}'`
     );

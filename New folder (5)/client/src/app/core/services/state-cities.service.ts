@@ -24,7 +24,6 @@ export class StateCitiesService {
 
   private readonly apiUrl = `${environment.apiUrl}/cities`;
 
-  // Get all cities by state id with pagination
   getAllCitiesByState(stateId: number, page: number = 1, limit: number = 10, search: string = ''): Observable<CityResponse> {
     let params = new HttpParams()
       .set('page', page.toString())
