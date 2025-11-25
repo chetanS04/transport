@@ -1,5 +1,5 @@
 import { Component, input, output, signal, HostListener, inject } from '@angular/core';
-import { Menu, Search, ChevronDown, LucideAngularModule } from 'lucide-angular';
+import { Menu, Search, ChevronDown, LucideAngularModule, User, Settings, LogOut } from 'lucide-angular';
 import { CommonModule } from '@angular/common';
 import { TokenStorageService } from '../../../core/services/token-storage.service';
 
@@ -17,8 +17,13 @@ export class HeaderComponent {
   readonly Menu = Menu;
   readonly Search = Search;
   readonly ChevronDown = ChevronDown;
+  readonly User = User;
+  readonly Settings = Settings;
+  readonly LogOut = LogOut;
 
   private tokenStorageService = inject(TokenStorageService);
+
+  user = this.tokenStorageService.user;
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
@@ -40,4 +45,11 @@ export class HeaderComponent {
     this.tokenStorageService.signOut();
     location.reload();
   }
+
+  get initials() {
+    if (!this.user()) return 'U';
+    const name = this.user()?.name ?? 'User';
+    return name.split(' ').map(n => n[0]).join('').toUpperCase();
+  }
+
 }

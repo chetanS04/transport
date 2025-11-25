@@ -35,15 +35,15 @@
     <div class="relative profile-dropdown">
       <button
         (click)="toggleProfileMenu()"
-        class="flex items-center gap-2 px-3 py-2 hover:bg-gray-50 rounded-lg active:scale-95 transition-all duration-200"
+        class="flex cursor-pointer items-center gap-2 px-3 py-2 hover:bg-gray-50 rounded-lg active:scale-95 transition-all duration-200"
       >
         <div
           class="w-9 h-9 bg-linear-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white text-sm font-semibold shadow-md"
         >
-          AU
+          {{ initials }}
         </div>
         <div class="hidden lg:block text-left">
-          <p class="text-sm font-semibold text-gray-900">Admin User</p>
+          <p class="text-sm font-semibold text-gray-900">{{ user()?.name }}</p>
         </div>
         <lucide-icon
           [img]="ChevronDown"
@@ -54,28 +54,61 @@
 
       @if (isProfileMenuOpen()) {
       <div
-        class="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-100 py-2 animate-in fade-in slide-in-from-top-2 duration-200"
+        class="absolute right-0 mt-3 w-64 bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-200/60 py-3 animate-in fade-in slide-in-from-top-2 duration-200"
       >
-        <div class="px-4 py-3 border-b border-gray-100">
-          <p class="text-sm font-semibold text-gray-900">Admin User</p>
-          <p class="text-xs text-gray-500 mt-1">admin@example.com</p>
+        <!-- User Section -->
+        <div class="px-5 py-4 border-b border-gray-100 flex items-center gap-3">
+          <div
+            class="w-10 h-10 rounded-full bg-linear-to-br from-blue-600 to-blue-700 text-white flex items-center justify-center font-semibold shadow-md"
+          >
+            {{ initials }}
+          </div>
+
+          <div>
+            <p class="text-sm font-semibold text-gray-900">
+              {{ user()?.name }}
+            </p>
+            <p class="text-xs text-gray-500">{{ user()?.email }}</p>
+          </div>
         </div>
-        <a
-          href="#"
-          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
-          >Profile</a
-        >
-        <a
-          href="#"
-          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
-          >Settings</a
-        >
-        <div class="border-t border-gray-100 mt-2 pt-2">
+
+        <!-- Menu items -->
+        <div class="py-2">
+          <a
+            href="#"
+            class="flex items-center gap-3 px-5 py-2.5 text-gray-700 hover:bg-gray-100/60 rounded-lg transition-all"
+          >
+            <lucide-icon
+              [img]="User"
+              class="w-4 h-4 text-gray-600"
+            ></lucide-icon>
+            <span>Profile</span>
+          </a>
+
+          <a
+            href="/my-dashboard/settings"
+            class="flex items-center gap-3 px-5 py-2.5 text-gray-700 hover:bg-gray-100/60 rounded-lg transition-all"
+          >
+            <lucide-icon
+              [img]="Settings"
+              class="w-4 h-4 text-gray-600"
+            ></lucide-icon>
+            <span>Settings</span>
+          </a>
+        </div>
+
+        <!-- Logout -->
+        <div class="border-t border-gray-100 mt-1 pt-2">
           <a
             (click)="logout()"
-            class="cursor-pointer block px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
-            >Logout</a
+            class="cursor-pointer flex items-center gap-3 px-5 py-2.5 text-red-600 hover:bg-red-50 rounded-lg transition-all"
           >
+            <lucide-icon
+              [img]="LogOut"
+              class="w-4 h-4 text-red-600"
+            ></lucide-icon>
+            <span>Logout</span>
+          </a>
         </div>
       </div>
       }
