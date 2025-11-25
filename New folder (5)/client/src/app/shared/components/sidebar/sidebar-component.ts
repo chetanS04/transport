@@ -6,7 +6,8 @@ import {
   MapPin,
   CreditCard,
   Settings,
-  LucideAngularModule
+  LucideAngularModule,
+  Home
 } from 'lucide-angular';
 
 @Component({
@@ -23,6 +24,7 @@ export class SidebarComponent {
 
   activeRoute = '';
 
+  readonly Home = Home;
   readonly LayoutDashboard = LayoutDashboard;
   readonly MapPin = MapPin;
   readonly CreditCard = CreditCard;
@@ -35,6 +37,7 @@ export class SidebarComponent {
 }
 
   menuItems = [
+    { icon: Home, label: 'Home', route: '/' },
     { icon: LayoutDashboard, label: 'Dashboard', route: '/my-dashboard' },
     { icon: MapPin, label: 'Locations', route: '/my-dashboard/locations' },
     { icon: CreditCard, label: 'Subscription Types', route: '/my-dashboard/subscription-types' },

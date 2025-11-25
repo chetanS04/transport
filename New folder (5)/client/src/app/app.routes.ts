@@ -11,10 +11,24 @@ export const routes: Routes = [
             ),
     },
     {
-        path: '',
+        path: 'my-dashboard',
         loadChildren: () =>
             import('./shared/layouts/dashboard/dashboard-routing-module').then(
                 (m) => m.dashboardRoutes
+            ),
+    },
+    {
+        path: '',
+        loadComponent: () =>
+            import('./promotional/home/home-component').then(
+                (c) => c.HomeComponent
+            ),
+    },
+    {
+        path: 'about',
+        loadComponent: () =>
+            import('./promotional/about/about-component').then(
+                (c) => c.AboutComponent
             ),
     },
     { path: 'not-found', component: NotFoundComponent, canActivate: [authGuard] },
