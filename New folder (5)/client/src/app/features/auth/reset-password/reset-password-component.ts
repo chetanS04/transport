@@ -7,6 +7,7 @@ import { FlashMessageService } from '../../../core/services/flash-message.servic
 import { ValidateAllFormFields } from '../../../core/utils/CustomValidator';
 import { InputValidationErrorMessage } from '../../../shared/components/input-validation-error-message/input-validation-error-message-component';
 import { LucideAngularModule, Lock, Eye, EyeOff, Loader, ShieldCheck } from 'lucide-angular';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-reset-password-component',
@@ -40,10 +41,12 @@ export class ResetPasswordComponent implements OnInit {
   private router = inject(Router);
   private route = inject(ActivatedRoute);
   private flash = inject(FlashMessageService);
+  private location = inject(Location);
 
   ngOnInit(): void {
     if (this.tokenStorage.isAuthenticated()) {
-      this.router.navigate(['/my-dashboard']);
+      this.router.navigate([this.location.back()]);
+
       return;
     }
 

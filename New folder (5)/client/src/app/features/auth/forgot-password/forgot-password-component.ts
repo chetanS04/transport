@@ -7,6 +7,7 @@ import { FlashMessageService } from '../../../core/services/flash-message.servic
 import { ValidateAllFormFields } from '../../../core/utils/CustomValidator';
 import { InputValidationErrorMessage } from '../../../shared/components/input-validation-error-message/input-validation-error-message-component';
 import { LucideAngularModule, Mail, ShieldCheck, Loader } from 'lucide-angular';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-forgot-password-component',
@@ -33,10 +34,11 @@ export class ForgotPasswordComponent implements OnInit {
   private flash = inject(FlashMessageService);
   private router = inject(Router);
   private tokenStorageService = inject(TokenStorageService);
+  private location = inject(Location);
 
   ngOnInit(): void {
     if (this.tokenStorageService.isAuthenticated()) {
-      this.router.navigate(['my-dashboard']);
+      this.router.navigate([this.location.back()]);
       return;
     }
 

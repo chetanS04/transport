@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { NotFoundComponent } from './shared/components/not-found/not-found-component';
 import { authGuard } from './core/guards/auth.guard';
+import { roleGuard } from './core/guards/role.guard';
 
 export const routes: Routes = [
     {
@@ -30,6 +31,8 @@ export const routes: Routes = [
             import('./shared/layouts/dashboard/dashboard-routing-module').then(
                 (m) => m.dashboardRoutes
             ),
+        canActivate: [authGuard, roleGuard],
+        data: { roles: ['ADMIN'] },
     },
     {
         path: '',

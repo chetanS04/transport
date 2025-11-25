@@ -7,8 +7,6 @@ export const dashboardRoutes: Routes = [
     path: '',
     loadComponent: () =>
       import('./dashboard-component').then((m) => m.DashboardComponent),
-    canActivate: [authGuard, roleGuard],
-    data: { roles: ['ADMIN'] },
     children: [
       {
         path: '',
@@ -23,7 +21,6 @@ export const dashboardRoutes: Routes = [
           import(
             '../../../features/pages/subscription-types/subscription-type-list/subscription-type-list-component'
           ).then((m) => m.SubscriptionTypeListComponent),
-        canActivate: [authGuard],
       },
       {
         path: 'locations',
@@ -31,7 +28,6 @@ export const dashboardRoutes: Routes = [
           import(
             '../../../features/pages/location-management/states/state-list/state-list-component'
           ).then((m) => m.StateListComponent),
-        canActivate: [authGuard],
       },
       {
         path: 'locations/:state_id/cities',
@@ -39,7 +35,6 @@ export const dashboardRoutes: Routes = [
           import(
             '../../../features/pages/location-management/cities-by-state/cities-list/cities-list-component'
           ).then((m) => m.CitiesListComponent),
-        canActivate: [authGuard],
       },
       {
         path: 'settings',
@@ -47,7 +42,6 @@ export const dashboardRoutes: Routes = [
           import('../../../features/pages/settings/setting-list/setting-list-component').then(
             (m) => m.SettingListComponent
           ),
-        canActivate: [authGuard],
       },
     ],
   },

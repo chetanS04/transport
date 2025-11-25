@@ -1,5 +1,5 @@
 import { Component, OnInit, computed, inject, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { LucideAngularModule, Mail, Lock, Eye, EyeOff, ShieldCheck, Loader } from 'lucide-angular';
@@ -20,7 +20,7 @@ import { InputValidationErrorMessage } from "../../../shared/components/input-va
     LucideAngularModule,
     InputValidationErrorMessage,
     RouterLink
-],
+  ],
   templateUrl: './login-component.html'
 })
 export class LoginComponent implements OnInit {
@@ -45,11 +45,11 @@ export class LoginComponent implements OnInit {
   private flashService = inject(FlashMessageService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
-
+  private location = inject(Location);
 
   ngOnInit(): void {
     if (this.tokenStorageService.isAuthenticated()) {
-      this.router.navigate(['my-dashboard']);
+      this.router.navigate([this.location.back()]);
       return;
     }
     this.rForm = this.fb.group({
