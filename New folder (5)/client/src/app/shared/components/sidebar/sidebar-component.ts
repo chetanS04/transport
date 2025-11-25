@@ -1,5 +1,6 @@
-import { Component, input, output } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Component, inject, input, output } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { 
   LayoutDashboard, 
   MapPin,
@@ -10,7 +11,7 @@ import {
 
 @Component({
   selector: 'app-sidebar-component',
-  imports: [RouterLink, RouterLinkActive, LucideAngularModule],
+  imports: [RouterLink, CommonModule, RouterLinkActive, LucideAngularModule],
   templateUrl: './sidebar-component.html',
   standalone: true,
 })
@@ -18,10 +19,20 @@ export class SidebarComponent {
   isOpen = input<boolean>(true);
   closeSidebar = output<void>();
 
+  private router = inject(Router);
+
+  activeRoute = '';
+
   readonly LayoutDashboard = LayoutDashboard;
   readonly MapPin = MapPin;
   readonly CreditCard = CreditCard;
   readonly Settings = Settings;
+
+  constructor() {
+  this.router.events.subscribe(() => {
+    this.activeRoute = this.router.url;
+  });
+}
 
   menuItems = [
     { icon: LayoutDashboard, label: 'Dashboard', route: '/my-dashboard' },
