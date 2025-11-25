@@ -24,10 +24,10 @@ export class SidebarComponent {
   readonly Settings = Settings;
 
   menuItems = [
-    { icon: LayoutDashboard, label: 'Dashboard', route: '/' },
-    { icon: MapPin, label: 'Locations', route: '/locations' },
-    { icon: CreditCard, label: 'Subscription Types', route: '/subscription-types' },
-    { icon: Settings, label: 'Settings', route: '/settings' }
+    { icon: LayoutDashboard, label: 'Dashboard', route: '/my-dashboard' },
+    { icon: MapPin, label: 'Locations', route: '/my-dashboard/locations' },
+    { icon: CreditCard, label: 'Subscription Types', route: '/my-dashboard/subscription-types' },
+    { icon: Settings, label: 'Settings', route: '/my-dashboard/settings' }
   ];
 
   onItemClick() {

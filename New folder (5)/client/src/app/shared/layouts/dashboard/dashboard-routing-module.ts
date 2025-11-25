@@ -3,7 +3,7 @@ import { authGuard } from '../../../core/guards/auth.guard';
 
 export const dashboardRoutes: Routes = [
   {
-    path: '',
+    path: 'my-dashboard',
     loadComponent: () =>
       import('./dashboard-component').then((m) => m.DashboardComponent),
     canActivate: [authGuard],
@@ -39,7 +39,7 @@ export const dashboardRoutes: Routes = [
           ).then((m) => m.CitiesListComponent),
         canActivate: [authGuard],
       },
-        {
+      {
         path: 'settings',
         loadComponent: () =>
           import('../../../features/pages/settings/setting-list/setting-list-component').then(
