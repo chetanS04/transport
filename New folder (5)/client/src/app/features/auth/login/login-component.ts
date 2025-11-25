@@ -64,9 +64,28 @@ export class LoginComponent implements OnInit {
     this.showPasswordState.update(v => !v);
   }
 
+  // onLoginSuccess() {
+  //   this.router.navigateByUrl(this.redirectTo);
+  // }
   onLoginSuccess() {
-    this.router.navigateByUrl(this.redirectTo);
+    const user = this.tokenStorageService.user();
+
+    // If user is ADMIN
+    if (user?.role === 'ADMIN') {
+      if (this.redirectTo && this.redirectTo !== '/') {
+        return this.router.navigateByUrl(this.redirectTo);
+      }
+      return this.router.navigate(['/my-dashboard']);
+    }
+
+    // If user is NOT ADMIN
+    if (this.redirectTo && this.redirectTo !== '/') {
+      return this.router.navigateByUrl(this.redirectTo);
+    }
+
+    return this.router.navigate(['/']);
   }
+
 
   onSubmit(): void {
     if (this.rForm.invalid) {

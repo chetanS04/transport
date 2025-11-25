@@ -77,7 +77,9 @@
                 >{{ city.name }}</span
               >
             </td>
-            <td class="px-6 py-4 text-sm text-gray-600">{{ city.pincode }}</td>
+            <td class="px-6 py-4 text-sm text-gray-600">
+              {{ city.pincode ?? '-' }}
+            </td>
             <td class="px-6 py-4">
               <span
                 class="inline-flex px-3 py-1 text-xs font-semibold rounded-full"
