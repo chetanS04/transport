@@ -8,7 +8,6 @@ import {
   Settings,
   LucideAngularModule,
   House,
-
 } from 'lucide-angular';
 
 @Component({
