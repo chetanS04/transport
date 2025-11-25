@@ -18,7 +18,7 @@ module.exports = {
         allowNull: false,
       },
       duration: {
-        type: Sequelize.ENUM("week", "month", "halfYear", "Year"),
+        type: Sequelize.ENUM("week", "month", "halfYear", "year"),
         allowNull: false,
       },
       status: {

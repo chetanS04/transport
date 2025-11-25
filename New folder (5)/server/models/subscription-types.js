@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       duration: {
-        type: DataTypes.ENUM("week", "month", "halfYear", "Year"),
+        type: DataTypes.ENUM("week", "month", "halfYear", "year"),
         allowNull: false,
       },
       status: {

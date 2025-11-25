@@ -21,10 +21,8 @@ import { Location } from '@angular/common';
 })
 export class ResetPasswordComponent implements OnInit {
   rForm!: FormGroup;
-
   isLoading = signal(false);
   isLoggedIn = computed(() => this.tokenStorage.isAuthenticated());
-
   token: string = '';
   showPassword: boolean = false;
   showConfirmPassword: boolean = false;

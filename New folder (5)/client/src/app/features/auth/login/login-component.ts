@@ -3,13 +3,11 @@ import { CommonModule, Location } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { LucideAngularModule, Mail, Lock, Eye, EyeOff, ShieldCheck, Loader } from 'lucide-angular';
-
 import { AuthService } from '../../../core/services/auth.service';
 import { TokenStorageService } from '../../../core/services/token-storage.service';
 import { ValidateAllFormFields } from '../../../core/utils/CustomValidator';
 import { FlashMessageService } from '../../../core/services/flash-message.service';
 import { InputValidationErrorMessage } from "../../../shared/components/input-validation-error-message/input-validation-error-message-component";
-
 
 @Component({
   selector: 'app-login-component',
@@ -70,7 +68,6 @@ export class LoginComponent implements OnInit {
   onLoginSuccess() {
     const user = this.tokenStorageService.user();
 
-    // If user is ADMIN
     if (user?.role === 'ADMIN') {
       if (this.redirectTo && this.redirectTo !== '/') {
         return this.router.navigateByUrl(this.redirectTo);
@@ -78,14 +75,12 @@ export class LoginComponent implements OnInit {
       return this.router.navigate(['/my-dashboard']);
     }
 
-    // If user is NOT ADMIN
     if (this.redirectTo && this.redirectTo !== '/') {
       return this.router.navigateByUrl(this.redirectTo);
     }
 
     return this.router.navigate(['/']);
   }
-
 
   onSubmit(): void {
     if (this.rForm.invalid) {

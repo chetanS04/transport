@@ -10,23 +10,18 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
 })
 export class DashboardComponent implements OnInit {
-
-  // Signal to store sidebar state
   sidebarOpen = signal(true);
 
   ngOnInit() {
-    // Close sidebar by default on mobile (<1024px)
     if (window.innerWidth < 1024) {
       this.sidebarOpen.set(false);
     }
   }
 
-  // Getter function for template
   isSidebarOpen() {
     return this.sidebarOpen();
   }
 
-  // Toggle sidebar function
   toggleSidebar() {
     this.sidebarOpen.update(value => !value);
   }

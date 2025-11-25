@@ -1,34 +1,29 @@
-export interface User {
+export interface CommonData {
   id: number;
   name: string;
+  status: boolean;
+}
+
+export interface User extends CommonData {
   email: string;
   password: number;
   role: string;
 }
 
-export interface State {
-  id: number;
-  name: string;
-  status: boolean;
+export interface State extends CommonData {
   tenants_count?: number;
 }
 
-export interface City {
-  id: number;
-  name: string;
+export interface City extends CommonData {
   state_id: number;
   pincode?: string;
-  status: boolean;
   stateName: string;
   tenantCount?: number;
 }
 
-export interface SubscriptionTypes {
-  id: number;
-  name: string;
+export interface SubscriptionTypes extends CommonData {
   price: number;
   duration: string;
-  status: boolean;
   created_at: Date;
   updated_at: Date;
 }
