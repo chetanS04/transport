@@ -31,6 +31,13 @@ export const routes: Routes = [
                 (c) => c.AboutComponent
             ),
     },
+
+    {
+        path: 'unauthorized',
+        canActivate: [authGuard],
+        loadComponent: () =>
+            import('./shared/components/unauthorized/unauthorized-component').then((m) => m.UnauthorizedComponent),
+    },
     { path: 'not-found', component: NotFoundComponent, canActivate: [authGuard] },
     { path: '**', redirectTo: 'not-found' }
 ];
