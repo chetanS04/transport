@@ -17,6 +17,7 @@ db.State = require("./states")(sequelize, DataTypes);
 db.City = require("./cities")(sequelize, DataTypes);
 db.Subscription = require("./subscriptions")(sequelize, DataTypes);
 db.SubscriptionType = require("./subscription-types")(sequelize, DataTypes);
+db.Settings = require("./settings")(sequelize, DataTypes);
 
 require("./associations")(db);
 

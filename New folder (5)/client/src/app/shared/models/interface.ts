@@ -31,3 +31,9 @@ export interface SubscriptionTypes {
   created_at: Date;
   updated_at: Date;
 }
+
+export interface Settings {
+  key: string;
+  value: string;
+  status?: boolean;
+}

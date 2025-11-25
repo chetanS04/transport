@@ -27,7 +27,6 @@ export class StateService {
     return this.http.post<State>(this.apiUrl, formData);
   }
 
-  // Get all states with pagination
   getAllStates(page: number = 1, limit: number = 10, search: string = ''): Observable<PaginatedResponse<State>> {
     let params = new HttpParams()
       .set('page', page.toString())
