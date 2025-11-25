@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, input, output } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { 
-  LayoutDashboard, 
+import {
+  LayoutDashboard,
   MapPin,
   CreditCard,
   Settings,
   LucideAngularModule,
-  Home
+  House,
+
 } from 'lucide-angular';
 
 @Component({
@@ -22,22 +23,22 @@ export class SidebarComponent {
 
   private router = inject(Router);
 
-  activeRoute = '';
+  activeRoute: string = '';
 
-  readonly Home = Home;
+  readonly House = House;
   readonly LayoutDashboard = LayoutDashboard;
   readonly MapPin = MapPin;
   readonly CreditCard = CreditCard;
   readonly Settings = Settings;
 
   constructor() {
-  this.router.events.subscribe(() => {
-    this.activeRoute = this.router.url;
-  });
-}
+    this.router.events.subscribe(() => {
+      this.activeRoute = this.router.url;
+    });
+  }
 
   menuItems = [
-    { icon: Home, label: 'Home', route: '/' },
+    { icon: House, label: 'Home', route: '/' },
     { icon: LayoutDashboard, label: 'Dashboard', route: '/my-dashboard' },
     { icon: MapPin, label: 'Locations', route: '/my-dashboard/locations' },
     { icon: CreditCard, label: 'Subscription Types', route: '/my-dashboard/subscription-types' },
