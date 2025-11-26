@@ -10,7 +10,6 @@ const fixSequence = async (tableName, sequenceName = null) => {
   try {
     const seqName = sequenceName || `${tableName}_id_seq`;
     
-    // Get the maximum id from the table and update the sequence
     const query = `
       SELECT setval('${seqName}', COALESCE((SELECT MAX(id) FROM ${tableName}), 1), true);
     `;

@@ -71,17 +71,31 @@ const forgotPassword = asyncHandler(async (req, res) => {
     });
 
   const existingToken = await PasswordReset.findOne({ where: { email } });
+  const now = new Date();
 
-  if (existingToken && new Date(existingToken.expires_at) > new Date()) {
-    return res.status(400).send({
-      message: "We already sent a link. Please check your email!",
-    });
+  if (existingToken) {
+    const tokenCreatedAt = new Date(existingToken.created_at);
+    const timeDiffMinutes = Math.floor((now - tokenCreatedAt) / (1000 * 60));
+    const remainingMinutes = 10 - timeDiffMinutes;
+
+    if (remainingMinutes > 0) {
+      return res.status(429).send({
+        message: `Please wait ${remainingMinutes} minute${remainingMinutes > 1 ? 's' : ''} before requesting a new password reset link.`,
+        remainingMinutes: remainingMinutes,
+        canRequestAt: new Date(tokenCreatedAt.getTime() + 10 * 60 * 1000).toISOString(),
+      });
+    } else {
+      await PasswordReset.destroy({ where: { email } });
+    }
   }
+
   const frontendBaseUrl =
     req.headers.origin || process.env.FRONTEND_URL || "http://localhost:4200";
   await sendForgetPasswordToken(email, frontendBaseUrl);
+  
   res.status(200).json({
     message: "Reset password link has been sent to your email address.",
+    expiresIn: 24, 
   });
 });
 

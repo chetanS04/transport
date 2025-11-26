@@ -14,8 +14,13 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       created_at: {
-        type: DataTypes.DATEONLY,
-        allowNull: true,
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+      },
+      expires_at: {
+        type: DataTypes.DATE,
+        allowNull: false,
       },
     },
     {
