@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { CircleAlert, CircleCheck, LucideAngularModule, X } from 'lucide-angular';
 import { FlashMessageService } from '../../../core/services/flash-message.service';
 import { CommonModule } from '@angular/common';

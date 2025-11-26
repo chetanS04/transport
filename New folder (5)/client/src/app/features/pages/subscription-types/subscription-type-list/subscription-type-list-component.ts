@@ -28,6 +28,7 @@ import { FlashMessageService } from '../../../../core/services/flash-message.ser
   templateUrl: './subscription-type-list-component.html',
   standalone: true,
 })
+
 export class SubscriptionTypeListComponent implements OnInit {
   subscriptionTypes = signal<SubscriptionTypes[]>([]);
   editModal = signal<SubscriptionTypes | null>(null);

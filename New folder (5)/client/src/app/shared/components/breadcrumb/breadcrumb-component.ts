@@ -12,26 +12,7 @@ export interface BreadcrumbItem {
   selector: 'app-breadcrumb-component',
   standalone: true,
   imports: [CommonModule, RouterLink, LucideAngularModule],
-  template: `
-    <nav class="flex mb-6" aria-label="Breadcrumb">
-      <ol class="inline-flex items-center space-x-1 md:space-x-3">
-        @for (item of items(); track $index) {
-          <li class="inline-flex items-center">
-            @if ($index > 0) {
-                <lucide-icon [img]="ChevronRight" [size]="22" class="text-gray-400 me-2"></lucide-icon>
-            }
-            @if (item.link) {
-              <a [routerLink]="item.link" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
-                {{ item.label }}
-              </a>
-            } @else {
-              <span class="text-sm font-medium text-gray-500">{{ item.label }}</span>
-            }
-          </li>
-        }
-      </ol>
-    </nav>
-  `
+  templateUrl: './breadcrumb-component.html',
 })
 export class BreadcrumbComponent {
   items = input<BreadcrumbItem[]>([]);

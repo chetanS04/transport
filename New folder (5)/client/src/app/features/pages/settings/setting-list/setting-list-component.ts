@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { BreadcrumbComponent } from '../../../../shared/components/breadcrumb/breadcrumb-component';
 import { ConfirmationModalComponent } from '../../../../shared/components/confirmation-modal/confirmation-modal.component';
 import { PaginationComponent } from '../../../../shared/components/pagination/pagination.component';
@@ -15,9 +15,19 @@ import { SettingFormComponent } from "../setting-form/setting-form-component";
 
 @Component({
   selector: 'app-setting-list-component',
-  imports: [CommonModule, RouterModule, FormsModule, BreadcrumbComponent, ConfirmationModalComponent, PaginationComponent, LucideAngularModule, SettingFormComponent],
+  imports: [
+    CommonModule,
+    RouterModule,
+    FormsModule,
+    BreadcrumbComponent,
+    ConfirmationModalComponent,
+    PaginationComponent,
+    LucideAngularModule,
+    SettingFormComponent
+  ],
   templateUrl: './setting-list-component.html',
 })
+
 export class SettingListComponent {
   settings = signal<Settings[]>([]);
   search = signal<string>('');

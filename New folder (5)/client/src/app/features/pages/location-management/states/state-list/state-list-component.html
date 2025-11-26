@@ -122,9 +122,7 @@
         Try adjusting your search or add a new state.
       </p>
     </div>
-    }
-
-    @if (states().length > 0) {
+    } @if (states().length > 0) {
     <app-pagination
       [currentPage]="currentPage()"
       [totalPages]="totalPages()"

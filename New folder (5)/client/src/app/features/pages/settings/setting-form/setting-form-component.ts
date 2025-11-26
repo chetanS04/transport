@@ -10,9 +10,15 @@ import { InputValidationErrorMessage } from '../../../../shared/components/input
 
 @Component({
   selector: 'app-setting-form-component',
-  imports: [CommonModule, ReactiveFormsModule, ToggleSwitchComponent, InputValidationErrorMessage],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    ToggleSwitchComponent,
+    InputValidationErrorMessage
+  ],
   templateUrl: './setting-form-component.html',
 })
+
 export class SettingFormComponent {
   rForm: FormGroup;
   data = input<Settings | null>(null);
@@ -48,35 +54,30 @@ export class SettingFormComponent {
   }
 
   onSubmit(): void {
-    if (this.rForm.valid) {
-      const formData = this.rForm.value;
-      const currentData = this.data();
-      if (currentData) {
-        this.settingsService.updateSetting(currentData.key, formData).subscribe({
-          next: () => {
-            this.closeModal(true);
-            this.flashService.show('Setting updated successfully.', "success");
-          },
-          error: (err) => {
-            console.log(err),
-              this.flashService.show('Failed to update setting.', "error");
-          },
-        });
-      } else {
-        this.settingsService.createSetting(formData).subscribe({
-          next: () => {
-            this.closeModal(true);
-            this.flashService.show('Setting created successfully.', "success");
-          },
-          error: (err) => {
-            console.log(err);
-            this.flashService.show('Failed to create setting.', "error");
-          },
-        });
-      }
-    } else {
-      ValidateAllFormFields.validateAll(this.rForm);
-    }
+    if (!this.rForm.valid) return ValidateAllFormFields.validateAll(this.rForm);
+
+    const formData = this.rForm.value;
+    const currentData = this.data();
+    const request = currentData
+      ? this.settingsService.updateSetting(currentData.key, formData)
+      : this.settingsService.createSetting(formData);
+
+    request.subscribe({
+      next: () => {
+        this.closeModal(true);
+        this.flashService.show(
+          `Setting ${currentData ? 'updated' : 'created'} successfully.`,
+          "success"
+        );
+      },
+      error: (err) => {
+        console.log(err);
+        this.flashService.show(
+          `Failed to ${currentData ? 'update' : 'create'} setting.`,
+          "error"
+        );
+      },
+    });
   }
 
   toggleStatus() {

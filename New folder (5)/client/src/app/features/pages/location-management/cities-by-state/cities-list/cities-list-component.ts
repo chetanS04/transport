@@ -1,7 +1,7 @@
-import { Component, OnInit, signal, effect, inject } from '@angular/core';
+import { Component, OnInit, signal, inject } from '@angular/core';
 import { City } from '../../../../../shared/models/interface';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CitiesFormComponent } from '../cities-form/cities-form-component';
 import { HighlightPipe } from '../../../../../shared/pipes/highlight.pipe';
@@ -16,7 +16,8 @@ import { FlashMessageService } from '../../../../../core/services/flash-message.
 
 @Component({
   selector: 'app-cities-list-component',
-  imports: [CommonModule,
+  imports: [
+    CommonModule,
     RouterModule,
     FormsModule,
     CitiesFormComponent,
@@ -24,7 +25,8 @@ import { FlashMessageService } from '../../../../../core/services/flash-message.
     BreadcrumbComponent,
     ConfirmationModalComponent,
     PaginationComponent,
-    LucideAngularModule],
+    LucideAngularModule
+  ],
   templateUrl: './cities-list-component.html',
   standalone: true,
 })

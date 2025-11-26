@@ -14,10 +14,20 @@ import { FlashMessageService } from '../../../../../core/services/flash-message.
 
 @Component({
   selector: 'app-state-list-component',
-  imports: [CommonModule, RouterModule, FormsModule, BreadcrumbComponent, StateFormComponent, ConfirmationModalComponent, PaginationComponent, LucideAngularModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    FormsModule,
+    BreadcrumbComponent,
+    StateFormComponent,
+    ConfirmationModalComponent,
+    PaginationComponent,
+    LucideAngularModule
+  ],
   templateUrl: './state-list-component.html',
   standalone: true,
 })
+
 export class StateListComponent implements OnInit {
   states = signal<State[]>([]);
   search = signal<string>('');

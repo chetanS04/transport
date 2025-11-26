@@ -10,10 +10,16 @@ import { InputValidationErrorMessage } from "../../../../shared/components/input
 
 @Component({
   selector: 'app-subscription-type-form-component',
-  imports: [CommonModule, ReactiveFormsModule, ToggleSwitchComponent, InputValidationErrorMessage],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    ToggleSwitchComponent,
+    InputValidationErrorMessage
+  ],
   templateUrl: './subscription-type-form-component.html',
   standalone: true,
 })
+
 export class SubscriptionTypeFormComponent implements OnInit {
   rForm: FormGroup;
   data = input<SubscriptionTypes | null>(null);

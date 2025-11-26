@@ -15,6 +15,7 @@ import { InputValidationErrorMessage } from "../../../../../shared/components/in
   templateUrl: './cities-form-component.html',
   standalone: true,
 })
+
 export class CitiesFormComponent implements OnInit {
   rForm: FormGroup;
   state_id!: number;
@@ -39,7 +40,6 @@ export class CitiesFormComponent implements OnInit {
       pincode: [
         '',
         Validators.compose([
-          Validators.required,
           Validators.minLength(2),
           Validators.maxLength(50),
         ]),
@@ -67,35 +67,30 @@ export class CitiesFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.rForm.valid) {
-      const formData = this.rForm.value;
-      const currentData = this.data();
-      if (currentData) {
-        this.citiesService.updateCity(currentData.id, formData).subscribe({
-          next: () => {
-            this.closeModal(true);
-            this.flashService.show('City updated successfully.', "success");
-          },
-          error: (err) => {
-            console.log(err);
-            this.flashService.show('Failed to update city.', "error");
-          },
-        });
-      } else {
-        this.citiesService.createCity(this.state_id, formData).subscribe({
-          next: () => {
-            this.closeModal(true);
-            this.flashService.show('City created successfully.', "success");
-          },
-          error: (err) => {
-            console.log(err);
-            this.flashService.show('Failed to create city.', "error");
-          },
-        });
-      }
-    } else {
-      ValidateAllFormFields.validateAll(this.rForm);
-    }
+    if (!this.rForm.valid) return ValidateAllFormFields.validateAll(this.rForm);
+
+    const formData = this.rForm.value;
+    const currentData = this.data();
+    const request = currentData
+      ? this.citiesService.updateCity(currentData.id, formData)
+      : this.citiesService.createCity(this.state_id, formData);
+
+    request.subscribe({
+      next: () => {
+        this.closeModal(true);
+        this.flashService.show(
+          `City ${currentData ? 'updated' : 'created'} successfully.`,
+          "success"
+        );
+      },
+      error: (err) => {
+        console.log(err);
+        this.flashService.show(
+          `Failed to ${currentData ? 'update' : 'create'} city.`,
+          "error"
+        );
+      },
+    });
   }
 
   toggleStatus() {
