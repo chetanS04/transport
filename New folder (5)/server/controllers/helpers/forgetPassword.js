@@ -6,7 +6,7 @@ require("dotenv").config();
 
 const sendForgetPasswordToken = async (email, frontendBaseUrl) => {
   const token = randomBytes(20).toString("hex");
-  const expireDate = new Date(Date.now() + 86400000); 
+  const expireDate = new Date(Date.now() + 86400000);
 
   await PasswordReset.create({
     email,

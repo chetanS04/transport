@@ -76,7 +76,7 @@ export class PaginationComponent {
   totalPages = input.required<number>();
   total = input.required<number>();
   pageSize = input.required<number>();
-  
+
   pageChange = output<number>();
 
   readonly ChevronLeftIcon = ChevronLeft;

@@ -9,7 +9,7 @@ import { StateFormComponent } from "../state-form/state-form-component";
 import { ConfirmationModalComponent } from '../../../../../shared/components/confirmation-modal/confirmation-modal.component';
 import { PaginationComponent } from '../../../../../shared/components/pagination/pagination.component';
 import { debounceTime, Subject } from 'rxjs';
-import { LucideAngularModule, Plus, Eye, Edit, Trash2, Frown, X } from 'lucide-angular';
+import { LucideAngularModule, Plus, Eye, Trash2, Frown, X, SquarePen } from 'lucide-angular';
 import { FlashMessageService } from '../../../../../core/services/flash-message.service';
 
 @Component({
@@ -39,7 +39,7 @@ export class StateListComponent implements OnInit {
 
   readonly Plus = Plus;
   readonly Eye = Eye;
-  readonly Edit = Edit;
+  readonly Edit = SquarePen;
   readonly Trash2 = Trash2;
   readonly Frown = Frown;
   readonly X = X;

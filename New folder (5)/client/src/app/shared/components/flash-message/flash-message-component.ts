@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { AlertCircle, CheckCircle, LucideAngularModule, X } from 'lucide-angular';
+import { Component, inject } from '@angular/core';
+import { CircleAlert, CircleCheck, LucideAngularModule, X } from 'lucide-angular';
 import { FlashMessageService } from '../../../core/services/flash-message.service';
 import { CommonModule } from '@angular/common';
 
@@ -28,8 +28,8 @@ import { CommonModule } from '@angular/common';
 })
 export class FlashMessageComponent {
   X = X;
-  AlertCircle = AlertCircle;
-  CheckCircle = CheckCircle;
+  AlertCircle = CircleAlert;
+  CheckCircle = CircleCheck;
 
   constructor(public flash: FlashMessageService) { }
 

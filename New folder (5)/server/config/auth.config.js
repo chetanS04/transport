@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 module.exports = {
-  secret: "admin-secret-key",
+  secret: process.env.ADMIN_SECRET_KEY || "admin-secret-key",
 };

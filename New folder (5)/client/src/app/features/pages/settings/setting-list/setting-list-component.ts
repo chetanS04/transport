@@ -5,7 +5,7 @@ import { Router, RouterModule } from '@angular/router';
 import { BreadcrumbComponent } from '../../../../shared/components/breadcrumb/breadcrumb-component';
 import { ConfirmationModalComponent } from '../../../../shared/components/confirmation-modal/confirmation-modal.component';
 import { PaginationComponent } from '../../../../shared/components/pagination/pagination.component';
-import { Edit, Eye, Frown, LucideAngularModule, Plus, Trash2, X } from 'lucide-angular';
+import { Eye, Frown, LucideAngularModule, Plus, SquarePen, Trash2, X } from 'lucide-angular';
 import { Settings } from '../../../../shared/models/interface';
 import { FlashMessageService } from '../../../../core/services/flash-message.service';
 import { SettingsService } from '../../../../core/services/settings.service';
@@ -38,7 +38,7 @@ export class SettingListComponent {
 
   readonly Plus = Plus;
   readonly Eye = Eye;
-  readonly Edit = Edit;
+  readonly Edit = SquarePen;
   readonly Trash2 = Trash2;
   readonly Frown = Frown;
   readonly X = X;

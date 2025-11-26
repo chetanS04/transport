@@ -1,12 +1,12 @@
 import { Component, output, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LucideAngularModule, Trash2, AlertTriangle, Info } from 'lucide-angular';
+import { LucideAngularModule, Trash2, Info, TriangleAlert } from 'lucide-angular';
 
 @Component({
-    selector: 'app-confirmation-modal',
-    standalone: true,
-    imports: [CommonModule, LucideAngularModule],
-    template: `
+  selector: 'app-confirmation-modal',
+  standalone: true,
+  imports: [CommonModule, LucideAngularModule],
+  template: `
     @if (isOpen()) {
       <div class="fixed inset-0 z-115 flex items-center justify-center p-4">
         <div 
@@ -65,25 +65,24 @@ import { LucideAngularModule, Trash2, AlertTriangle, Info } from 'lucide-angular
   `
 })
 export class ConfirmationModalComponent {
-    isOpen = input<boolean>(false);
-    title = input<string>('Confirm Action');
-    message = input<string>('Are you sure you want to proceed?');
-    type = input<'danger' | 'warning' | 'info'>('danger');
-    confirmText = input<string>('Confirm');
-    cancelText = input<string>('Cancel');
+  isOpen = input<boolean>(false);
+  title = input<string>('Confirm Action');
+  message = input<string>('Are you sure you want to proceed?');
+  type = input<'danger' | 'warning' | 'info'>('danger');
+  confirmText = input<string>('Confirm');
+  cancelText = input<string>('Cancel');
+  confirmed = output<void>();
+  cancelled = output<void>();
 
-    confirmed = output<void>();
-    cancelled = output<void>();
+  readonly Trash2Icon = Trash2;
+  readonly AlertTriangleIcon = TriangleAlert;
+  readonly InfoIcon = Info;
 
-    readonly Trash2Icon = Trash2;
-    readonly AlertTriangleIcon = AlertTriangle;
-    readonly InfoIcon = Info;
+  onConfirm() {
+    this.confirmed.emit();
+  }
 
-    onConfirm() {
-        this.confirmed.emit();
-    }
-
-    onCancel() {
-        this.cancelled.emit();
-    }
+  onCancel() {
+    this.cancelled.emit();
+  }
 }

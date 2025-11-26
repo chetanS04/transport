@@ -4,15 +4,15 @@ import { CommonModule } from '@angular/common';
 import { ChevronRight, LucideAngularModule } from 'lucide-angular';
 
 export interface BreadcrumbItem {
-    label: string;
-    link?: string;
+  label: string;
+  link?: string;
 }
 
 @Component({
-    selector: 'app-breadcrumb-component',
-    standalone: true,
-    imports: [CommonModule, RouterLink, LucideAngularModule],
-    template: `
+  selector: 'app-breadcrumb-component',
+  standalone: true,
+  imports: [CommonModule, RouterLink, LucideAngularModule],
+  template: `
     <nav class="flex mb-6" aria-label="Breadcrumb">
       <ol class="inline-flex items-center space-x-1 md:space-x-3">
         @for (item of items(); track $index) {
@@ -34,6 +34,6 @@ export interface BreadcrumbItem {
   `
 })
 export class BreadcrumbComponent {
-    items = input<BreadcrumbItem[]>([]);
-    readonly ChevronRight = ChevronRight;
+  items = input<BreadcrumbItem[]>([]);
+  readonly ChevronRight = ChevronRight;
 }

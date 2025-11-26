@@ -12,9 +12,7 @@
       [img]="CheckCircle"
       class="w-5 h-5 text-green-600"
     ></lucide-icon
-    >}
-
-    @if (flash.type() === 'error') {
+    >} @if (flash.type() === 'error') {
     <lucide-icon [img]="AlertCircle" class="w-5 h-5 text-red-600"></lucide-icon
     >}
   </div>

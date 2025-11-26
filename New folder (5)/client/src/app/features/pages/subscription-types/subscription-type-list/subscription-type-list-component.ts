@@ -10,7 +10,7 @@ import { ConfirmationModalComponent } from '../../../../shared/components/confir
 import { PaginationComponent } from '../../../../shared/components/pagination/pagination.component';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { LucideAngularModule, Plus, Edit, Trash2, CreditCard, X } from 'lucide-angular';
+import { LucideAngularModule, Plus, Trash2, CreditCard, X, SquarePen } from 'lucide-angular';
 import { FlashMessageService } from '../../../../core/services/flash-message.service';
 
 @Component({
@@ -33,7 +33,7 @@ export class SubscriptionTypeListComponent implements OnInit {
   editModal = signal<SubscriptionTypes | null>(null);
   showCompletionModal = signal<boolean>(false);
   search = signal<string>('');
-  
+
   breadcrumbItems = [{ label: 'Dashboard', link: '/my-dashboard' }, { label: 'Subscription Types' }];
 
   currentPage = signal<number>(1);
@@ -47,7 +47,7 @@ export class SubscriptionTypeListComponent implements OnInit {
   private searchSubject = new Subject<string>();
 
   readonly Plus = Plus;
-  readonly Edit = Edit;
+  readonly Edit = SquarePen;
   readonly Trash2 = Trash2;
   readonly CreditCard = CreditCard;
   readonly X = X;

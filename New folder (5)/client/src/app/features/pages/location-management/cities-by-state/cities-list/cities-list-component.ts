@@ -11,7 +11,7 @@ import { ConfirmationModalComponent } from '../../../../../shared/components/con
 import { PaginationComponent } from '../../../../../shared/components/pagination/pagination.component';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { LucideAngularModule, Plus, Edit, Trash2, Frown, X } from 'lucide-angular';
+import { LucideAngularModule, Plus, Trash2, Frown, X, SquarePen } from 'lucide-angular';
 import { FlashMessageService } from '../../../../../core/services/flash-message.service';
 
 @Component({
@@ -51,7 +51,7 @@ export class CitiesListComponent implements OnInit {
   private cityService = inject(StateCitiesService);
 
   readonly Plus = Plus;
-  readonly Edit = Edit;
+  readonly Edit = SquarePen;
   readonly Trash2 = Trash2;
   readonly Frown = Frown;
   readonly X = X;

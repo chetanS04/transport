@@ -51,8 +51,8 @@ export class SearchableDropdownComponent
   private currentValue: number | null = null;
   @Output() inputChange = new EventEmitter<string>();
 
-  ChevronDown = ChevronDown
-  Plus = Plus
+  readonly ChevronDown = ChevronDown
+  readonly Plus = Plus
 
   @Output() addNew = new EventEmitter<void>();
   @Input() showAddButton: boolean = true;
