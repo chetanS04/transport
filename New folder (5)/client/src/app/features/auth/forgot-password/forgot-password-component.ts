@@ -1,6 +1,6 @@
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 import { TokenStorageService } from '../../../core/services/token-storage.service';
 import { FlashMessageService } from '../../../core/services/flash-message.service';
@@ -15,7 +15,8 @@ import { Location } from '@angular/common';
   imports: [
     LucideAngularModule,
     InputValidationErrorMessage,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterLink
   ],
   templateUrl: './forgot-password-component.html',
 })
@@ -58,6 +59,7 @@ export class ForgotPasswordComponent implements OnInit {
     this.auth.forgotPassword(this.rForm.value).subscribe({
       next: (res) => {
         this.isLoading.set(false);
+        this.rForm.reset();
         this.flash.show('Password reset link sent!', 'success');
       },
       error: (err) => {
