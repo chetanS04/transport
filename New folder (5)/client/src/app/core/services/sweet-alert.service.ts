@@ -4,7 +4,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class SweetAlertService {
-  constructor() { }
 
   async confirmDelete(message: string): Promise<any> {
     return new Promise((resolve) => {
@@ -18,9 +17,9 @@ export class SweetAlertService {
 
     const toast = document.createElement('div');
     toast.className = `fixed top-4 right-4 z-[9999] px-6 py-3 rounded-lg shadow-lg text-white font-medium transition-all duration-300 ${icon === 'success' ? 'bg-green-500' :
-        icon === 'error' ? 'bg-red-500' :
-          icon === 'warning' ? 'bg-yellow-500' :
-            'bg-blue-500'
+      icon === 'error' ? 'bg-red-500' :
+        icon === 'warning' ? 'bg-yellow-500' :
+          'bg-blue-500'
       }`;
     toast.textContent = message;
     document.body.appendChild(toast);

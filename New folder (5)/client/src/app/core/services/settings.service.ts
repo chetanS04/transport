@@ -18,6 +18,7 @@ export interface PaginatedResponse<T> {
   providedIn: 'root',
 })
 export class SettingsService {
+  
   private http = inject(HttpClient);
 
   private readonly apiUrl = `${environment.apiUrl}/settings`;

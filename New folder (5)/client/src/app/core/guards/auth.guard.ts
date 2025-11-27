@@ -8,7 +8,7 @@ export const authGuard: CanActivateFn = (route, state) => {
 
   if (!tokenService.isAuthenticated()) {
     router.navigate(['/login'], {
-      queryParams: { redirectTo: state.url } 
+      queryParams: { redirectTo: state.url }
     });
     return false;
   }

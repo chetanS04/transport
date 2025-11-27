@@ -53,7 +53,7 @@ export class SettingListComponent {
   readonly Frown = Frown;
   readonly X = X;
 
-  breadcrumbItems = [{ label: 'Dashboard', link: '/my-dashboard' }, { label: 'Settings' }];
+  breadcrumbItems = [{ label: 'Dashboard', link: '/' }, { label: 'Settings' }];
 
   constructor() {
     this.searchSubject.pipe(

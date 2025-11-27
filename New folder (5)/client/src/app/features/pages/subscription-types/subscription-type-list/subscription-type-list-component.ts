@@ -35,7 +35,7 @@ export class SubscriptionTypeListComponent implements OnInit {
   showCompletionModal = signal<boolean>(false);
   search = signal<string>('');
 
-  breadcrumbItems = [{ label: 'Dashboard', link: '/my-dashboard' }, { label: 'Subscription Types' }];
+  breadcrumbItems = [{ label: 'Dashboard', link: '/' }, { label: 'Subscription Types' }];
 
   currentPage = signal<number>(1);
   pageSize = signal<number>(10);

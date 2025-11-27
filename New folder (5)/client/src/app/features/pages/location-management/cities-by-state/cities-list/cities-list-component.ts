@@ -59,8 +59,8 @@ export class CitiesListComponent implements OnInit {
   readonly X = X;
 
   breadcrumbItems = [
-    { label: 'Dashboard', link: '/my-dashboard' },
-    { label: 'States', link: '/my-dashboard/locations' },
+    { label: 'Dashboard', link: '/' },
+    { label: 'States', link: '/locations' },
     { label: '' },
   ];
 

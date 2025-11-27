@@ -26,7 +26,7 @@
     <a
       [routerLink]="item.route"
       routerLinkActive="active-link"
-      [routerLinkActiveOptions]="{exact: item.route === '/my-dashboard'}"
+      [routerLinkActiveOptions]="{exact: item.route === '/'}"
       (click)="onItemClick()"
       [ngClass]="{
     'bg-blue-600 text-white shadow-sm': activeRoute === item.route,

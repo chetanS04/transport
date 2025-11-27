@@ -13,7 +13,7 @@ export const LoaderInterceptor: HttpInterceptorFn = (
   req: HttpRequest<unknown>,
   next: HttpHandlerFn
 ): Observable<HttpEvent<unknown>> => {
-  
+
   const loaderService = inject(LoaderService);
 
   loaderService.increment();

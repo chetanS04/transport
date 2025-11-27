@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
@@ -20,8 +20,8 @@ const httpOptions = {
 export class AuthService {
 
   private api = `${environment.apiUrl}/auth`;
-
-  constructor(private http: HttpClient) { }
+  
+  private http = inject(HttpClient);
 
   login(formData: FormData): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.api}/login`, formData);

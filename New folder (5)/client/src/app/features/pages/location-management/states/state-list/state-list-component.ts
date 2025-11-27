@@ -54,7 +54,7 @@ export class StateListComponent implements OnInit {
   readonly Frown = Frown;
   readonly X = X;
 
-  breadcrumbItems = [{ label: 'Dashboard', link: '/my-dashboard' }, { label: 'States' }];
+  breadcrumbItems = [{ label: 'Dashboard', link: '/' }, { label: 'States' }];
 
   constructor() {
     this.searchSubject.pipe(
@@ -92,7 +92,7 @@ export class StateListComponent implements OnInit {
 
   viewStateCities(event: Event, state_id: number) {
     event.stopPropagation();
-    this.router.navigate(['my-dashboard/locations', state_id, 'cities']);
+    this.router.navigate(['/locations', state_id, 'cities']);
   }
 
   openModal(): void {

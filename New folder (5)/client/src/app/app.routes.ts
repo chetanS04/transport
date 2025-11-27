@@ -26,27 +26,13 @@ export const routes: Routes = [
             ),
     },
     {
-        path: 'my-dashboard',
+        path: '',
         loadChildren: () =>
             import('./shared/layouts/dashboard/dashboard-routing-module').then(
                 (m) => m.dashboardRoutes
             ),
         canActivate: [authGuard, roleGuard],
         data: { roles: ['ADMIN'] },
-    },
-    {
-        path: '',
-        loadComponent: () =>
-            import('./promotional/home/home-component').then(
-                (c) => c.HomeComponent
-            ),
-    },
-    {
-        path: 'about',
-        loadComponent: () =>
-            import('./promotional/about/about-component').then(
-                (c) => c.AboutComponent
-            ),
     },
 
     {

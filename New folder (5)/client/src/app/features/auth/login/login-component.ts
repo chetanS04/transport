@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit {
       if (this.redirectTo && this.redirectTo !== '/') {
         return this.router.navigateByUrl(this.redirectTo);
       }
-      return this.router.navigate(['/my-dashboard']);
+      return this.router.navigate(['/']);
     }
 
     if (this.redirectTo && this.redirectTo !== '/') {
