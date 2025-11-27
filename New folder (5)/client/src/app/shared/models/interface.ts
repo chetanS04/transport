@@ -33,3 +33,27 @@ export interface Settings {
   value: string;
   status?: boolean;
 }
+
+export interface HeroSection extends CommonData {
+  title: string;
+  subtitle?: string;
+  description?: string;
+  button1_text?: string;
+  button1_url?: string;
+  button2_text?: string;
+  button2_url?: string;
+  image?: string;
+  rating?: number;
+  customers_count?: string;
+}
+
+export interface OurServices extends CommonData {
+  title: string;
+  subtitle?: string;
+  description?: string;
+  button1_text?: string;
+  button1_url?: string;
+  button2_text?: string;
+  button2_url?: string;
+  image?: string;
+}

@@ -25,7 +25,7 @@ module.exports = {
         type: Sequelize.FLOAT,
         allowNull: true,
       },
-      customers_count_text: {
+      customers_count: {
         type: Sequelize.STRING,
         allowNull: true,
       },
