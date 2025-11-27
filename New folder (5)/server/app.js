@@ -30,6 +30,9 @@ app.use(
 
 app.use(express.static(path.join(__dirname, "public")));
 
+// Serve static files from storage directory
+app.use('/storage', express.static(path.join(__dirname, "public/storage")));
+
 app.use(passport.initialize());
 app.use(passport.session());
 

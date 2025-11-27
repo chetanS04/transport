@@ -19,7 +19,10 @@ const createHeroSection = asyncHandler(async (req, res) => {
       button2_url,
       image,
       status,
-    } = req.body;
+    } = req.body || {};
+    
+    console.log('Request Body:', req.body);
+    console.log('Title:', title);
 
     if (!title) {
       return res
@@ -40,7 +43,7 @@ const createHeroSection = asyncHandler(async (req, res) => {
       button2_text,
       button2_url,
       image,
-      status,
+      status: status === 'true' || status === true,
     });
 
     res.status(201).json({ success: true, hero: newHero });

@@ -57,3 +57,8 @@ export interface OurServices extends CommonData {
   button2_url?: string;
   image?: string;
 }
+
+export interface ImageItem {
+  url: string;
+  selected: boolean;
+}

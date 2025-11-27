@@ -41,6 +41,13 @@ export const dashboardRoutes: Routes = [
             (m) => m.SettingListComponent
           ),
       },
+      {
+        path: 'hero-section',
+        loadComponent: () =>
+          import('../../../features/pages/hero-section/hero-section-list/hero-section-list-component').then(
+            (m) => m.HeroSectionListComponent
+          ),
+      },
     ],
   },
 ];

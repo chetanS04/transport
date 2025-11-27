@@ -4,6 +4,7 @@ const stateRouter = require("./state.routes");
 const citiesRouter = require("./cities.routes");
 const subscriptionTypeRouter = require("./subscriptionType.routes");
 const settingsRouter = require("./settings.routes");
+const imageRouter = require("./image.routes");
 const { verifyToken } = require("../middlewares/authJWT");
 const heroSectionRouter = require("./promotionalApplication/heroSection.routes");
 const ourServicesRouter = require("./promotionalApplication/ourServices.routes");
@@ -16,6 +17,7 @@ router.use("/states", stateRouter);
 router.use("/cities", citiesRouter);
 router.use("/subscription-types", [verifyToken], subscriptionTypeRouter);
 router.use("/settings", [verifyToken], settingsRouter);
+router.use("/images", imageRouter);
 
 // promotional application routes
 router.use("/hero-section", [verifyToken], heroSectionRouter);
