@@ -37,7 +37,11 @@ async function run() {
     await execAsync(
       `npx sequelize-cli db:migrate --url="postgres://${config.USER}:${config.PASSWORD}@${config.HOST}:${config.port}/${config.DB}" --migrations-path=./migrations/admin`
     );
-    console.log("Migrations completed.");
+    console.log("Admin Tables Migrations completed.");
+    await execAsync(
+      `npx sequelize-cli db:migrate --url="postgres://${config.USER}:${config.PASSWORD}@${config.HOST}:${config.port}/${config.DB}" --migrations-path=./migrations/promotionalApplication`
+    );
+    console.log("Application Tables Migrations completed.");
 
     console.log("Running common seeders...");
     await execAsync(
@@ -50,7 +54,6 @@ async function run() {
       `npx sequelize-cli db:seed:all --url="postgres://${config.USER}:${config.PASSWORD}@${config.HOST}:${config.port}/${config.DB}" --seeders-path=./seeders/adminSeeder`
     );
     console.log("Admin seeders completed.");
-
   } catch (err) {
     console.error("Error:", err);
     process.exit(1);

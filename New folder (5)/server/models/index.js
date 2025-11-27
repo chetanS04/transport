@@ -11,16 +11,24 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
 
 const db = {};
 
-db.User = require("./users")(sequelize, DataTypes);
-db.Tenant = require("./tenants")(sequelize, DataTypes);
-db.State = require("./states")(sequelize, DataTypes);
-db.City = require("./cities")(sequelize, DataTypes);
-db.Subscription = require("./subscriptions")(sequelize, DataTypes);
-db.SubscriptionType = require("./subscription-types")(sequelize, DataTypes);
-db.Settings = require("./settings")(sequelize, DataTypes);
-db.PasswordReset = require("./password-resets")(sequelize, DataTypes);
+// admin models
+db.User = require("./admin/users.js")(sequelize, DataTypes);
+db.Tenant = require("./admin/tenants")(sequelize, DataTypes);
+db.State = require("./admin/states")(sequelize, DataTypes);
+db.City = require("./admin/cities")(sequelize, DataTypes);
+db.Subscription = require("./admin/subscriptions")(sequelize, DataTypes);
+db.SubscriptionType = require("./admin/subscription-types")(
+  sequelize,
+  DataTypes
+);
+db.Settings = require("./admin/settings")(sequelize, DataTypes);
+db.PasswordReset = require("./admin/password-resets")(sequelize, DataTypes);
 
-require("./associations")(db);
+require("./admin/AdminAssociations.js")(db);
+
+// promtional application models
+db.HeroSection = require("./promotionalApplication/hero-section.js")(sequelize, DataTypes);
+db.OurServices = require("./promotionalApplication/our-services.js")(sequelize, DataTypes);
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

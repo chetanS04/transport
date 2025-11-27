@@ -36,6 +36,8 @@ const fixAllSequences = async () => {
   await fixSequence('users');
   await fixSequence('subscriptions');
   await fixSequence('password_resets');
+  await fixSequence('settings');
+  await fixSequence('hero_section');
   
   console.log('All sequences fixed!');
 };
