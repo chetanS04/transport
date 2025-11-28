@@ -42,7 +42,12 @@
             <th
               class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
             >
-              Title/Subtitle
+              Title
+            </th>
+            <th
+              class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
+            >
+              Subtitle
             </th>
             <th
               class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
@@ -52,12 +57,12 @@
             <th
               class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
             >
-              Button 1 Text/Link
+              Button 1 Text
             </th>
             <th
               class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
             >
-              Button 2 Text/Link
+              Button 2 Text
             </th>
             <th
               class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
@@ -81,32 +86,22 @@
           $index) {
           <tr class="hover:bg-blue-50 transition-colors group">
             <td class="px-6 py-4 text-sm font-medium text-gray-900">
-              {{ (currentPage() - 1) * pageSize() + i + 1 }}
+              {{ (currentPage() - 1) * pageSize() + i + 1 }} .
             </td>
             <td class="px-6 py-4 text-sm text-gray-900 font-medium">
-              {{ heroSection.title }} /
-              <span class="text-gray-600">{{ heroSection.subtitle }}</span>
+              {{ heroSection.title }}
+            </td>
+            <td class="px-6 py-4 text-sm text-gray-900 font-medium">
+              {{ heroSection.subtitle ? heroSection.subtitle : '-' }}
             </td>
             <td class="px-6 py-4 text-sm text-gray-900">
               {{ heroSection.description }}
             </td>
             <td class="px-6 py-4 text-sm text-gray-600 capitalize">
-              {{ heroSection.button1_text }} /
-              <a
-                href="{{ heroSection.button1_url }}"
-                target="_blank"
-                class="text-blue-600 hover:underline"
-                >{{ heroSection.button1_url }}</a
-              >
+              {{ heroSection.button1_text }}
             </td>
             <td class="px-6 py-4 text-sm text-gray-600 capitalize">
-              {{ heroSection.button2_text }} /
-              <a
-                href="{{ heroSection.button2_url }}"
-                target="_blank"
-                class="text-blue-600 hover:underline"
-                >{{ heroSection.button2_url }}</a
-              >
+              {{ heroSection.button2_text }}
             </td>
             <td class="px-6 py-4">
               @if (heroSection.image) {
@@ -133,7 +128,7 @@
             <td class="px-6 py-4">
               <div class="flex items-center gap-3">
                 <button
-                  (click)="openEditModal($event, heroSection)"
+                  (click)="openDetailsModal($event, heroSection)"
                   class="text-green-600 cursor-pointer hover:text-green-800 font-medium text-sm transition-colors"
                   title="See Details"
                 >
@@ -191,32 +186,17 @@
 </div>
 
 @if (showCompletionModal()) {
-<div
-  class="fixed inset-0 backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-115 p-4"
+<app-modal
+  [isOpen]="showCompletionModal()"
+  [title]="editModal() ? 'Edit Hero Section' : 'Create New Hero Section'"
+  [width]="'max-w-2xl'"
+  (close)="closeModal(true)"
 >
-  <div class="absolute inset-0" (click)="closeModal(true)"></div>
-  <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-2xl">
-    <div
-      class="flex items-center justify-between px-6 py-4 border-b border-gray-200"
-    >
-      <h3 class="text-xl font-bold text-gray-800">
-        {{ editModal() ? "Edit Hero Section" : "Create New Hero Section" }}
-      </h3>
-      <button
-        (click)="closeModal(true)"
-        class="text-gray-400 cursor-pointer hover:text-gray-600 transition-colors"
-      >
-        <lucide-icon [img]="X" [size]="24"></lucide-icon>
-      </button>
-    </div>
-    <div class="p-6">
-      <app-hero-section-form-component
-        [data]="editModal()"
-        (panelClosed)="closeModal($event)"
-      ></app-hero-section-form-component>
-    </div>
-  </div>
-</div>
+  <app-hero-section-form-component
+    [data]="editModal()"
+    (panelClosed)="closeModal($event)"
+  ></app-hero-section-form-component>
+</app-modal>
 }
 
 <app-confirmation-modal
@@ -230,3 +210,9 @@
   (cancelled)="cancelDelete()"
 >
 </app-confirmation-modal>
+
+<app-hero-section-detail
+  [isOpen]="isDetailsModalOpen()"
+  [item]="selectedItem()"
+  (close)="closeDetailsModal()"
+></app-hero-section-detail>

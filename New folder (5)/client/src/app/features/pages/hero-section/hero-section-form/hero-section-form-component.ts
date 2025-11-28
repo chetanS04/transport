@@ -23,6 +23,7 @@ import { LucideAngularModule, X } from 'lucide-angular';
   ],
   templateUrl: './hero-section-form-component.html',
 })
+
 export class HeroSectionFormComponent implements OnInit {
   rForm: FormGroup;
   data = input<HeroSection | null>(null);
@@ -38,16 +39,16 @@ export class HeroSectionFormComponent implements OnInit {
 
   constructor() {
     this.rForm = this.fb.group({
-      title: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(50)])],
-      subtitle: ['', Validators.compose([Validators.minLength(2), Validators.maxLength(50)])],
-      description: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(500)])],
-      button1_text: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(50)])],
-      button1_url: ['', Validators.compose([Validators.required, Validators.pattern(/https?:\/\/.+/)])],
-      button2_text: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(50)])],
-      button2_url: ['', Validators.compose([Validators.required, Validators.pattern(/https?:\/\/.+/)])],
-      image: ['', Validators.compose([Validators.required])],
-      rating: ['', Validators.compose([Validators.min(1), Validators.max(5)])],
-      customers_count: [''],
+      title: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      subtitle: ['', [Validators.minLength(2), Validators.maxLength(50)]],
+      description: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(500)]],
+      button1_text: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      button1_url: ['', [Validators.required, Validators.pattern(/https?:\/\/.+/)]],
+      button2_text: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      button2_url: ['', [Validators.required, Validators.pattern(/https?:\/\/.+/)]],
+      image: [''],
+      rating: [null, [Validators.min(1), Validators.max(5)]],
+      customers_count: [null],
       status: [true],
     });
 
@@ -55,6 +56,7 @@ export class HeroSectionFormComponent implements OnInit {
       const currentData = this.data();
       if (currentData) {
         this.rForm.patchValue(currentData);
+
         if (currentData.image) {
           this.selectedImage.set(currentData.image);
         }
@@ -63,10 +65,11 @@ export class HeroSectionFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.data()) {
-      this.rForm.patchValue(this.data()!);
-      if (this.data()!.image) {
-        this.selectedImage.set(this.data()!.image || '');
+    const currentData = this.data();
+    if (currentData) {
+      this.rForm.patchValue(currentData);
+      if (currentData.image) {
+        this.selectedImage.set(currentData.image);
       }
     }
   }
@@ -87,47 +90,41 @@ export class HeroSectionFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.rForm.valid) {
-      const formData = new FormData();
-      const formValue = this.rForm.value;
+    if (!this.rForm.valid) {
+      ValidateAllFormFields.validateAll(this.rForm);
+      return;
+    }
 
-      // Append all form fields to FormData
-      Object.keys(formValue).forEach(key => {
-        if (formValue[key] !== null && formValue[key] !== undefined && formValue[key] !== '') {
-          formData.append(key, formValue[key]);
+    const formData = new FormData();
+    const formValue = this.rForm.value;
+
+    Object.keys(formValue).forEach(key => {
+      formData.append(key, formValue[key] ?? '');
+    });
+
+    const currentData = this.data();
+    if (currentData) {
+      this.heroSectionService.updateHeroSection(currentData.id, formData).subscribe({
+        next: () => {
+          this.closeModal(true);
+          this.flashService.show('Hero section updated successfully.', 'success');
+        },
+        error: (err) => {
+          console.error(err);
+          this.flashService.show('Failed to update hero section.', 'error');
         }
       });
-
-      const currentData = this.data();
-      if (currentData) {
-        this.heroSectionService
-          .updateHeroSection(currentData.id, formData)
-          .subscribe({
-            next: () => {
-              this.closeModal(true);
-              this.flashService.show('Hero section updated successfully.', "success");
-            },
-            error: (err) => {
-              console.log(err);
-              this.flashService.show('Failed to update hero section.', "error");
-            },
-          });
-      } else {
-        this.heroSectionService
-          .createHeroSection(formData)
-          .subscribe({
-            next: () => {
-              this.closeModal(true);
-              this.flashService.show('Hero section created successfully.', "success");
-            },
-            error: (err) => {
-              console.log(err);
-              this.flashService.show('Failed to create hero section.', "error");
-            },
-          });
-      }
     } else {
-      ValidateAllFormFields.validateAll(this.rForm);
+      this.heroSectionService.createHeroSection(formData).subscribe({
+        next: () => {
+          this.closeModal(true);
+          this.flashService.show('Hero section created successfully.', 'success');
+        },
+        error: (err) => {
+          console.error(err);
+          this.flashService.show('Failed to create hero section.', 'error');
+        }
+      });
     }
   }
 

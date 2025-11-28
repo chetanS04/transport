@@ -13,6 +13,8 @@ import { HeroSectionService } from '../../../../core/services/hero-section.servi
 import { FlashMessageService } from '../../../../core/services/flash-message.service';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 import { environment } from '../../../../../environments/environment';
+import { ModalComponent } from "../../../../shared/components/modal/modal.component";
+import { HeroSectionDetail } from "../hero-section-detail/hero-section-detail";
 
 @Component({
   selector: 'app-hero-section-list-component',
@@ -24,8 +26,10 @@ import { environment } from '../../../../../environments/environment';
     BreadcrumbComponent,
     ConfirmationModalComponent,
     PaginationComponent,
-    LucideAngularModule
-  ],
+    LucideAngularModule,
+    HeroSectionDetail,
+    ModalComponent
+],
   templateUrl: './hero-section-list-component.html',
 })
 export class HeroSectionListComponent {
@@ -47,6 +51,10 @@ export class HeroSectionListComponent {
   private searchSubject = new Subject<string>();
 
   imageUrl = environment.imageUrl;
+
+  isDetailsModalOpen = signal<boolean>(false);
+  selectedItem = signal<HeroSection | null>(null);
+
 
   readonly Plus = Plus;
   readonly Edit = SquarePen;
@@ -140,4 +148,16 @@ export class HeroSectionListComponent {
     this.showDeleteModal.set(false);
     this.heroSectionToDelete.set(null);
   }
+
+  openDetailsModal(event: Event, item: HeroSection): void {
+    event.stopPropagation();
+    this.selectedItem.set(item);
+    this.isDetailsModalOpen.set(true);
+  }
+
+  closeDetailsModal(): void {
+    this.isDetailsModalOpen.set(false);
+    this.selectedItem.set(null);
+  }
+
 }
