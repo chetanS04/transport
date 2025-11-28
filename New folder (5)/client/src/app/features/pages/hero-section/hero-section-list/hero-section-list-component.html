@@ -110,9 +110,13 @@
             </td>
             <td class="px-6 py-4">
               @if (heroSection.image) {
-                <img [src]="'http://localhost:8000' + heroSection.image" alt="Hero image" class="w-16 h-16 object-cover rounded-lg border border-gray-200" />
+              <img
+                [src]="imageUrl + heroSection.image"
+                alt="Hero image"
+                class="w-16 h-16 object-cover rounded-lg border border-gray-200"
+              />
               } @else {
-                <span class="text-gray-400 text-sm">No image</span>
+              <span class="text-gray-400 text-sm">No image</span>
               }
             </td>
             <td class="px-6 py-4">
@@ -128,6 +132,13 @@
             </td>
             <td class="px-6 py-4">
               <div class="flex items-center gap-3">
+                <button
+                  (click)="openEditModal($event, heroSection)"
+                  class="text-green-600 cursor-pointer hover:text-green-800 font-medium text-sm transition-colors"
+                  title="See Details"
+                >
+                  <lucide-icon [img]="Info" [size]="20"></lucide-icon>
+                </button>
                 <button
                   (click)="openEditModal($event, heroSection)"
                   class="text-blue-600 cursor-pointer hover:text-blue-800 font-medium text-sm transition-colors"
@@ -184,7 +195,7 @@
   class="fixed inset-0 backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-115 p-4"
 >
   <div class="absolute inset-0" (click)="closeModal(true)"></div>
-  <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-lg">
+  <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-2xl">
     <div
       class="flex items-center justify-between px-6 py-4 border-b border-gray-200"
     >

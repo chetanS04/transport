@@ -39,7 +39,7 @@ export class ImageCropperModalComponent implements OnDestroy {
     imageChangedEvent: any = '';
     croppedImage: any = '';
     isCropping = signal(false);
-    
+
     errorMessage = signal<string | null>(null);
     isDeleteModalOpen = signal(false);
     imageToDelete = signal<string | null>(null);
@@ -106,40 +106,40 @@ export class ImageCropperModalComponent implements OnDestroy {
 
     async handleCropSave() {
         console.log('handleCropSave called, croppedImage:', this.croppedImage);
-        
+
         if (!this.croppedImage) {
             console.error('No cropped image available');
             this.errorMessage.set('Please wait for the image to be cropped');
             return;
         }
-    
+
         this.isCropping.set(true);
-    
+
         try {
             let blob: Blob;
-            
+
             // Handle both blob and base64 formats
             if (this.croppedImage instanceof Blob) {
                 blob = this.croppedImage;
             } else {
                 blob = await fetch(this.croppedImage).then(res => res.blob());
             }
-            
+
             const file = new File([blob], 'cropped_image.png', { type: 'image/png' });
-            
+
             this.imageService.upload(file, this.directory()).subscribe({
                 next: (response) => {
                     if (response.isSuccess) {
                         const uploadedUrl = response.result;
-                        
+
                         // Add the new image to the gallery with selected state
                         this.images.update(imgs => [...imgs, { url: uploadedUrl, selected: false }]);
-                        
+
                         // Close the cropper view and show the gallery
                         this.selectedImage.set(undefined);
                         this.imageChangedEvent = '';
                         this.croppedImage = '';
-                        
+
                         // Refresh the images to ensure we have the latest
                         this.fetchImages();
                     } else {

@@ -12,7 +12,7 @@
       id="title"
       formControlName="title"
       type="text"
-      placeholder="Enter main heading"
+      placeholder="Enter title"
       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
     />
     <input-validation-error-message
@@ -158,7 +158,7 @@
     @if (selectedImage()) {
     <div class="mb-3 relative inline-block">
       <img
-        [src]="apiUrl + selectedImage()"
+        [src]="imageUrl + selectedImage()"
         alt="Hero image preview"
         class="w-full max-w-md h-48 rounded-lg object-cover border-2 border-gray-200 shadow"
       />

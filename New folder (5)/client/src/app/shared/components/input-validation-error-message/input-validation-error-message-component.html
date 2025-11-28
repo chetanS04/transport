@@ -2,6 +2,10 @@
 <div class="text-red-600 text-sm mt-1 font-bold">
   @if (errors?.['required']) {
   <div>{{ fieldName }} is required!</div>
+  } @if (errors?.['min']) {
+  <div>{{ fieldName }} must be minimum {{ errors?.['min']?.min }}!</div>
+  } @if (errors?.['max']) {
+  <div>{{ fieldName }} must be maximum {{ errors?.['max']?.max }}!</div>
   } @if (errors?.['minlength'] && minLength !== null) {
   <div>{{ fieldName }} must be at least {{ minLength }} characters!</div>
   } @if (errors?.['maxlength'] && maxLength !== null) {

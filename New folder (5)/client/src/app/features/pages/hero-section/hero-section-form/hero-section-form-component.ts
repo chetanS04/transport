@@ -28,7 +28,7 @@ export class HeroSectionFormComponent implements OnInit {
   data = input<HeroSection | null>(null);
   panelClosed = output<boolean>();
   selectedImage = signal<string>('');
-  apiUrl = environment.apiUrl.replace('/api', '');
+  imageUrl = environment.imageUrl;
 
   private heroSectionService = inject(HeroSectionService);
   private fb = inject(FormBuilder);
@@ -42,9 +42,9 @@ export class HeroSectionFormComponent implements OnInit {
       subtitle: ['', Validators.compose([Validators.minLength(2), Validators.maxLength(50)])],
       description: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(500)])],
       button1_text: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(50)])],
-      button1_url: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(50)])],
+      button1_url: ['', Validators.compose([Validators.required, Validators.pattern(/https?:\/\/.+/)])],
       button2_text: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(50)])],
-      button2_url: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(50)])],
+      button2_url: ['', Validators.compose([Validators.required, Validators.pattern(/https?:\/\/.+/)])],
       image: ['', Validators.compose([Validators.required])],
       rating: ['', Validators.compose([Validators.min(1), Validators.max(5)])],
       customers_count: [''],

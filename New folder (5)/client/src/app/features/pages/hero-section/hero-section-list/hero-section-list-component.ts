@@ -7,11 +7,12 @@ import { HeroSectionFormComponent } from '../hero-section-form/hero-section-form
 import { BreadcrumbComponent } from '../../../../shared/components/breadcrumb/breadcrumb-component';
 import { ConfirmationModalComponent } from '../../../../shared/components/confirmation-modal/confirmation-modal.component';
 import { PaginationComponent } from '../../../../shared/components/pagination/pagination.component';
-import { CreditCard, LucideAngularModule, Plus, SquarePen, Trash2, X } from 'lucide-angular';
+import { CreditCard, Info, LucideAngularModule, Plus, SquarePen, Trash2, X } from 'lucide-angular';
 import { Subject } from 'rxjs/internal/Subject';
 import { HeroSectionService } from '../../../../core/services/hero-section.service';
 import { FlashMessageService } from '../../../../core/services/flash-message.service';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-hero-section-list-component',
@@ -45,8 +46,11 @@ export class HeroSectionListComponent {
 
   private searchSubject = new Subject<string>();
 
+  imageUrl = environment.imageUrl;
+
   readonly Plus = Plus;
   readonly Edit = SquarePen;
+  readonly Info = Info;
   readonly Trash2 = Trash2;
   readonly CreditCard = CreditCard;
   readonly X = X;

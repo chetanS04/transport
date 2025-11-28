@@ -14,7 +14,8 @@
     title="Select Image"
     width="max-w-4xl"
   >
-    <div *ngIf="!selectedImage()" class="space-y-4">
+    @if (!selectedImage()){
+    <div class="space-y-4">
       <label
         class="btn btn-secondary mb-4 cursor-pointer bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md inline-block"
       >
@@ -27,10 +28,8 @@
         />
       </label>
 
-      <div
-        *ngIf="images().length > 0"
-        class="max-h-[290px] overflow-y-auto pr-2"
-      >
+      @if (images().length > 0) {
+      <div class="max-h-[290px] overflow-y-auto pr-2">
         <div class="grid grid-cols-4 gap-4">
           <div
             *ngFor="let img of images(); let i = index"
@@ -60,6 +59,7 @@
           </div>
         </div>
       </div>
+      }
 
       <div class="flex justify-end gap-3">
         <button
@@ -69,21 +69,19 @@
         >
           Cancel
         </button>
+        @if (hasSelection()) {
         <button
-          *ngIf="hasSelection()"
           type="button"
           (click)="handleDone()"
           class="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-md"
         >
           Done
         </button>
+        }
       </div>
     </div>
-
-    <div
-      *ngIf="selectedImage()"
-      class="relative w-full h-96 bg-gray-100 rounded-md overflow-hidden"
-    >
+    } @if (selectedImage()) {
+    <div class="relative w-full h-96 bg-gray-100 rounded-md overflow-hidden">
       <image-cropper
         [imageBase64]="selectedImage()"
         [maintainAspectRatio]="true"
@@ -115,6 +113,7 @@
         </button>
       </div>
     </div>
+    }
   </app-modal>
 
   <app-modal
