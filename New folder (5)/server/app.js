@@ -8,6 +8,8 @@ const session = require("express-session");
 const { secret } = require("./config/auth.config");
 const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
 const { fixAllSequences } = require("./utils/sequenceHelper");
+const multer = require("multer");
+const upload = multer();
 
 const app = express();
 
@@ -30,14 +32,22 @@ app.use(
 
 app.use(express.static(path.join(__dirname, "public")));
 
-// Serve static files from storage directory
-app.use('/storage', express.static(path.join(__dirname, "public/storage")));
+app.use("/storage", express.static(path.join(__dirname, "public/storage")));
 
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// ⬇️ Place here
+app.use((req, res, next) => {
+  const isUploadRoute = req.originalUrl.startsWith("/api/images/upload");
+  if (!isUploadRoute && (req.method === "POST" || req.method === "PUT")) {
+    return upload.none()(req, res, next);
+  }
+  next();
+});
 
 app.use("/api", router);
 
@@ -47,10 +57,10 @@ app.use(errorHandler);
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, async () => {
   console.log(`Server is running on port ${PORT}.`);
-  
+
   try {
     await fixAllSequences();
   } catch (error) {
-    console.error('Error fixing sequences on startup:', error);
+    console.error("Error fixing sequences on startup:", error);
   }
 });

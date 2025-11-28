@@ -59,7 +59,7 @@ export class SidebarComponent {
       icon: Layers,
       children: [
         { icon: MapPin, label: "Hero Section", route: "/hero-section" },
-        { label: "About What We Provide", route: "/about-provide" },
+        { label: "Our Services", route: "/our-services" },
       ],
     },
     { icon: Settings, label: 'Settings', route: '/settings' }
