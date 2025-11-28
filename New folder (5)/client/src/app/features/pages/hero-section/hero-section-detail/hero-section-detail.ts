@@ -10,10 +10,10 @@ import { ModalComponent } from '../../../../shared/components/modal/modal.compon
   templateUrl: './hero-section-detail.html',
 })
 export class HeroSectionDetail {
-@Input() isOpen!: boolean;
-@Input() item!: HeroSection | null;
-@Output() close = new EventEmitter<void>();
+  @Input() isOpen!: boolean;
+  @Input() item!: HeroSection | null;
+  @Output() close = new EventEmitter<void>();
 
-imageUrl = environment.imageUrl;
+  imageUrl = environment.imageUrl;
 
 }

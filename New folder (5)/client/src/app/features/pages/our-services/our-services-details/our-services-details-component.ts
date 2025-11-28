@@ -11,10 +11,10 @@ import { CommonModule } from '@angular/common';
 })
 
 export class OurServicesDetailsComponent {
-@Input() isOpen!: boolean;
-@Input() item!: OurServices | null;
-@Output() close = new EventEmitter<void>();
+  @Input() isOpen!: boolean;
+  @Input() item!: OurServices | null;
+  @Output() close = new EventEmitter<void>();
 
-imageUrl = environment.imageUrl;
+  imageUrl = environment.imageUrl;
 
 }

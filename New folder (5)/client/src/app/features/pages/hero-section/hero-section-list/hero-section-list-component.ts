@@ -29,7 +29,7 @@ import { HeroSectionDetail } from "../hero-section-detail/hero-section-detail";
     LucideAngularModule,
     HeroSectionDetail,
     ModalComponent
-],
+  ],
   templateUrl: './hero-section-list-component.html',
 })
 export class HeroSectionListComponent {
