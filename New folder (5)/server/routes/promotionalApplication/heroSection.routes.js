@@ -3,7 +3,6 @@ const multer = require("multer");
 const heroSectionController = require("../../controllers/promotionalApplication/heroSection.controller");
 const heroSectionRouter = Router();
 
-// Configure multer to parse form-data without file uploads
 const upload = multer();
 
 heroSectionRouter

@@ -38,14 +38,14 @@ export class HeroSectionFormComponent implements OnInit {
 
   constructor() {
     this.rForm = this.fb.group({
-      title: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(255)])],
-      subtitle: ['', Validators.compose([Validators.minLength(2), Validators.maxLength(255)])],
+      title: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(50)])],
+      subtitle: ['', Validators.compose([Validators.minLength(2), Validators.maxLength(50)])],
       description: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(500)])],
       button1_text: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(50)])],
-      button1_url: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(255)])],
+      button1_url: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(50)])],
       button2_text: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(50)])],
-      button2_url: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(255)])],
-      image: [''],
+      button2_url: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(50)])],
+      image: ['', Validators.compose([Validators.required])],
       rating: ['', Validators.compose([Validators.min(1), Validators.max(5)])],
       customers_count: [''],
       status: [true],
