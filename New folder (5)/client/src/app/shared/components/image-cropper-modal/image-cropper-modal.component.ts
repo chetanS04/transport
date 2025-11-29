@@ -23,16 +23,13 @@ export class ImageCropperModalComponent implements OnDestroy {
     readonly X = X;
     readonly ImageIcon = ImageIcon;
 
-    // Inputs
     multiple = input<boolean>(false);
     buttonLabel = input<string>('Select Image');
     directory = input<string>('products');
     aspectRatio = input<number>(1);
 
-    // Outputs
     onSelect = output<string[] | string>();
 
-    // Signals
     isOpen = signal(false);
     images = signal<ImageItem[]>([]);
     selectedImage = signal<string | undefined>(undefined);
@@ -47,7 +44,6 @@ export class ImageCropperModalComponent implements OnDestroy {
 
     uploadUrl = environment.apiUrl.replace('/api', '');
 
-    // Computed
     selectedImages = computed(() =>
         this.images().filter(img => img.selected)
     );
@@ -95,7 +91,6 @@ export class ImageCropperModalComponent implements OnDestroy {
     }
 
     imageCropped(event: ImageCroppedEvent) {
-        // Store the cropped image data
         if (event.blob) {
             this.croppedImage = event.blob;
         } else if (event.base64) {
@@ -118,7 +113,6 @@ export class ImageCropperModalComponent implements OnDestroy {
         try {
             let blob: Blob;
 
-            // Handle both blob and base64 formats
             if (this.croppedImage instanceof Blob) {
                 blob = this.croppedImage;
             } else {
@@ -132,15 +126,12 @@ export class ImageCropperModalComponent implements OnDestroy {
                     if (response.isSuccess) {
                         const uploadedUrl = response.result;
 
-                        // Add the new image to the gallery with selected state
                         this.images.update(imgs => [...imgs, { url: uploadedUrl, selected: false }]);
 
-                        // Close the cropper view and show the gallery
                         this.selectedImage.set(undefined);
                         this.imageChangedEvent = '';
                         this.croppedImage = '';
 
-                        // Refresh the images to ensure we have the latest
                         this.fetchImages();
                     } else {
                         this.errorMessage.set(response.message || 'Upload failed');
@@ -219,7 +210,5 @@ export class ImageCropperModalComponent implements OnDestroy {
         this.closeModal();
     }
 
-    ngOnDestroy(): void {
-        // Clean up object URLs if any
-    }
+    ngOnDestroy(): void { }
 }

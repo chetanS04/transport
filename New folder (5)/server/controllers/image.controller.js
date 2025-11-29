@@ -3,10 +3,9 @@ const path = require("path");
 
 exports.getFiles = async (req, res) => {
   try {
-    const { directory } = req.params; // FIXED
+    const { directory } = req.params;
     const fullPath = path.join(__dirname, "../public/storage", directory);
 
-    // If folder does not exist → return empty array
     if (!fs.existsSync(fullPath)) {
       return res.status(200).json([]);
     }
@@ -70,7 +69,6 @@ exports.upload = async (req, res) => {
   } catch (error) {
     console.error("Error uploading image:", error);
 
-    // Cleanup temp file if rename failed
     if (req.file?.path && fs.existsSync(req.file.path)) {
       fs.unlinkSync(req.file.path);
     }

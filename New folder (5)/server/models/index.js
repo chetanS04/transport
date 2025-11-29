@@ -23,7 +23,6 @@ db.SubscriptionType = require("./admin/subscription-types")(
 );
 db.Settings = require("./admin/settings")(sequelize, DataTypes);
 db.PasswordReset = require("./admin/password-resets")(sequelize, DataTypes);
-
 require("./admin/AdminAssociations.js")(db);
 
 // promtional application models

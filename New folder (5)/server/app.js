@@ -40,7 +40,6 @@ app.use(passport.session());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// ⬇️ Place here
 app.use((req, res, next) => {
   const isUploadRoute = req.originalUrl.startsWith("/api/images/upload");
   if (!isUploadRoute && (req.method === "POST" || req.method === "PUT")) {
