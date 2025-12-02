@@ -46,7 +46,7 @@ export class HeroSectionFormComponent implements OnInit {
       button1_url: ['', [Validators.required, Validators.pattern(/https?:\/\/.+/)]],
       button2_text: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       button2_url: ['', [Validators.required, Validators.pattern(/https?:\/\/.+/)]],
-      image: [''],
+      image: ['', Validators.required],
       rating: [null, [Validators.min(1), Validators.max(5)]],
       customers_count: [null],
       status: [true],

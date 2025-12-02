@@ -5,14 +5,14 @@ import { ToggleSwitchComponent } from '../../../../shared/components/toggle-swit
 import { InputValidationErrorMessage } from '../../../../shared/components/input-validation-error-message/input-validation-error-message-component';
 import { ImageCropperModalComponent } from '../../../../shared/components/image-cropper-modal/image-cropper-modal.component';
 import { LucideAngularModule, X } from 'lucide-angular';
-import { OurServices } from '../../../../shared/models/interface';
+import { Templates } from '../../../../shared/models/interface';
 import { environment } from '../../../../../environments/environment';
-import { OurServicesService } from '../../../../core/services/our-services.service';
+import { TemplatesService } from '../../../../core/services/templates.service';
 import { FlashMessageService } from '../../../../core/services/flash-message.service';
 import { ValidateAllFormFields } from '../../../../core/utils/CustomValidator';
 
 @Component({
-  selector: 'app-our-services-form-component',
+  selector: 'app-templates-form-component',
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -21,17 +21,19 @@ import { ValidateAllFormFields } from '../../../../core/utils/CustomValidator';
     ImageCropperModalComponent,
     LucideAngularModule
   ],
-  templateUrl: './our-services-form-component.html',
+  templateUrl: './templates-form-component.html',
 })
 
-export class OurServicesFormComponent {
+export class TemplatesFormComponent {
   rForm: FormGroup;
-  data = input<OurServices | null>(null);
+  data = input<Templates | null>(null);
   panelClosed = output<boolean>();
   selectedImage = signal<string>('');
   imageUrl = environment.imageUrl;
 
-  private ourServicesService = inject(OurServicesService);
+  additionalImages = signal<string[]>([]);
+
+  private templatesService = inject(TemplatesService);
   private fb = inject(FormBuilder);
   private flashService = inject(FlashMessageService);
 
@@ -40,36 +42,59 @@ export class OurServicesFormComponent {
   constructor() {
     this.rForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      subtitle: ['', [Validators.minLength(2), Validators.maxLength(50)]],
       description: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(500)]],
       button1_text: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       button1_url: ['', [Validators.required, Validators.pattern(/https?:\/\/.+/)]],
       button2_text: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       button2_url: ['', [Validators.required, Validators.pattern(/https?:\/\/.+/)]],
       image: ['', Validators.required],
+      additional_images: [[], Validators.required],
       status: [true],
     });
 
-    effect(() => {
+   effect(() => {
       const currentData = this.data();
       if (currentData) {
-        this.rForm.patchValue(currentData);
+        // Patch primitive fields first
+        this.rForm.patchValue({
+          title: currentData.title,
+          description: currentData.description,
+          button1_text: currentData.button1_text,
+          button1_url: currentData.button1_url,
+          button2_text: currentData.button2_text,
+          button2_url: currentData.button2_url,
+          image: currentData.image ?? '',
+          status: currentData.status ?? true
+        });
 
+        // Set main image preview
         if (currentData.image) {
           this.selectedImage.set(currentData.image);
         }
+
+        // Handle additional_images array
+        if (currentData.additional_images) {
+          // Server returns array of image paths
+          const additionalImagesValue: string[] | string = currentData.additional_images as any;
+          let arr: string[] = [];
+          
+          if (Array.isArray(additionalImagesValue)) {
+            arr = additionalImagesValue;
+          } else if (typeof additionalImagesValue === 'string') {
+            // Fallback for comma-separated string
+            arr = additionalImagesValue.split(',').map(img => img.trim()).filter(img => img);
+          }
+          
+          // Update signal and form control
+          this.additionalImages.set(arr);
+          this.rForm.patchValue({ additional_images: arr });
+        } else {
+          // Ensure empty array if null/undefined
+          this.additionalImages.set([]);
+          this.rForm.patchValue({ additional_images: [] });
+        }
       }
     });
-  }
-
-  ngOnInit(): void {
-    const currentData = this.data();
-    if (currentData) {
-      this.rForm.patchValue(currentData);
-      if (currentData.image) {
-        this.selectedImage.set(currentData.image);
-      }
-    }
   }
 
   onImageSelect(imageUrl: string | string[]): void {
@@ -82,6 +107,20 @@ export class OurServicesFormComponent {
     this.selectedImage.set('');
     this.rForm.patchValue({ image: '' });
   }
+
+  onAdditionalImagesSelect(imgs: string[] | string): void {
+    const selected = Array.isArray(imgs) ? imgs : [imgs];
+    const updatedList = [...this.additionalImages(), ...selected];
+    this.additionalImages.set(updatedList);
+    this.rForm.patchValue({ additional_images: updatedList });
+  }
+
+  removeAdditionalImage(index: number): void {
+    const updated = this.additionalImages().filter((_, i) => i !== index);
+    this.additionalImages.set(updated);
+    this.rForm.patchValue({ additional_images: updated });
+  }
+
 
   closeModal(action: boolean): void {
     this.panelClosed.emit(action);
@@ -97,30 +136,36 @@ export class OurServicesFormComponent {
     const formValue = this.rForm.value;
 
     Object.keys(formValue).forEach(key => {
-      formData.append(key, formValue[key] ?? '');
+      if (key === 'additional_images') {
+        // Send array as JSON string
+        const images = formValue[key] || [];
+        formData.append(key, JSON.stringify(images));
+      } else {
+        formData.append(key, formValue[key] ?? '');
+      }
     });
 
     const currentData = this.data();
     if (currentData) {
-      this.ourServicesService.updateOurService(currentData.id, formData).subscribe({
+      this.templatesService.updateTemplate(currentData.id, formData).subscribe({
         next: () => {
           this.closeModal(true);
-          this.flashService.show('Our service updated successfully.', 'success');
+          this.flashService.show('Template updated successfully.', 'success');
         },
         error: (err) => {
           console.error(err);
-          this.flashService.show('Failed to update our service.', 'error');
+          this.flashService.show('Failed to update template.', 'error');
         }
       });
     } else {
-      this.ourServicesService.createOurService(formData).subscribe({
+      this.templatesService.createTemplate(formData).subscribe({
         next: () => {
           this.closeModal(true);
-          this.flashService.show('Our service created successfully.', 'success');
+          this.flashService.show('Template created successfully.', 'success');
         },
         error: (err) => {
           console.error(err);
-          this.flashService.show('Failed to create our service.', 'error');
+          this.flashService.show('Failed to create template.', 'error');
         }
       });
     }

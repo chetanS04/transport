@@ -34,7 +34,7 @@ export interface Settings {
   status?: boolean;
 }
 
-export interface HeroSection extends CommonData {
+export interface Application extends CommonData {
   title: string;
   subtitle?: string;
   description?: string;
@@ -43,19 +43,17 @@ export interface HeroSection extends CommonData {
   button2_text?: string;
   button2_url?: string;
   image?: string;
+}
+
+export interface HeroSection extends Application {
   rating?: number;
   customers_count?: string;
 }
 
-export interface OurServices extends CommonData {
-  title: string;
-  subtitle?: string;
-  description?: string;
-  button1_text?: string;
-  button1_url?: string;
-  button2_text?: string;
-  button2_url?: string;
-  image?: string;
+export interface OurServices extends Application { }
+
+export interface Templates extends Application {
+  additional_images?: string[];
 }
 
 export interface ImageItem {

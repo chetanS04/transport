@@ -60,6 +60,7 @@ export class SidebarComponent {
       children: [
         { icon: MapPin, label: "Hero Section", route: "/hero-section" },
         { label: "Our Services", route: "/our-services" },
+        { label: "Templates Management", route: "/templates-management" },
       ],
     },
     { icon: Settings, label: 'Settings', route: '/settings' }

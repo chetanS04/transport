@@ -26,8 +26,18 @@ db.PasswordReset = require("./admin/password-resets")(sequelize, DataTypes);
 require("./admin/AdminAssociations.js")(db);
 
 // promtional application models
-db.HeroSection = require("./promotionalApplication/hero-section.js")(sequelize, DataTypes);
-db.OurServices = require("./promotionalApplication/our-services.js")(sequelize, DataTypes);
+db.HeroSection = require("./promotionalApplication/hero-section.js")(
+  sequelize,
+  DataTypes
+);
+db.OurServices = require("./promotionalApplication/our-services.js")(
+  sequelize,
+  DataTypes
+);
+db.Templates = require("./promotionalApplication/templates.js")(
+  sequelize,
+  DataTypes
+);
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

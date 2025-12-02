@@ -8,6 +8,7 @@ const imageRouter = require("./image.routes");
 const { verifyToken } = require("../middlewares/authJWT");
 const heroSectionRouter = require("./promotionalApplication/heroSection.routes");
 const ourServicesRouter = require("./promotionalApplication/ourServices.routes");
+const templatesRouter = require("./promotionalApplication/templates.routes");
 
 const router = Router();
 
@@ -22,5 +23,6 @@ router.use("/images", imageRouter);
 // promotional application routes
 router.use("/hero-section", [verifyToken], heroSectionRouter);
 router.use("/our-services", [verifyToken], ourServicesRouter);
+router.use("/templates", [verifyToken], templatesRouter);
 
 module.exports = router;

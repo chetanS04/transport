@@ -48,11 +48,18 @@ export const dashboardRoutes: Routes = [
             (m) => m.HeroSectionListComponent
           ),
       },
-        {
+      {
         path: 'our-services',
         loadComponent: () =>
           import('../../../features/pages/our-services/our-services-list/our-services-list-component').then(
             (m) => m.OurServicesListComponent
+          ),
+      },
+      {
+        path: 'templates-management',
+        loadComponent: () =>
+          import('../../../features/pages/templates-management/templates-list/templates-list-component').then(
+            (m) => m.TemplatesListComponent
           ),
       },
     ],
