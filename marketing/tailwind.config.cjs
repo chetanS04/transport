@@ -9,9 +9,9 @@ module.exports = {
     extend: {
       colors: {
         // Primary theme colors (changeable via CSS variables)
-        primary: 'hsl(var(--primary-h), var(--primary-s), var(--primary-l))',
-        'primary-light': 'hsl(var(--primary-h), var(--primary-s), 45%)',
-        'primary-dark': 'hsl(var(--primary-h), var(--primary-s), 20%)',
+        primary: 'var(--primary)',
+        'primary-light': 'var(--primary-light)',
+        'primary-dark': 'var(--primary-dark)',
         'primary-foreground': 'var(--primary-foreground)',
         
         // Theme system colors

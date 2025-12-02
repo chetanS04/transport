@@ -19,7 +19,7 @@ export default function Home() {
           {/* LEFT CONTENT */}
           <div>
             <h1 className="text-5xl md:text-7xl font-bold leading-none">
-              <span className="text-green-700">AI-powered</span>{" "}
+              <span className="text-primary">AI-powered</span>{" "}
               delivery management and customer experience
             </h1>
 

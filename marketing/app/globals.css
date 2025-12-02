@@ -31,31 +31,10 @@
   --radius: 0.625rem;
 }
 
-/* Dark Mode */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #f3f4f6;
-
-    --secondary: #1f2937;
-    --secondary-foreground: #e5e7eb;
-
-    --accent: #0f766e;
-    --accent-foreground: #ffffff;
-
-    --muted: #1f2937;
-    --muted-foreground: #9ca3af;
-
-    --border: #374151;
-    --ring: var(--primary-light);
-  }
-}
-
 /* Font */
 body {
   font-family: var(--font-sans, ui-sans-serif, system-ui, sans-serif);
-  background: var(--background);
-  color: var(--foreground);
+ 
 }
 
 /* ─────────────────────────────────────────────────────────────

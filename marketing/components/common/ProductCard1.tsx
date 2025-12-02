@@ -76,7 +76,7 @@ export default function ProductCard1({ item }: { item: ProductItem }) {
           <button className="
             w-full py-2 border border-primary text-primary 
             rounded-md font-medium 
-            hover:bg-primary hover:text-white 
+            hover:bg-primary 
             transition
           ">
             button1
@@ -85,7 +85,7 @@ export default function ProductCard1({ item }: { item: ProductItem }) {
           <button className="
             w-full py-2 border border-primary text-primary 
             rounded-md font-medium 
-            hover:bg-primary hover:text-white 
+            hover:bg-primary 
             transition
           ">
             button2
