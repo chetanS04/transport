@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────
+   SIMPLE STATIC THEME (Primary Theme)
+   ───────────────────────────────────────────────────────────── */
+
+:root {
+  /* Primary Theme Colors */
+  --primary: #0d9488;         
+  --primary-light: #14b8a6;    
+  --primary-dark: #0f766e;     
+  --primary-foreground: #ffffff;
+
+  /* Basic UI Colors */
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+
+  --secondary: #f3f4f6;        /* Gray 100 */
+  --secondary-foreground: #374151; /* Gray 700 */
+
+  --accent: #ecfeff;           /* Light teal background */
+  --accent-foreground: var(--primary-dark);
+
+  --muted: #f9fafb;
+  --muted-foreground: #6b7280;
+
+  --border: #e5e7eb;
+  --ring: var(--primary);
+
+  /* Radius */
+  --radius: 0.625rem;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #f3f4f6;
+
+    --secondary: #1f2937;
+    --secondary-foreground: #e5e7eb;
+
+    --accent: #0f766e;
+    --accent-foreground: #ffffff;
+
+    --muted: #1f2937;
+    --muted-foreground: #9ca3af;
+
+    --border: #374151;
+    --ring: var(--primary-light);
+  }
+}
+
+/* Font */
+body {
+  font-family: var(--font-sans, ui-sans-serif, system-ui, sans-serif);
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   BUTTONS
+   ───────────────────────────────────────────────────────────── */
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: background-color .15s ease;
+}
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+}
+
+.btn-secondary {
+  padding: 0.5rem 1.5rem;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  border-radius: 0.5rem;
+  font-weight: 500;
+  background: transparent;
+  transition: background-color .15s ease, color .15s ease;
+}
+.btn-secondary:hover {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   SWIPER ARROWS
+   ───────────────────────────────────────────────────────────── */
+.swiper-button-next,
+.swiper-button-prev {
+  width: 22px !important;
+  height: 22px !important;
+  padding: 7px;
+  color: var(--foreground) !important;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 14px !important;
+  font-weight: bold;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background: var(--primary) !important;
+  color: white !important;
+  transform: scale(1.1);
+}
+
+.swiper-button-disabled {
+
+
+
+
+  
+  opacity: 0.4 !important;
+}
+
+/* Global Borders */
+* {
+  box-sizing: border-box;
+  border-color: var(--border);
+}
