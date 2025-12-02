@@ -10,7 +10,7 @@ export default function Navbar() {
 
         {/* LEFT SECTION */}
         <div className="flex items-center space-x-10">
-          <a href="#" className="text-2xl font-semibold text-primary">
+          <a href="#" className="text-2xl font-semibold text-primary dark:text-black">
             Trackage.in
           </a>
 
@@ -26,7 +26,7 @@ export default function Navbar() {
 
         {/* DESKTOP RIGHT */}
         <div className="hidden lg:flex items-center space-x-6">
-          <a href="tel:+919914327671" className="flex items-center text-primary font-medium">
+          <a href="tel:+919914327671" className="flex items-center text-primary font-medium dark:text-black">
             <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 mr-1" fill="none" viewBox="0 0 24 24"
               stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}

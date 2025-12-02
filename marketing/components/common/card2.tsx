@@ -19,7 +19,7 @@ export default function ThreeColumnSection() {
       title: "Card Title 3",
       desc: "Modern UI with gradient overlay and centered footer.",
     },
-      {
+    {
       img: "https://picsum.photos/600/400?random=4",
       title: "Card Title 4",
       desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
@@ -37,11 +37,10 @@ export default function ThreeColumnSection() {
   ];
 
   return (
-    <section className="w-full py-16 bg-gray-100">
+    <section className="w-full py-10 bg-gray-100">
       <div className="container mx-auto px-6 text-center mb-12">
-         <h2 className="text-5xl sm:text-6xl font-bold text-gray-900 mb-3">
-           What We Provide <span className="text-green-700">Page</span>
-          </h2>
+        <h2 className="text-5xl sm:text-6xl font-bold text-gray-900 mb-3">
+          What We <span className="text-green-700 dark:text-green-500">Provide</span>          </h2>
         <p className="text-lg text-gray-600 mt-2">
           Explore our premium features and modern UI components.
         </p>

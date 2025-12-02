@@ -112,18 +112,18 @@ export default function ProductCard({ item }: { item: ProductItem }) {
             <div className="flex items-center justify-end gap-3 mt-2">
 
               {/* Cart Button */}
-              <button className="p-2 border rounded-md hover:bg-gray-100 transition">
+              <button className="p-2 border rounded-md hover:bg-gray-100 transition cursor-pointer">
                 🛒
               </button>
 
               {/* Live Preview */}
-              <button className="px-4 py-2 border border-primary text-primary font-medium rounded-md hover:bg-primary hover:text-primary transition">
+              <button className="px-4 py-2 border border-primary text-primary font-medium rounded-md hover:bg-primary hover:text-primary cursor-pointer transition">
                 Live Preview
               </button>
             </div>
 
             {/* Sales Count */}
-            <p className="text-sm text-gray-500 mt-1">Use By {item.numberByUse}</p>
+            <p className="text-sm text-gray-500 mt-1">Use by {item.numberByUse}</p>
           </div>
 
         </div>
