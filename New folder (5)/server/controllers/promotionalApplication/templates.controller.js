@@ -28,17 +28,17 @@ const createTemplate = asyncHandler(async (req, res) => {
 
     await fixSequence("templates");
 
-    // Parse additional_images if it's a JSON string from FormData
     let parsedAdditionalImages = [];
     if (additional_images) {
       try {
-        parsedAdditionalImages = typeof additional_images === 'string'
-          ? JSON.parse(additional_images)
-          : Array.isArray(additional_images)
-          ? additional_images
-          : [];
+        parsedAdditionalImages =
+          typeof additional_images === "string"
+            ? JSON.parse(additional_images)
+            : Array.isArray(additional_images)
+            ? additional_images
+            : [];
       } catch (err) {
-        console.error('Error parsing additional_images:', err);
+        console.error("Error parsing additional_images:", err);
         parsedAdditionalImages = [];
       }
     }
@@ -52,7 +52,7 @@ const createTemplate = asyncHandler(async (req, res) => {
       button2_url,
       image,
       additional_images: parsedAdditionalImages,
-      status: status === 'true' || status === true,
+      status: status === "true" || status === true,
     });
 
     res.status(201).json({ success: true, template });
@@ -132,30 +132,6 @@ const getTemplateById = asyncHandler(async (req, res) => {
   }
 });
 
-// const updateTemplate = asyncHandler(async (req, res) => {
-//   try {
-//     const { id } = req.params;
-
-//     const template = await Templates.findByPk(id);
-//     if (!template) {
-//       return res
-//         .status(404)
-//         .json({ success: false, message: "Template not found" });
-//     }
-
-//     Object.assign(template, req.body);
-
-//     await template.save();
-
-//     res.status(200).json({ success: true, template });
-//   } catch (err) {
-//     console.error("Error updating template:", err);
-//     res
-//       .status(500)
-//       .json({ success: false, message: "Failed to update template" });
-//   }
-// });
-
 const updateTemplate = asyncHandler(async (req, res) => {
   try {
     const { id } = req.params;
@@ -186,20 +162,29 @@ const updateTemplate = asyncHandler(async (req, res) => {
     template.button2_text = button2_text ?? template.button2_text;
     template.button2_url = button2_url ?? template.button2_url;
     template.image = image ?? template.image;
-    template.status = status === 'true' || status === true ? true : status === 'false' || status === false ? false : template.status;
+    template.status =
+      status === "true" || status === true
+        ? true
+        : status === "false" || status === false
+        ? false
+        : template.status;
 
-    // Handle additional_images - could be JSON string from FormData or array
-    if (additional_images !== undefined && additional_images !== null && additional_images !== '') {
+    if (
+      additional_images !== undefined &&
+      additional_images !== null &&
+      additional_images !== ""
+    ) {
       try {
-        // If it's a JSON string, parse it
-        const parsedImages = typeof additional_images === 'string' 
-          ? JSON.parse(additional_images) 
-          : additional_images;
-        
-        template.additional_images = Array.isArray(parsedImages) ? parsedImages : [];
+        const parsedImages =
+          typeof additional_images === "string"
+            ? JSON.parse(additional_images)
+            : additional_images;
+
+        template.additional_images = Array.isArray(parsedImages)
+          ? parsedImages
+          : [];
       } catch (err) {
-        console.error('Error parsing additional_images:', err);
-        // Keep existing value if parsing fails
+        console.error("Error parsing additional_images:", err);
       }
     }
 

@@ -62,9 +62,6 @@ export class LoginComponent implements OnInit {
     this.showPasswordState.update(v => !v);
   }
 
-  // onLoginSuccess() {
-  //   this.router.navigateByUrl(this.redirectTo);
-  // }
   onLoginSuccess() {
     const user = this.tokenStorageService.user();
 

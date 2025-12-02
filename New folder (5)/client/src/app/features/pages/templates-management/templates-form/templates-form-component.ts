@@ -55,7 +55,6 @@ export class TemplatesFormComponent {
    effect(() => {
       const currentData = this.data();
       if (currentData) {
-        // Patch primitive fields first
         this.rForm.patchValue({
           title: currentData.title,
           description: currentData.description,
@@ -67,29 +66,23 @@ export class TemplatesFormComponent {
           status: currentData.status ?? true
         });
 
-        // Set main image preview
         if (currentData.image) {
           this.selectedImage.set(currentData.image);
         }
 
-        // Handle additional_images array
         if (currentData.additional_images) {
-          // Server returns array of image paths
           const additionalImagesValue: string[] | string = currentData.additional_images as any;
           let arr: string[] = [];
           
           if (Array.isArray(additionalImagesValue)) {
             arr = additionalImagesValue;
           } else if (typeof additionalImagesValue === 'string') {
-            // Fallback for comma-separated string
             arr = additionalImagesValue.split(',').map(img => img.trim()).filter(img => img);
           }
           
-          // Update signal and form control
           this.additionalImages.set(arr);
           this.rForm.patchValue({ additional_images: arr });
         } else {
-          // Ensure empty array if null/undefined
           this.additionalImages.set([]);
           this.rForm.patchValue({ additional_images: [] });
         }
@@ -137,7 +130,6 @@ export class TemplatesFormComponent {
 
     Object.keys(formValue).forEach(key => {
       if (key === 'additional_images') {
-        // Send array as JSON string
         const images = formValue[key] || [];
         formData.append(key, JSON.stringify(images));
       } else {
