@@ -18,7 +18,7 @@ const ErrorMessage: React.FC<ErrorMessageProps> = ({ message, onClose }) => {
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 50 }}
       transition={{ duration: 0.3 }}
-      className="fixed top-5 right-5 z-[10000] flex items-center space-x-3 rounded-lg bg-white border-l-4 border-red-600 shadow-md px-6 py-4 max-w-sm"
+      className="fixed top-5 right-5 z-10000 flex items-center space-x-3 rounded-lg bg-white border-l-4 border-red-600 shadow-md px-6 py-4 max-w-sm"
     >
       <BadgeX className="h-5 w-5 text-red-600" />
       <span className="text-sm font-semibold">{message}</span>

@@ -1,12 +1,10 @@
 "use client";
 
-import OurServices from "@/src/components/(frontend)/ourServices";
+import OurServices from "@/src/components/(frontend)/OurServices";
 import Templates from "@/src/components/(frontend)/Templates";
 
 
 export default function HomeUI() {
-
-
   return (
     <div>
       <section className="w-full py-10 md:py-12">
