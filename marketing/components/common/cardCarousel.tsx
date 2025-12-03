@@ -4,8 +4,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import { Card } from "../ui/card";
 
-import { Card } from "@/components/ui/card";
 
 export default function CardCarousel() {
   const data = Array.from({ length: 9 }).map((_, index) => ({
