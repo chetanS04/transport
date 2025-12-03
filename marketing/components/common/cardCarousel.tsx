@@ -45,10 +45,10 @@ export default function CardCarousel() {
               <p className="text-sm opacity-90">{item.desc}</p>
 
               <div className="flex justify-center gap-3 mt-3">
-                <button className="px-4 py-2 text-sm bg-white text-black rounded-md font-medium hover:bg-gray-200">
+                <button className="px-4 py-2 text-sm bg-white text-black rounded-md font-medium hover:bg-gray-200 cursor-pointer transition">
                   Button 1
                 </button>
-                <button className="px-4 py-2 text-sm border border-white rounded-md font-medium hover:bg-white hover:text-black transition">
+                <button className="px-4 py-2 text-sm border border-white rounded-md font-medium hover:bg-white hover:text-black cursor-pointer transition">
                   Button 2
                 </button>
               </div>

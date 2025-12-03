@@ -74,26 +74,22 @@ export default function ProductCard1({ item }: { item: ProductItem }) {
         {/* Buttons */}
         <div className="flex items-center justify-between gap-3 mt-4">
           <button className="
-            w-full py-2 border border-primary text-primary 
-            rounded-md font-medium 
-            hover:bg-primary 
-            transition
+          btn-primary w-full
+          cursor-pointer transition          
           ">
             button1
           </button>
 
           <button className="
-            w-full py-2 border border-primary text-primary 
-            rounded-md font-medium 
-            hover:bg-primary 
-            transition
+          btn-secondary w-full
+          cursor-pointer transition
           ">
             button2
           </button>
         </div>
 
         {/* Sales Count */}
-        <p className="text-sm text-gray-500 mt-1">{item.sales} Sales</p>
+        <p className="text-sm text-gray-500 mt-1">Use by {item.sales} </p>
       </div>
     </div>
   );
