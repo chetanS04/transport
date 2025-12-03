@@ -1,6 +1,6 @@
 "use client";
 
-import OurServices from "@/src/components/(frontend)/OurServices";
+import OurServices from "@/src/components/(frontend)/ourServices";
 import Templates from "@/src/components/(frontend)/Templates";
 
 
