@@ -22,7 +22,7 @@ router.use("/images", imageRouter);
 
 // promotional application routes (public for viewing, protected for modifications)
 router.use("/hero-section", heroSectionRouter);
-router.use("/our-services", [verifyToken], ourServicesRouter);
+router.use("/our-services", ourServicesRouter);
 router.use("/templates", [verifyToken], templatesRouter);
 
 module.exports = router;
