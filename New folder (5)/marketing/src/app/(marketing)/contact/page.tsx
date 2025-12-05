@@ -15,8 +15,7 @@ export default function ContactSection() {
             <div className="w-full mx-auto dark:bg-gray-200  py-20" id="contact">
                 {/* Page Heading */}
                 <Heading
-                    title="Contact Us"
-                    highlight="Page"
+                    title="Contact Us Page"
                     description="Want to contact us? Choose an option below and we'll be happy to show you how we can transform your company’s web experience."
                     align="center"
                 />
@@ -41,7 +40,7 @@ export default function ContactSection() {
                             Contact Information
                         </h2>
 
-                        <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-8">
+                        <p className="text-gray-600 dark:text-gray-200 leading-relaxed mb-8">
                             Have something to say? We are here to help. Fill up the form or send
                             an email or call our phone number.
                         </p>
@@ -151,8 +150,7 @@ export default function ContactSection() {
 
             <section className="text-gray-600 body-font relative dark:bg-gray-200 py-20">
                 <Heading
-                    title="Contact Us"
-                    highlight="Page"
+                    title="Contact Us Page"
                     description="Want to contact us? Choose an option below and we'll be happy to show you how we can transform your company’s web experience."
                     align="center"
                 />
@@ -200,19 +198,20 @@ export default function ContactSection() {
                     </div>
 
                     {/* RIGHT: Contact Form */}
-                    <div className="lg:w-1/3 md:w-1/2 bg-white flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0">
+                    <div className="lg:w-1/3 md:w-1/2 w-full bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 md:ml-auto mt-10 md:mt-0 transition-all">
 
-                        <h2 className="text-gray-900 text-lg mb-1 font-medium title-font">
+                        {/* Heading */}
+                        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
                             Feedback
                         </h2>
 
-                        <p className="leading-relaxed mb-5 text-gray-600">
-                            Post-ironic portland shabby chic echo park, banjo fashion axe.
+                        <p className="text-gray-600 dark:text-gray-200 mb-6 text-sm leading-relaxed">
+                            We value your feedback. Share your thoughts and help us improve our services.
                         </p>
 
                         {/* Name */}
-                        <div className="relative mb-4">
-                            <label htmlFor="name" className="leading-7 text-sm text-gray-600">
+                        <div className="mb-5">
+                            <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
                                 Name
                             </label>
                             <input
@@ -220,17 +219,16 @@ export default function ContactSection() {
                                 id="name"
                                 name="name"
                                 className="
-                w-full bg-white rounded border border-gray-300 
-                focus:border-primary focus:ring-2 focus:ring-primary/20 
-                text-base outline-none text-gray-700 py-1 px-3 
-                leading-8 transition-colors duration-200 ease-in-out
-              "
+                            w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600
+                            bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-200
+                            focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/30
+                            transition"
                             />
                         </div>
 
                         {/* Email */}
-                        <div className="relative mb-4">
-                            <label htmlFor="email" className="leading-7 text-sm text-gray-600">
+                        <div className="mb-5">
+                            <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                                 Email
                             </label>
                             <input
@@ -238,46 +236,49 @@ export default function ContactSection() {
                                 id="email"
                                 name="email"
                                 className="
-                w-full bg-white rounded border border-gray-300 
-                focus:border-primary focus:ring-2 focus:ring-primary/20 
-                text-base outline-none text-gray-700 py-1 px-3 
-                leading-8 transition-colors duration-200 ease-in-out
-              "
+                                w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600
+                                bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-200
+                                focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/30
+                                transition-all
+                            "
                             />
                         </div>
 
                         {/* Message */}
-                        <div className="relative mb-4">
-                            <label htmlFor="message" className="leading-7 text-sm text-gray-600">
+                        <div className="mb-5">
+                            <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                                 Message
                             </label>
                             <textarea
                                 id="message"
                                 name="message"
                                 className="
-                w-full bg-white rounded border border-gray-300 
-                focus:border-primary focus:ring-2 focus:ring-primary/20 
-                h-32 text-base outline-none text-gray-700 py-1 px-3 
-                resize-none leading-6 transition-colors duration-200 ease-in-out
-              "
+                                    w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600
+                                    bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-200
+                                    h-32 resize-none
+                                    focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/30
+                                    transition-all
+                                "
                             ></textarea>
                         </div>
 
                         {/* Button */}
                         <button
                             className="
-              text-white bg-primary border-0 py-2 px-6 
-              focus:outline-none hover:bg-primary-dark 
-              rounded text-lg transition
-            "
+                            w-full py-3 rounded-lg text-white text-lg font-medium
+                            bg-primary hover:bg-primary-dark
+                            transition-all shadow-md hover:shadow-lg
+                            dark:bg-primary dark:hover:bg-primary-dark
+                            "
                         >
-                            Button
+                            Send Message
                         </button>
 
-                        <p className="text-xs text-gray-500 mt-3">
-                            Chicharrones blog helvetica normcore iceland tousled brook viral artisan.
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-4 text-center">
+                            We usually reply within 24 hours.
                         </p>
                     </div>
+
 
                 </div>
             </section>
@@ -296,7 +297,7 @@ export default function ContactSection() {
 
 function ContactItem({ icon, text }: { icon: React.ReactNode; text: React.ReactNode | string }) {
     return (
-        <div className="flex items-center space-x-3 text-gray-700 dark:text-gray-300">
+        <div className="flex items-center space-x-3 text-gray-700 dark:text-gray-200">
             {icon}
             <span className="text-sm">{text}</span>
         </div>
@@ -312,7 +313,7 @@ function InputField({ placeholder, name, type = "text" }: { placeholder: string;
             className="
         w-full px-4 py-3 border-2 rounded-md outline-none
         border-gray-300 dark:border-gray-600
-        placeholder:text-gray-600 dark:placeholder:text-gray-300
+        placeholder:text-gray-600 dark:placeholder:text-gray-200
         dark:bg-gray-900 dark:text-white
         focus:ring-4 focus:border-primary ring-primary/20 dark:ring-0
       "

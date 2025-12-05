@@ -4,7 +4,8 @@ import { FaCalendarAlt, FaUser } from "react-icons/fa";
 
 export default function BlogCard({ item }: any) {
   return (
-    <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+    
+    <div className="bg-white dark:bg-gray-800 border border-gray-200 rounded-xl overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
 
       {/* Image */}
       <img
@@ -17,11 +18,11 @@ export default function BlogCard({ item }: any) {
       <div className="p-6">
         <div className="flex items-center text-gray-500 dark:text-gray-400 text-sm mb-3 space-x-4">
           <div className="flex items-center space-x-1">
-            <FaUser className="w-4 h-4" />
-            <span>{item.author}</span>
+            <FaUser className="w-4 h-4 dark:text-gray-200" />
+            <span className="dark:text-gray-200">{item.author}</span>
           </div>
-          <div className="flex items-center space-x-1">
-            <FaCalendarAlt className="w-4 h-4" />
+          <div className="flex items-center space-x-1 dark:text-gray-200">
+            <FaCalendarAlt className="w-4 h-4 dark:text-gray-200" />
             <span>{item.date}</span>
           </div>
         </div>

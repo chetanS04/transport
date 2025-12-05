@@ -1,6 +1,7 @@
 
 import SmallHeroSection from "@/components/(sheared)/SmallHeroSection";
 import BlogCard from "./blogCard";
+import Heading from "@/components/ui/heading";
 
 
 export default function BlogPage() {
@@ -39,9 +40,12 @@ export default function BlogPage() {
      
 
       <SmallHeroSection title="Our Blog" subtitle="Latest insights, updates, tips, and articles to help you grow your business." />
+      <div className="mt-12"></div>
+
+      <Heading title="From Our Blog"  description="Stay updated with the latest trends and insights in fleet and delivery management." />
 
       {/* BLOG GRID */}
-      <section className="py-20 bg-white dark:bg-gray-900">
+      <section className="py-20 bg-white dark:bg-gray-200">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
             {blogs.map((blog) => (

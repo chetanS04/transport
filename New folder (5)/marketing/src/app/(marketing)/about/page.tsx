@@ -1,7 +1,6 @@
 
 
 import React from "react";
-import Image from "next/image";
 import { FaCheckCircle, FaShieldAlt, FaUsers, FaLightbulb, FaHandshake } from "react-icons/fa";
 import SmallHeroSection from "@/components/(sheared)/SmallHeroSection";
 import Heading from "@/components/ui/heading";
@@ -41,7 +40,7 @@ export default function About() {
 
           {/* LEFT: Text Section */}
           <div>
-            <Heading title="About" highlight="Our Company" description=" We build intelligent solutions that help businesses track, manage,
+            <Heading title="About Our Company"  description=" We build intelligent solutions that help businesses track, manage,
                 and scale their operations effortlessly. Our mission is to combine
                 innovation, technology, and seamless design to transform the way
                 companies handle their fleets, deliveries, and teams." align="left" />
@@ -91,7 +90,7 @@ export default function About() {
 
           {/* Heading */}
 
-          <Heading title="Our" highlight="Mission & Vision" description="Driving innovation and excellence in fleet and delivery management." />
+          <Heading title="Our Mission & Vision"  description="Driving innovation and excellence in fleet and delivery management." />
 
 
           {/* Mission + Vision Boxes */}
@@ -123,7 +122,7 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
 
           {/* Heading */}
-          <Heading title="Why" highlight="Choose Us" description="We deliver performance, reliability, and innovation to elevate your business." />
+          <Heading title="Why Choose Us"  description="We deliver performance, reliability, and innovation to elevate your business." />
 
 
           {/* Feature Grid */}
@@ -137,7 +136,7 @@ export default function About() {
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                 Reliable & Fast
               </h3>
-              <p className="text-gray-600 dark:text-gray-400">
+              <p className="text-gray-600 dark:text-gray-200">
                 Our system ensures smooth, accurate tracking and fast performance for all operations.
               </p>
             </div>
@@ -150,7 +149,7 @@ export default function About() {
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                 Secure Platform
               </h3>
-              <p className="text-gray-600 dark:text-gray-400">
+              <p className="text-gray-600 dark:text-gray-200">
                 Your data is protected with industry-level encryption and high-grade architecture.
               </p>
             </div>
@@ -163,7 +162,7 @@ export default function About() {
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                 Customer Support
               </h3>
-              <p className="text-gray-600 dark:text-gray-400">
+              <p className="text-gray-600 dark:text-gray-200">
                 Our team is always ready to help you resolve issues quickly and professionally.
               </p>
             </div>
@@ -192,7 +191,7 @@ function FeatureCard({ icon, title, text }: FeatureCardProps) {
       </div>
       <div>
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{title}</h3>
-        <p className="text-gray-600 dark:text-gray-400 text-sm">{text}</p>
+        <p className="text-gray-600 dark:text-gray-200 text-sm">{text}</p>
       </div>
     </div>
   );

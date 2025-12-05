@@ -11,7 +11,7 @@ export default function Navbar() {
 
         {/* LEFT SECTION */}
         <div className="flex items-center space-x-10">
-          <a href="#" className="text-2xl font-semibold text-primary dark:text-black">
+          <a href="/" className="text-2xl font-semibold text-primary">
             Trackage.in
           </a>
 
@@ -27,8 +27,8 @@ export default function Navbar() {
 
         {/* DESKTOP RIGHT */}
         <div className="hidden lg:flex items-center space-x-6">
-          <a href="tel:+919914327671" className="flex items-center text-primary font-medium dark:text-black">
-            <Phone className="w-5 h-5 mr-1" />
+          <a href="tel:+919914327671" className="flex items-center text-primary font-medium hover:underline">
+            <Phone className="w-5 h-5 mr-1"/>
             +91 9914327671
           </a>
 
