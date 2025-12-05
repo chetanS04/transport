@@ -32,12 +32,8 @@ export default function HeroSection() {
             try {
                 setLoading(true);
                 const response = await heroSectionService.getAllHeroSections({ page: 1, limit: 1 });
-                if (response.data && response.data.length > 0) {
-                    const activeHero = response.data.find((hero: HeroSectionData) => hero.status) || response.data[0];
-                    setHeroData(activeHero);
-                } else {
-                    setHeroData(defaultHeroData);
-                }
+                const activeHero = response.data.find((hero: HeroSectionData) => hero.status) || response.data[0];
+                setHeroData(activeHero);
             } catch (err) {
                 console.error("Error fetching hero section:", err);
                 setHeroData(defaultHeroData);
@@ -65,30 +61,24 @@ export default function HeroSection() {
                 {/* LEFT CONTENT */}
                 <div>
                     <h1 className="text-5xl md:text-7xl font-bold leading-none">
-                        {heroData.subtitle ? (
-                            <>
-                                <span className="text-pri">{heroData.subtitle}</span>{" "}
-                                {heroData.title}
-                            </>
-                        ) : (
-                            heroData.title
-                        )}
+                        <span className="text-pri">{heroData.subtitle || "AI-powered"}</span>{" "}
+                        {heroData.title || "delivery management and customer experience"}
                     </h1>
 
                     {heroData.description && (
                         <p className="text-gray-600 mt-4 text-lg md:text-xl max-w-lg dark:text-gray-300">
-                            {heroData.description}
+                            {heroData.description || "Streamline deliveries, build loyalty, and grow your business with our AI-powered delivery management platform."}
                         </p>
                     )}
 
                     {/* Rating */}
                     {heroData.rating && (
                         <div className="flex items-center gap-2 mt-6 text-gray-700 font-medium">
-                            <span className="text-lg dark:text-gray-300">{heroData.rating}</span>
+                            <span className="text-lg dark:text-gray-300">{heroData.rating || 4.1}</span>
                             ⭐
                             {heroData.customers_count && (
                                 <span className="text-gray-500 dark:text-gray-400">
-                                    {heroData.customers_count}+ customers
+                                    {heroData.customers_count || "4,000"}+ customers
                                 </span>
                             )}
                         </div>
@@ -99,17 +89,18 @@ export default function HeroSection() {
                         {heroData.button1_text && (
                             <button
                                 className="btn-primary"
-                                onClick={() => heroData.button1_url && window.open(heroData.button1_url, '_blank')}
+                                onClick={() => window.open(heroData.button1_url || "https://topntech.com/", "_blank")}
                             >
-                                {heroData.button1_text}
+                                {heroData.button1_text || "Get started free"}
                             </button>
                         )}
+
                         {heroData.button2_text && (
                             <button
                                 className="btn-secondary"
-                                onClick={() => heroData.button2_url && window.open(heroData.button2_url, '_blank')}
+                                onClick={() => window.open(heroData.button2_url || "https://topntech.com/", "_blank")}
                             >
-                                {heroData.button2_text}
+                                {heroData.button2_text || "Book a demo"}
                             </button>
                         )}
                     </div>
