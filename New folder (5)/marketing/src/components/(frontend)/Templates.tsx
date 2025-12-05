@@ -5,6 +5,7 @@ import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import Heading from "../ui/heading";
 
 export default function Templates() {
   const data = [
@@ -49,16 +50,8 @@ export default function Templates() {
 
   return (
     <section className="bg-gray-100">
-      <div className="max-w-3xl mx-auto text-center mb-12">
-        <h2 className="text-5xl sm:text-6xl font-bold text-gray-900 mb-3">
-          Pick a Web <span className="text-green-700">Page</span>
-        </h2>
-
-        <p className="text-lg text-gray-600">
-          Powerful tools designed to help businesses manage their fleet, deliveries,
-          drivers, and operations all in one smart platform.
-        </p>
-      </div>
+    
+      <Heading title="Pick a Web" highlight="Page" description="Powerful tools designed to help businesses manage their fleet, deliveries, drivers, and operations all in one smart platform." />
       <div className="container mx-auto px-6">
         <Swiper
           modules={[Pagination, Navigation]}

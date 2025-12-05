@@ -1,11 +1,10 @@
 "use client";
 
 
-import ContactCards from "@/src/components/(frontend)/contactCards";
-import FAQSection from "@/src/components/(frontend)/FAQSection";
-import Navbar from "@/src/components/(frontend)/Navbar";
-import SmallHeroSection from "@/src/components/(sheared)/SmallHeroSection";
-import Heading from "@/src/components/ui/heading";
+import ContactCards from "@/components/(frontend)/contactCards";
+import FAQSection from "@/components/(frontend)/FAQSection";
+import SmallHeroSection from "@/components/(sheared)/SmallHeroSection";
+import Heading from "@/components/ui/heading";
 import React from "react";
 
 export default function ContactSection() {

@@ -34,8 +34,14 @@ export default function OurServices() {
           disableOnInteraction: true,
           pauseOnMouseEnter: true,
         }}
-        pagination={{ clickable: true }}
-        className="container mx-auto pb-10"
+        pagination={{ 
+          clickable: true,
+          dynamicBullets: true,
+        }}
+        className="container mx-auto pb-16"
+        style={{
+          paddingBottom: '3rem',
+        }}
       >
         {data.map((item) => (
           <SwiperSlide key={item.id}>

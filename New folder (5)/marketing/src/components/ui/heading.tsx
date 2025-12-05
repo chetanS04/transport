@@ -25,7 +25,7 @@ export default function Heading({
         </span>
       </h2>
 
-      <p className="text-lg text-gray-600 dark:text-gray-400">
+      <p className="text-lg text-gray-600 dark:text-gray-700">
         {description}
       </p>
     </div>

@@ -19,8 +19,8 @@ export default function Navbar() {
           <ul className="hidden lg:flex space-x-8 text-gray-700 font-medium">
             <li><a href="/" className="hover:text-primary">Home</a></li>
             <li><a href="/about" className="hover:text-primary">About</a></li>
-            <li><a href="#" className="hover:text-primary">Pricing</a></li>
-            <li><a href="#" className="hover:text-primary">Partners</a></li>
+            <li><a href="/pricing" className="hover:text-primary">Pricing</a></li>
+            <li><a href="/blog" className="hover:text-primary">Blog</a></li>
             <li><a href="/contact" className="hover:text-primary">Contact Us</a></li>
           </ul>
         </div>
@@ -64,11 +64,10 @@ export default function Navbar() {
       {/* MOBILE MENU */}
       {open && (
         <div className="lg:hidden px-6 pb-6 pt-2 space-y-4 text-gray-700 font-medium">
-
-          <a href="#" className="block hover:text-primary">Home</a>
-          <a href="#" className="block hover:text-primary">About</a>
-          <a href="#" className="block hover:text-primary">Pricing</a>
-          <a href="#" className="block hover:text-primary">Partners</a>
+          <a href="/" className="block hover:text-primary">Home</a>
+          <a href="/about" className="block hover:text-primary">About</a>
+          <a href="/pricing" className="block hover:text-primary">Pricing</a>
+          <a href="/blog" className="block hover:text-primary">Blog</a>
           <a href="/contact" className="block hover:text-primary">Contact Us</a>
 
           <hr className="border-gray-300" />
@@ -77,7 +76,7 @@ export default function Navbar() {
             +91 9914327671
           </a>
 
-          
+
         </div>
       )}
     </nav>

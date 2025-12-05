@@ -168,12 +168,33 @@ button {
 }
 
 .swiper-pagination .swiper-pagination-bullet {
-  @apply !rounded-full !w-8 !h-2 !bg-white/40 !opacity-100 !transition-all !duration-300;
+  @apply !rounded-full !w-8 !h-2 !bg-gray-400 !opacity-100 !transition-all !duration-300;
 }
 
 .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
-  @apply !bg-orange-400 !w-12;
+  @apply !bg-primary !w-12;
 }
+
+/* Pagination positioning for bottom center */
+.swiper-pagination-bullets {
+  @apply !bottom-0 !left-0 !right-0 !text-center !w-full;
+  position: relative !important;
+  margin-top: 1.5rem !important;
+}
+  
+  /* Center pagination for OurServices slider specifically */
+  .our-services-swiper .swiper-pagination {
+    @apply !flex !justify-center !items-center !px-0 !py-4;
+    position: relative !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+  }
+  
+  .our-services-swiper .swiper-pagination .swiper-pagination-bullet {
+    margin: 0 0.35rem !important;
+  }
 
 @media (max-width: 1023.98px) {
   html {
