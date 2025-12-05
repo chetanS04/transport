@@ -6,8 +6,6 @@ import Footer from "@/components/layout/Footer";
 import CardCarousel from "@/components/common/cardCarousel";
 import CarouselSection from "@/components/common/CarouselSection";
 
-
-
 export default function Home() {
   return (
     <>
@@ -19,7 +17,7 @@ export default function Home() {
           {/* LEFT CONTENT */}
           <div>
             <h1 className="text-5xl md:text-7xl font-bold leading-none">
-              <span className="text-green-700">AI-powered</span>{" "}
+              <span className="text-primary">AI-powered</span>{" "}
               delivery management and customer experience
             </h1>
 
@@ -59,57 +57,15 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       <div className="w-full mx-auto px-6 py-10 bg-gray-100">
-        <div className="max-w-3xl mx-auto text-center mb-12">
-          <h2 className="text-5xl sm:text-6xl font-bold text-gray-900 mb-3">
-            What We <span className="text-green-700">Provide</span>
-          </h2>
 
-          <p className="text-lg text-gray-600">
-            Powerful tools designed to help businesses manage their fleet, deliveries,
-            drivers, and operations all in one smart platform.
-          </p>
-        </div>
         <CardCarousel />
 
       </div>
       <Card2 />
-
-      <div className="w-full mx-auto px-6 py-10 ">
-        <div className="max-w-3xl mx-auto text-center mb-12">
-          <h2 className="text-5xl sm:text-6xl font-bold text-black dark:text-white mb-3">
-            Pick a Web <span className="text-green-700">Page</span>
-          </h2>
-
-          <p className="text-lg text-gray-600 dark:text-gray-300">
-            Powerful tools designed to help businesses manage their fleet, deliveries,
-            drivers, and operations all in one smart platform.
-          </p>
-        </div>
-        <main className="container mx-auto px-4 py-10">
-          <CardGrid />
-        </main>
-      </div>
-
-      <div className="w-full mx-auto px-6 py-10 bg-gray-100">
-        <div className="max-w-3xl mx-auto text-center mb-12">
-           <h2 className="text-5xl sm:text-6xl font-bold text-gray-900 mb-3">
-            Pick a Web <span className="text-green-700">Page</span>
-          </h2>
-
-          <p className="text-lg text-gray-600">
-            Powerful tools designed to help businesses manage their fleet, deliveries,
-            drivers, and operations all in one smart platform.
-          </p>
-        </div>
-        <CarouselSection />
-
-      </div>
+      <CardGrid />
+      <CarouselSection />
       <Footer />
-
     </>
   );
 }
-
-/* Removed duplicate default export `CardGrid`. This file should only export the `Home` default component. */

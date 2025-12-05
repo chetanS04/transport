@@ -7,6 +7,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import ProductCard from "./ProductCard";
 import ProductCard1 from "./ProductCard1";
+import Heading from "../ui/heading";
 
 export default function CarouselSection() {
   const data = [
@@ -50,26 +51,36 @@ export default function CarouselSection() {
   ];
 
   return (
-    <section className="bg-gray-100">
-      <div className="container mx-auto px-6">       
-        <Swiper
-          modules={[Pagination, Navigation]}
-          spaceBetween={20}
-          navigation
-          pagination={{ clickable: true }}
-          breakpoints={{
-            0: { slidesPerView: 1 },
-            640: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
-          }}
-        >
-          {data.map((item, index) => (
-            <SwiperSlide key={index}>
-              <ProductCard1 item={item} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-    </section>
+    <div className="w-full mx-auto px-6 py-10 bg-gray-100">
+    
+      <Heading
+        title="Pick a Web"
+        highlight="Page"
+        description="Powerful tools designed to help businesses manage their fleet, deliveries, drivers, and operations all in one smart platform."
+        align="center"
+      />
+      <section className="bg-gray-100">
+        <div className="container mx-auto px-6">
+          <Swiper
+            modules={[Pagination, Navigation]}
+            spaceBetween={20}
+            navigation
+            pagination={{ clickable: true }}
+            breakpoints={{
+              0: { slidesPerView: 1 },
+              640: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
+            }}
+          >
+            {data.map((item, index) => (
+              <SwiperSlide key={index}>
+                <ProductCard1 item={item} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </section>
+
+    </div>
   );
 }

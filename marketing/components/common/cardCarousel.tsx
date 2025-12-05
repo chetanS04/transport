@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 import { Card } from "@/components/ui/card";
+import Heading from "../ui/heading";
 
 export default function CardCarousel() {
   const data = Array.from({ length: 9 }).map((_, index) => ({
@@ -16,46 +17,56 @@ export default function CardCarousel() {
   }));
 
   return (
-    <Swiper
-      modules={[Autoplay, Pagination]}
-      spaceBetween={16}
-      slidesPerView={1}
-      breakpoints={{
-        640: { slidesPerView: 2 },
-        1024: { slidesPerView: 3 },
-      }}
-      autoplay={{
-        delay: 2500,
-        disableOnInteraction: true,
-        pauseOnMouseEnter: true,
-      }}
-      pagination={{ clickable: true }}
-      className="container mx-auto pb-10"
-    >
-      {data.map((item) => (
-        <SwiperSlide key={item.id}>
-          <Card className="overflow-hidden rounded-xl shadow-lg relative h-100 flex flex-col justify-end">
-            <div
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url(${item.img})` }}
-            />
-            <div className="absolute inset-0 bg-black/40" />
-            <div className="absolute bottom-0 w-full text-center text-white px-4 pb-4">
-              <h3 className="text-lg font-semibold">{item.title}</h3>
-              <p className="text-sm opacity-90">{item.desc}</p>
+    <div className="w-full mx-auto px-6 py-10 bg-gray-100">
+      <Heading
+        title="Pick a Web"
+        highlight="Page"
+        description="Powerful tools designed to help businesses manage their fleet, deliveries, drivers, and operations all in one smart platform."
+        align="center"
+      />
+      <Swiper
+        modules={[Autoplay, Pagination]}
+        spaceBetween={16}
+        slidesPerView={1}
+        breakpoints={{
+          640: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 },
+        }}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: true,
+          pauseOnMouseEnter: true,
+        }}
+        pagination={{ clickable: true }}
+        className="container mx-auto pb-10"
+      >
+        {data.map((item) => (
+          <SwiperSlide key={item.id}>
+            <Card className="overflow-hidden rounded-xl shadow-lg relative h-100 flex flex-col justify-end">
+              <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{ backgroundImage: `url(${item.img})` }}
+              />
+              <div className="absolute inset-0 bg-black/40" />
+              <div className="absolute bottom-0 w-full text-center text-white px-4 pb-4">
+                <h3 className="text-lg font-semibold">{item.title}</h3>
+                <p className="text-sm opacity-90">{item.desc}</p>
 
-              <div className="flex justify-center gap-3 mt-3">
-                <button className="px-4 py-2 text-sm bg-white text-black rounded-md font-medium hover:bg-gray-200 cursor-pointer transition">
-                  Button 1
-                </button>
-                <button className="px-4 py-2 text-sm border border-white rounded-md font-medium hover:bg-white hover:text-black cursor-pointer transition">
-                  Button 2
-                </button>
+                <div className="flex justify-center gap-3 mt-3">
+                  <button className="px-4 py-2 text-sm bg-white text-black rounded-md font-medium hover:bg-gray-200 cursor-pointer transition">
+                    Button 1
+                  </button>
+                  <button className="px-4 py-2 text-sm border border-white rounded-md font-medium hover:bg-white hover:text-black cursor-pointer transition">
+                    Button 2
+                  </button>
+                </div>
               </div>
-            </div>
-          </Card>
-        </SwiperSlide>
-      ))}
-    </Swiper>
+            </Card>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+
+    </div>
+
   );
 }

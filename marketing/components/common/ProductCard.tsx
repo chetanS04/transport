@@ -48,7 +48,7 @@ export default function ProductCard({ item }: { item: ProductItem }) {
         }
         
         .product-card-swiper .swiper-pagination-bullet-active {
-          background: white;
+          background: var(--primary);
           width: 20px;
           border-radius: 4px;
         }

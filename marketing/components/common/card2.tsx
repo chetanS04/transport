@@ -1,6 +1,7 @@
 "use client";
 
 import { Card } from "@/components/ui/card";
+import Heading from "../ui/heading";
 
 export default function ThreeColumnSection() {
   const data = [
@@ -38,13 +39,13 @@ export default function ThreeColumnSection() {
 
   return (
     <section className="w-full py-10 bg-gray-100">
-      <div className="container mx-auto px-6 text-center mb-12">
-        <h2 className="text-5xl sm:text-6xl font-bold text-gray-900 mb-3">
-          What We <span className="text-green-700 dark:text-green-500">Provide</span>          </h2>
-        <p className="text-lg text-gray-600 mt-2">
-          Explore our premium features and modern UI components.
-        </p>
-      </div>
+      {/* Section Heading */}
+      <Heading
+        title="What We"
+        highlight="Provide"
+        description="Explore our premium features and modern UI components."
+        align="center"
+      />
 
       {/* 3 Column Grid */}
       <div className="container mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
