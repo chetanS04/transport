@@ -5,6 +5,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Card } from "../ui/card";
+import Heading from "../ui/heading";
 
 
 export default function OurServices() {
@@ -17,16 +18,9 @@ export default function OurServices() {
 
   return (
     <>
-      <div className="max-w-3xl mx-auto text-center mb-12">
-        <h2 className="text-5xl sm:text-6xl font-bold text-gray-900 mb-3">
-          What We <span className="text-green-700">Provide</span>
-        </h2>
-
-        <p className="text-lg text-gray-600">
-          Powerful tools designed to help businesses manage their fleet, deliveries,
-          drivers, and operations all in one smart platform.
-        </p>
-      </div>
+     
+      <Heading title="What We" highlight="Provide" description=" Powerful tools designed to help businesses manage their fleet, deliveries,
+          drivers, and operations all in one smart platform." />
       <Swiper
         modules={[Autoplay, Pagination]}
         spaceBetween={16}
