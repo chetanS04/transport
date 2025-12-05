@@ -67,9 +67,11 @@ export default function OurServices() {
                     pauseOnMouseEnter: true,
                 }}
                 pagination={{ clickable: true, dynamicBullets: true }}
+                loop={true}
                 className="container mx-auto pb-16"
                 style={{ paddingBottom: "3rem" }}
             >
+
                 {ourServiceData.map((item) => (
                     <SwiperSlide key={item.id}>
                         <Card className="overflow-hidden rounded-xl shadow-lg relative h-100 flex flex-col justify-end">
