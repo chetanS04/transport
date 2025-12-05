@@ -1,8 +1,8 @@
 "use client";
 
-import OurServices from "@/src/components/(frontend)/ourServices";
-import Templates from "@/src/components/(frontend)/Templates";
+import OurServices from "@/components/(frontend)/ourServices";
 import HeroSection from "./hero-section/page";
+import Templates from "@/components/(frontend)/Templates";
 
 
 export default function HomeUI() {

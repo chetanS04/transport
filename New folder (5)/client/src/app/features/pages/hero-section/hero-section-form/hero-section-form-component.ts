@@ -39,7 +39,7 @@ export class HeroSectionFormComponent implements OnInit {
 
   constructor() {
     this.rForm = this.fb.group({
-      title: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      title: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(150)]],
       subtitle: ['', [Validators.minLength(2), Validators.maxLength(50)]],
       description: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(500)]],
       button1_text: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],

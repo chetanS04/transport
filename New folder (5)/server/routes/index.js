@@ -20,8 +20,8 @@ router.use("/subscription-types", [verifyToken], subscriptionTypeRouter);
 router.use("/settings", [verifyToken], settingsRouter);
 router.use("/images", imageRouter);
 
-// promotional application routes
-router.use("/hero-section", [verifyToken], heroSectionRouter);
+// promotional application routes (public for viewing, protected for modifications)
+router.use("/hero-section", heroSectionRouter);
 router.use("/our-services", [verifyToken], ourServicesRouter);
 router.use("/templates", [verifyToken], templatesRouter);
 
