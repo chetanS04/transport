@@ -24,7 +24,6 @@
   <nav class="flex-1 overflow-y-auto px-3 py-4 space-y-1">
     @for (item of menuItems; track item.label) {
     <div>
-      <!-- Parent menu -->
       <div
         (click)="item.children ? toggleMenu(item.label) : onItemClick()"
         [routerLink]="!item.children ? item.route : null"
@@ -49,7 +48,6 @@
         }
       </div>
 
-      <!-- Sub menu -->
       @if (item.children && openItems[item.label]) {
       <div class="ml-8 mt-1 space-y-1 border-l border-gray-200 pl-3">
         @for (child of item.children; track child.label) { @if

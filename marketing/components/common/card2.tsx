@@ -1,7 +1,8 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
+import { Card } from "../ui/card";
 import Heading from "../ui/heading";
+
 
 export default function ThreeColumnSection() {
   const data = [

@@ -6,9 +6,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Card } from "../ui/card";
 
-import Heading from "../ui/heading";
 
-export default function CardCarousel() {
+export default function OurServices() {
   const data = Array.from({ length: 9 }).map((_, index) => ({
     id: index,
     title: `Heading ${index + 1}`,
@@ -17,13 +16,17 @@ export default function CardCarousel() {
   }));
 
   return (
-    <div className="w-full mx-auto px-6 py-10 bg-gray-100">
-      <Heading
-        title="Pick a Web"
-        highlight="Page"
-        description="Powerful tools designed to help businesses manage their fleet, deliveries, drivers, and operations all in one smart platform."
-        align="center"
-      />
+    <>
+      <div className="max-w-3xl mx-auto text-center mb-12">
+        <h2 className="text-5xl sm:text-6xl font-bold text-gray-900 mb-3">
+          What We <span className="text-green-700">Provide</span>
+        </h2>
+
+        <p className="text-lg text-gray-600">
+          Powerful tools designed to help businesses manage their fleet, deliveries,
+          drivers, and operations all in one smart platform.
+        </p>
+      </div>
       <Swiper
         modules={[Autoplay, Pagination]}
         spaceBetween={16}
@@ -65,8 +68,7 @@ export default function CardCarousel() {
           </SwiperSlide>
         ))}
       </Swiper>
-
-    </div>
+    </>
 
   );
 }
