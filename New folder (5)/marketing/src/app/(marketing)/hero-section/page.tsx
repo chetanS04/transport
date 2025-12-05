@@ -73,7 +73,7 @@ const defaultHeroData: HeroSectionData = {
     subtitle: "AI-powered",
     description: "Streamline deliveries, build loyalty, and grow your business with our AI-powered delivery management platform.",
     rating: 4.7,
-    customers_count: "5,000+",
+    customers_count: "5,000",
     button1_text: "Get started free",
     button1_url: "#",
     button2_text: "Book a demo",
@@ -152,7 +152,7 @@ export default function HeroSection() {
                             ⭐
                             {heroData.customers_count && (
                                 <span className="text-gray-500 dark:text-gray-400">
-                                    {heroData.customers_count} customers
+                                    {heroData.customers_count}+ customers
                                 </span>
                             )}
                         </div>
