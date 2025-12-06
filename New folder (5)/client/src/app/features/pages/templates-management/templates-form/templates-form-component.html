@@ -148,6 +148,7 @@
       [directory]="'templates'"
       [multiple]="false"
       (onSelect)="onImageSelect($event)"
+      [aspectRatio]="486 / 227"
     ></app-image-cropper-modal>
 
     <input-validation-error-message
@@ -184,6 +185,7 @@
       [directory]="'templates'"
       [multiple]="true"
       (onSelect)="onAdditionalImagesSelect($event)"
+      [aspectRatio]="486 / 227"
     ></app-image-cropper-modal>
 
     <input-validation-error-message
