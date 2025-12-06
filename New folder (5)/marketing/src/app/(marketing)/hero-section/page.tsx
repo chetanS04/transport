@@ -10,36 +10,19 @@ const imageBaseUrl = process.env.NEXT_PUBLIC_UPLOAD_BASE || "http://localhost:80
 
 export default function HeroSection() {
     const [heroData, setHeroData] = useState<HeroSectionData | null>(null);
-    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchHeroSection = async () => {
-            try {
-                setLoading(true);
-                const response = await heroSectionService.getAllHeroSections({ page: 1, limit: 1 });
+        heroSectionService
+            .getAllHeroSections({ page: 1, limit: 1 })
+            .then((response) => {
                 if (response.data && response.data.length > 0) {
-                    const activeHero = response.data.find((hero: HeroSectionData) => hero.status) || response.data[0];
+                    const activeHero =
+                        response.data.find((hero: HeroSectionData) => hero.status) || response.data[0];
                     setHeroData(activeHero);
                 }
-            } catch (err) {
-                console.error("Error fetching hero section:", err);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchHeroSection();
+            })
+            .catch((err) => console.error("Error fetching hero section:", err));
     }, []);
-
-    if (loading) {
-        return (
-            <div className="container mx-auto px-6 py-20">
-                <div className="flex justify-center items-center">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-pri"></div>
-                </div>
-            </div>
-        );
-    }
 
     return (
         <>

@@ -15,41 +15,22 @@ const imageBaseUrl = process.env.NEXT_PUBLIC_UPLOAD_BASE || "http://localhost:80
 
 export default function OurServices() {
     const [ourServiceData, setOurServiceData] = useState<OurServiceData[]>([]);
-    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchOurServices = async () => {
-            try {
-                setLoading(true);
-                const response = await ourServiceService.getAllOurServices({ page: 1, limit: 100 });
-                if (response.data) {
-                    setOurServiceData(response.data);
-                }
-            } catch (err) {
+        ourServiceService
+            .getAllOurServices({ page: 1, limit: 100 })
+            .then((response) => {
+                if (response.data) setOurServiceData(response.data);
+            })
+            .catch((err) => {
                 console.error("Error fetching our services:", err);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchOurServices();
+            });
     }, []);
-
-    if (loading) {
-        return (
-            <div className="container mx-auto px-6 py-20">
-                <div className="flex justify-center items-center">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-pri"></div>
-                </div>
-            </div>
-        );
-    }
 
     return (
         <>
             <Heading
-                title="What We"
-                highlight="Provide"
+                title="What We Provide"
                 description="Powerful tools designed to help businesses manage their fleet, deliveries, drivers, and operations all in one smart platform."
             />
 
