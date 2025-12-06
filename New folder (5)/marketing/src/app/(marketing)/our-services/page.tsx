@@ -15,35 +15,17 @@ const imageBaseUrl = process.env.NEXT_PUBLIC_UPLOAD_BASE || "http://localhost:80
 
 export default function OurServices() {
     const [ourServiceData, setOurServiceData] = useState<OurServiceData[]>([]);
-    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchOurServices = async () => {
-            try {
-                setLoading(true);
-                const response = await ourServiceService.getAllOurServices({ page: 1, limit: 100 });
-                if (response.data) {
-                    setOurServiceData(response.data);
-                }
-            } catch (err) {
+        ourServiceService
+            .getAllOurServices({ page: 1, limit: 100 })
+            .then((response) => {
+                if (response.data) setOurServiceData(response.data);
+            })
+            .catch((err) => {
                 console.error("Error fetching our services:", err);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchOurServices();
+            });
     }, []);
-
-    if (loading) {
-        return (
-            <div className="container mx-auto px-6 py-20">
-                <div className="flex justify-center items-center">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-pri"></div>
-                </div>
-            </div>
-        );
-    }
 
     return (
         <>
@@ -88,15 +70,19 @@ export default function OurServices() {
                             />
                             <div className="absolute inset-0 bg-black/40" />
                             <div className="absolute bottom-0 w-full text-center text-white px-4 pb-4">
-                                <h3 className="text-lg font-semibold">{item.title}</h3>
-                                <p className="text-sm opacity-90">{item.description}</p>
+                                <h3 className="text-lg font-semibold">{item.title || "No Title"}</h3>
+                                <p className="text-sm opacity-90">{item.description || "No Description"}</p>
 
                                 <div className="flex justify-center gap-3 mt-3">
-                                    <button className="px-4 py-2 text-sm bg-white text-black rounded-md font-medium hover:bg-gray-200 transition">
-                                        Button 1
+                                    <button
+                                        onClick={() => window.open(item?.button1_url || "#", item?.button1_url && item?.button1_url !== "#" ? "_blank" : "_self")}
+                                        className="px-4 py-2 text-sm bg-white text-black rounded-md font-medium hover:bg-gray-200 transition">
+                                        {item.button1_text || "Button 1"}
                                     </button>
-                                    <button className="px-4 py-2 text-sm border border-white rounded-md font-medium hover:bg-white hover:text-black transition">
-                                        Button 2
+                                    <button
+                                        onClick={() => window.open(item?.button2_url || "#", item?.button2_url && item?.button2_url !== "#" ? "_blank" : "_self")}
+                                        className="px-4 py-2 text-sm border border-white rounded-md font-medium hover:bg-white hover:text-black transition">
+                                        {item.button2_text || "Button 2"}
                                     </button>
                                 </div>
                             </div>
