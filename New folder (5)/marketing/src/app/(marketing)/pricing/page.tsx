@@ -83,7 +83,7 @@ export default function PricingSection() {
               </ul>
 
               <button
-               className="btn-primary w-full mt-6 py-3 rounded-lg font-semibold transition"
+               className="bg-primary text-primary-foreground px-5 py-3 rounded-lg font-semibold transition-colors duration-150 hover:bg-primary-dark w-full mt-6"
               >
                 Get Started
               </button>

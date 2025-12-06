@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
@@ -19,8 +20,6 @@ export default function Templates() {
       category: "apolloTheme in Health & Beauty",
       price: "$48",
       sales: 58,
-      description: "Premium gym supplements theme with modern design",
-      numberByUse: 58,
     },
     {
       images: [
@@ -31,8 +30,6 @@ export default function Templates() {
       category: "Nova Creative in Fashion",
       price: "$39",
       sales: 80,
-      description: "Elegant fashion store theme for online retailers",
-      numberByUse: 80,
     },
     {
       images: [
@@ -43,41 +40,105 @@ export default function Templates() {
       category: "UIForward in Kids",
       price: "$56",
       sales: 112,
-      description: "Colorful and playful theme for kids products",
-      numberByUse: 112,
     },
   ];
 
   return (
-    <section className="bg-gray-100">
-    
-      <Heading title="Pick a Web" highlight="Page" description="Powerful tools designed to help businesses manage their fleet, deliveries, drivers, and operations all in one smart platform." />
-      <div className="container mx-auto px-6">
+    <section className="bg-gray-100 py-12">
+      <Heading
+        title="Pick a Web Page"
+        description="Powerful tools designed to help businesses manage their fleet, deliveries, drivers, and operations all in one smart platform."
+      />
+
+      <div className="container mx-auto px-6 relative">
+
+        {/* ---------- Custom Navigation Buttons (Parent Slider) ---------- */}
+        <button
+          className="
+            parent-prev absolute top-1/2 -left-4 z-20 
+            w-8 h-8 flex items-center justify-center 
+            bg-white shadow-md rounded-full 
+            hover:bg-primary hover:text-white transition
+          "
+        >
+          ‹
+        </button>
+
+        <button
+          className="
+            parent-next absolute top-1/2 -right-4 z-20 
+            w-8 h-8 flex items-center justify-center 
+            bg-white shadow-md rounded-full 
+            hover:bg-primary hover:text-white transition
+          "
+        >
+          ›
+        </button>
+
         <Swiper
           modules={[Pagination, Navigation]}
           spaceBetween={20}
-          navigation
+          navigation={{
+            nextEl: ".parent-next",
+            prevEl: ".parent-prev",
+          }}
           pagination={{ clickable: true }}
+          style={
+            {
+              ["--swiper-pagination-color"]: "rgb(13, 148, 136)",      // Tailwind primary
+              ["--swiper-pagination-bullet-inactive-color"]: "#d1d5db",
+              ["--swiper-pagination-bullet-size"]: "8px",
+              ["--swiper-pagination-bullet-inactive-opacity"]: "0.5",
+            } as React.CSSProperties
+          }
           breakpoints={{
             0: { slidesPerView: 1 },
             640: { slidesPerView: 2 },
             1024: { slidesPerView: 3 },
           }}
         >
+
           {data.map((item, index) => (
             <SwiperSlide key={index}>
               <div
                 className="
-        bg-white rounded-2xl border shadow-sm 
-        hover:shadow-2xl hover:-translate-y-2
-        transition-all duration-500 overflow-hidden
-      "
+                  bg-white rounded-2xl border shadow-sm 
+                  hover:shadow-2xl hover:-translate-y-2
+                  transition-all duration-500 overflow-hidden
+                "
               >
-                {/* Top Section: Image Swiper */}
+                {/* ---------- Inner Image Slider ---------- */}
                 <div className="relative h-56 group">
+
+                  {/* Inner Slider Buttons */}
+                  <button
+                    className="
+                      inner-prev absolute top-1/2 left-2 z-20
+                      w-7 h-7 flex items-center justify-center
+                      bg-white shadow rounded-full
+                      hover:bg-primary hover:text-white transition
+                    "
+                  >
+                    ‹
+                  </button>
+
+                  <button
+                    className="
+                      inner-next absolute top-1/2 right-2 z-20
+                      w-7 h-7 flex items-center justify-center
+                      bg-white shadow rounded-full
+                      hover:bg-primary hover:text-white transition
+                    "
+                  >
+                    ›
+                  </button>
+
                   <Swiper
                     modules={[Navigation, Pagination, Autoplay]}
-                    navigation
+                    navigation={{
+                      nextEl: ".inner-next",
+                      prevEl: ".inner-prev",
+                    }}
                     pagination={{ clickable: true }}
                     autoplay={{ delay: 2600 }}
                     loop
@@ -88,58 +149,41 @@ export default function Templates() {
                         <img
                           src={img}
                           className="
-                  w-full h-56 object-cover 
-                  transition-transform duration-700 
-                  group-hover:scale-110
-                "
+                            w-full h-56 object-cover 
+                            transition-transform duration-700 
+                            group-hover:scale-110
+                          "
                         />
                       </SwiperSlide>
                     ))}
                   </Swiper>
-
-                  {/* Subtle overlay on hover */}
-                  <div className="
-          absolute inset-0 bg-linear-to-t 
-          from-black/20 via-transparent to-transparent 
-          opacity-0 group-hover:opacity-100 
-          transition-opacity duration-500
-        "></div>
                 </div>
 
-                {/* Bottom Content */}
+                {/* ---------- Content ---------- */}
                 <div className="p-5 space-y-3">
-                  {/* Title */}
-                  <h3 className="text-lg font-semibold text-gray-900 leading-tight line-clamp-1">
+                  <h3 className="text-lg font-semibold leading-tight line-clamp-1">
                     {item.title}
                   </h3>
 
-                  {/* Category */}
                   <p className="text-sm text-gray-500 line-clamp-1">
-                    by <span className="font-medium text-gray-700">{item.category}</span>
+                    by{" "}
+                    <span className="font-medium text-gray-700">{item.category}</span>
                   </p>
 
-                  {/* Price */}
                   <p className="text-2xl font-bold text-primary">{item.price}</p>
 
-                  {/* Buttons */}
                   <div className="flex items-center justify-between gap-3 mt-4">
-                    <button className="
-          btn-primary w-full
-          cursor-pointer transition          
-          ">
-                      button1
+                    <button className="px-4 py-2 text-sm bg-primary text-primary-foreground rounded-md font-medium hover:bg-primary-dark transition">
+                      Button 1
                     </button>
-
-                    <button className="
-          btn-secondary w-full
-          cursor-pointer transition
-          ">
-                      button2
+                    <button className="px-4 py-2 text-sm border border-primary rounded-md font-medium hover:bg-primary hover:text-primary-foreground transition">
+                      Button 2
                     </button>
                   </div>
 
-                  {/* Sales Count */}
-                  <p className="text-sm text-gray-500 mt-1">Use by {item.sales} </p>
+                  <p className="text-sm text-gray-500 mt-1">
+                    Use by {item.sales}
+                  </p>
                 </div>
               </div>
             </SwiperSlide>

@@ -5,6 +5,7 @@ import { FaCheckCircle, FaShieldAlt, FaUsers, FaLightbulb, FaHandshake } from "r
 import SmallHeroSection from "@/components/(sheared)/SmallHeroSection";
 import Heading from "@/components/ui/heading";
 import LogoSlider from "@/components/(frontend)/LogoSlider";
+import TeamSection from "@/components/(frontend)/teamSection";
 
 
 export default function About() {
@@ -170,6 +171,8 @@ export default function About() {
           </div>
         </div>
       </section>
+
+      <TeamSection />
 
 
     </>

@@ -61,14 +61,14 @@ export default function HeroSection() {
 
                     <div className="flex flex-wrap gap-4 mt-8">
                         <button
-                            className="btn-primary"
+                            className="bg-primary text-primary-foreground px-5 py-2.5 rounded-lg font-semibold transition-colors duration-150 hover:bg-primary-dark"
                             onClick={() => window.open(heroData?.button1_url || "#", heroData?.button1_url && heroData.button1_url !== "#" ? "_blank" : "_self")}
                         >
                             {heroData?.button1_text || "Get Started Free"}
                         </button>
 
                         <button
-                            className="btn-secondary"
+                            className="px-6 py-2 border border-primary text-primary rounded-lg font-medium bg-transparent transition-colors duration-150 hover:bg-primary hover:text-primary-foreground"
                             onClick={() => window.open(heroData?.button2_url || "#", heroData?.button2_url && heroData.button2_url !== "#" ? "_blank" : "_self")}
                         >
                             {heroData?.button2_text || "Book a Demo"}

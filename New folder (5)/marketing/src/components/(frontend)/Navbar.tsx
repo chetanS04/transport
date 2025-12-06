@@ -34,7 +34,7 @@ export default function Navbar() {
 
           <a
             href="#"
-            className="btn-primary py-2 rounded-lg font-semibold hover:bg-primary-dark transition"
+            className="btn-primary py-2 bg-primary text-white p-4 rounded-lg font-semibold hover:bg-primary-dark transition"
           >
             Start free
           </a>
@@ -44,9 +44,9 @@ export default function Navbar() {
         <div className="flex items-center space-x-3 lg:hidden">
 
           {/* Start Free beside toggle */}
-          <a
+           <a
             href="#"
-            className="btn-primary py-2 rounded-lg font-semibold hover:bg-primary-dark transition"
+            className="btn-primary py-2 bg-primary text-white p-4 rounded-lg font-semibold hover:bg-primary-dark transition"
           >
             Start free
           </a>
