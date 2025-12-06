@@ -42,8 +42,7 @@ export default function ContactCards() {
   return (
     <>
     <Heading
-      title="Contact Information"
-      highlight="Cards"
+      title="Contact Information Cards"
       description="Reach out to us through any of the following contact methods. We're here to assist you."
       align="center"
     />

@@ -7,14 +7,12 @@ export default function BlogCard({ item }: any) {
     
     <div className="bg-white dark:bg-gray-800 border border-gray-200 rounded-xl overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
 
-      {/* Image */}
       <img
         src={item.img}
         alt={item.title}
         className="w-full h-56 object-cover"
       />
 
-      {/* Content */}
       <div className="p-6">
         <div className="flex items-center text-gray-500 dark:text-gray-400 text-sm mb-3 space-x-4">
           <div className="flex items-center space-x-1">

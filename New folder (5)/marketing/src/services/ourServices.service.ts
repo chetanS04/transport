@@ -14,7 +14,6 @@ export interface OurServiceResponse {
 }
 
 export const ourServiceService = {
-    // Get all our services
     getAllOurServices: async (params?: {
         page?: number;
         limit?: number;
@@ -24,7 +23,6 @@ export const ourServiceService = {
         return response.data;
     },
 
-    // Get single our service by ID
     getOurServiceById: async (id: number): Promise<{ data: OurServiceData }> => {
         const response = await api.get(`/our-services/${id}`);
         return response.data;

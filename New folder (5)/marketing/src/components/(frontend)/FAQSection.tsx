@@ -37,8 +37,7 @@ export default function FAQSection() {
                 {/* Heading */}
 
                 <Heading
-                    title=" Explore Common"
-                    highlight="Questions"
+                    title=" Explore Common Questions"
                     description="Find answers to frequently asked questions about our services and offerings."
                     align="center"
                 />

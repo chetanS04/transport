@@ -18,7 +18,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
       )}
 
-
       <Navbar />
       <main className="flex-1">{children}</main>
       <Footer />

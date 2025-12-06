@@ -12,7 +12,7 @@ export default function Navbar() {
         {/* LEFT SECTION */}
         <div className="flex items-center space-x-10">
           <a href="/" className="text-2xl font-semibold text-primary">
-            Trackage.in
+            Truckage.in
           </a>
 
           {/* Desktop Nav */}
@@ -28,7 +28,7 @@ export default function Navbar() {
         {/* DESKTOP RIGHT */}
         <div className="hidden lg:flex items-center space-x-6">
           <a href="tel:+919914327671" className="flex items-center text-primary font-medium hover:underline">
-            <Phone className="w-5 h-5 mr-1"/>
+            <Phone className="w-5 h-5 mr-1" />
             +91 9914327671
           </a>
 
@@ -44,7 +44,7 @@ export default function Navbar() {
         <div className="flex items-center space-x-3 lg:hidden">
 
           {/* Start Free beside toggle */}
-           <a
+          <a
             href="#"
             className="btn-primary py-2 bg-primary text-white p-4 rounded-lg font-semibold hover:bg-primary-dark transition"
           >
@@ -75,8 +75,6 @@ export default function Navbar() {
           <a href="tel:+919914327671" className="block text-primary">
             +91 9914327671
           </a>
-
-
         </div>
       )}
     </nav>
