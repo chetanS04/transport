@@ -9,7 +9,7 @@ export default function Footer() {
 
                     {/* LEFT LOGO + APP BUTTONS */}
                     <div className="space-y-6 col-span-1">
-                        <h2 className="text-4xl font-bold ">Trackage.in</h2>
+                        <h2 className="text-4xl font-bold ">Truckage.in</h2>
 
                         <div className="space-y-4">
                             <a href="#">

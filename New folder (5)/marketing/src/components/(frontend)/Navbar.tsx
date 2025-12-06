@@ -12,7 +12,7 @@ export default function Navbar() {
         {/* LEFT SECTION */}
         <div className="flex items-center space-x-10">
           <a href="/" className="text-2xl font-semibold text-primary">
-            Trackage.in
+            Truckage.in
           </a>
 
           {/* Desktop Nav */}
