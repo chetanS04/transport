@@ -97,14 +97,14 @@ export default function TeamSection() {
               1024: { slidesPerView: 4 },
             }}
             style={
-                  {
-                    ["--swiper-pagination-color"]: "rgb(13, 148, 136)",      // Tailwind primary
-                    ["--swiper-pagination-bullet-inactive-color"]: "#d1d5db",
-                    ["--swiper-pagination-bullet-size"]: "8px",
-                    ["--swiper-pagination-bullet-inactive-opacity"]: "0.5",
-                    paddingBottom: "3rem",
-                  } as React.CSSProperties
-                }
+              {
+                ["--swiper-pagination-color"]: "rgb(13, 148, 136)",      // Tailwind primary
+                ["--swiper-pagination-bullet-inactive-color"]: "#d1d5db",
+                ["--swiper-pagination-bullet-size"]: "8px",
+                ["--swiper-pagination-bullet-inactive-opacity"]: "0.5",
+                paddingBottom: "3rem",
+              } as React.CSSProperties
+            }
             className="py-12"
           >
             {team.map((member, index) => (

@@ -13,27 +13,23 @@ export default function ContactSection() {
             <SmallHeroSection title="Contact Us" subtitle="Get in touch with us for any inquiries or support." />
 
             <div className="w-full mx-auto dark:bg-gray-200  py-20" id="contact">
-                {/* Page Heading */}
                 <Heading
                     title="Contact Us Page"
                     description="Want to contact us? Choose an option below and we'll be happy to show you how we can transform your company’s web experience."
                     align="center"
                 />
 
-                {/* Main Grid */}
                 <div className="container mx-auto px-4 sm:px-6 lg:px-10 grid md:grid-cols-2 gap-12 lg:gap-16 mt-12">
 
-                    {/* LEFT CONTACT INFO */}
                     <div className="
-  bg-white dark:bg-gray-800
-  shadow-xl rounded-3xl p-10 
-  border border-gray-200 dark:border-gray-700
-  transition-all duration-500 
-  hover:shadow-2xl hover:-translate-y-2 
-  relative overflow-hidden
-">
+                        bg-white dark:bg-gray-800
+                        shadow-xl rounded-3xl p-10 
+                        border border-gray-200 dark:border-gray-700
+                        transition-all duration-500 
+                        hover:shadow-2xl hover:-translate-y-2 
+                        relative overflow-hidden
+                        ">
 
-                        {/* Top Accent Line */}
                         <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-primary/60 via-primary to-primary/60"></div>
 
                         <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
@@ -45,10 +41,8 @@ export default function ContactSection() {
                             an email or call our phone number.
                         </p>
 
-                        {/* Contact Details */}
                         <div className="space-y-6">
 
-                            {/* Address */}
                             <ContactItem
                                 icon={
                                     <div className="p-2 rounded-lg bg-primary/10 text-primary">
@@ -62,7 +56,6 @@ export default function ContactSection() {
                                 text="14th avenue glory road"
                             />
 
-                            {/* Email */}
                             <ContactItem
                                 icon={
                                     <div className="p-2 rounded-lg bg-primary/10 text-primary">
@@ -76,7 +69,6 @@ export default function ContactSection() {
                                 text={<a href="mailto:hello@company.com" className="hover:text-primary transition">hello@company.com</a>}
                             />
 
-                            {/* Phone */}
                             <ContactItem
                                 icon={
                                     <div className="p-2 rounded-lg bg-primary/10 text-primary">
@@ -89,10 +81,8 @@ export default function ContactSection() {
                                 }
                                 text={<a href="tel:11111111111" className="hover:text-primary transition">+51 11111111111</a>}
                             />
-
                         </div>
 
-                        {/* Bottom Glow Effect */}
                         <div className="
                          absolute bottom-0 left-0 w-full h-1 
                          bg-linear-to-r from-transparent via-primary/40 to-transparent
@@ -101,23 +91,18 @@ export default function ContactSection() {
                         </div>
                     </div>
 
-
-                    {/* RIGHT FORM */}
                     <div className="bg-white dark:bg-gray-800 shadow-lg rounded-2xl p-8 border border-gray-200 dark:border-gray-700 transition-all">
 
                         <form className="space-y-5">
 
-                            {/* Full Name */}
                             <InputField placeholder="Full Name" name="name" />
 
-                            {/* Email */}
                             <InputField
                                 type="email"
                                 placeholder="Email Address"
                                 name="email"
                             />
 
-                            {/* Message */}
                             <textarea
                                 placeholder="Your Message"
                                 className="
@@ -140,11 +125,8 @@ export default function ContactSection() {
                             >
                                 Send Message
                             </button>
-
                         </form>
-
                     </div>
-
                 </div>
             </div>
 
@@ -156,7 +138,6 @@ export default function ContactSection() {
                 />
                 <div className="container px-5 mb-20 mx-auto flex sm:flex-nowrap flex-wrap">
 
-                    {/* LEFT: Map + Info Card */}
                     <div className="lg:w-2/3 md:w-1/2 bg-gray-300 rounded-lg overflow-hidden sm:mr-10 p-10 flex items-end justify-start relative">
 
                         <iframe
@@ -172,7 +153,6 @@ export default function ContactSection() {
                         ></iframe>
 
                         <div className="bg-white relative flex flex-wrap py-6 rounded shadow-md">
-                            {/* Address */}
                             <div className="lg:w-1/2 px-6">
                                 <h2 className="title-font font-semibold text-gray-900 tracking-widest text-xs">
                                     ADDRESS
@@ -182,7 +162,6 @@ export default function ContactSection() {
                                 </p>
                             </div>
 
-                            {/* Email + Phone */}
                             <div className="lg:w-1/2 px-6 mt-4 lg:mt-0">
                                 <h2 className="title-font font-semibold text-gray-900 tracking-widest text-xs">
                                     EMAIL
@@ -197,10 +176,8 @@ export default function ContactSection() {
                         </div>
                     </div>
 
-                    {/* RIGHT: Contact Form */}
                     <div className="lg:w-1/3 md:w-1/2 w-full bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 md:ml-auto mt-10 md:mt-0 transition-all">
 
-                        {/* Heading */}
                         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
                             Feedback
                         </h2>
@@ -209,7 +186,6 @@ export default function ContactSection() {
                             We value your feedback. Share your thoughts and help us improve our services.
                         </p>
 
-                        {/* Name */}
                         <div className="mb-5">
                             <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
                                 Name
@@ -226,7 +202,6 @@ export default function ContactSection() {
                             />
                         </div>
 
-                        {/* Email */}
                         <div className="mb-5">
                             <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                                 Email
@@ -244,7 +219,6 @@ export default function ContactSection() {
                             />
                         </div>
 
-                        {/* Message */}
                         <div className="mb-5">
                             <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                                 Message
@@ -262,7 +236,6 @@ export default function ContactSection() {
                             ></textarea>
                         </div>
 
-                        {/* Button */}
                         <button
                             className="
                             w-full py-3 rounded-lg text-white text-lg font-medium
@@ -292,8 +265,6 @@ export default function ContactSection() {
         </>
     );
 }
-
-/* ---------- Helper Components ---------- */
 
 function ContactItem({ icon, text }: { icon: React.ReactNode; text: React.ReactNode | string }) {
     return (

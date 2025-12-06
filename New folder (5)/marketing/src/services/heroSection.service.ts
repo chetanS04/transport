@@ -12,7 +12,6 @@ export interface HeroSectionResponse {
 }
 
 export const heroSectionService = {
-    // Get all hero sections
     getAllHeroSections: async (params?: {
         page?: number;
         limit?: number;
@@ -22,7 +21,6 @@ export const heroSectionService = {
         return response.data;
     },
 
-    // Get single hero section by ID
     getHeroSectionById: async (id: number): Promise<{ data: HeroSectionData }> => {
         const response = await api.get(`/hero-section/${id}`);
         return response.data;

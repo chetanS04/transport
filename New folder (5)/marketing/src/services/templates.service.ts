@@ -12,7 +12,6 @@ export interface TemplatesResponse {
 }
 
 export const templatesService = {
-    // Get all templates
     getAllTemplates: async (params?: {
         page?: number;
         limit?: number;
@@ -22,7 +21,6 @@ export const templatesService = {
         return response.data;
     },
 
-    // Get single template by ID
     getTemplateById: async (id: number): Promise<{ data: TemplateData }> => {
         const response = await api.get(`/templates/${id}`);
         return response.data;

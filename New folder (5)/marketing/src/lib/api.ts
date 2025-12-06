@@ -10,26 +10,25 @@ const api = axios.create({
 
 api.interceptors.request.use(
     (config) => {
-        useGlobalLoader.getState().setLoading(true); // START LOADER
+        useGlobalLoader.getState().setLoading(true);
 
         const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
         if (token) config.headers.Authorization = `Bearer ${token}`;
         return config;
     },
     (error) => {
-        useGlobalLoader.getState().setLoading(false); // STOP LOADER
+        useGlobalLoader.getState().setLoading(false);
         return Promise.reject(error);
     }
 );
 
 api.interceptors.response.use(
     (response) => {
-        useGlobalLoader.getState().setLoading(false); // STOP LOADER
+        useGlobalLoader.getState().setLoading(false);
         return response;
     },
     (error) => {
-        useGlobalLoader.getState().setLoading(false); // STOP LOADER
-
+        useGlobalLoader.getState().setLoading(false);
         if (error.response?.status === 401) {
             localStorage.removeItem("token");
         }

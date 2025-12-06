@@ -75,7 +75,6 @@ export default function Templates() {
                                 className={`cursor-pointer bg-white rounded-3xl shadow-md hover:shadow-2xl transition-all duration-500 overflow-hidden border-2 ${selectedTemplate === String(item.id) ? "border-primary" : "border-transparent"
                                     }`}
                             >
-                                {/* Image Carousel */}
                                 <div className="relative h-64 group">
                                     <Swiper
                                         modules={[Navigation, Pagination, Autoplay]}
@@ -96,11 +95,9 @@ export default function Templates() {
                                         ))}
                                     </Swiper>
 
-                                    {/* Hover Overlay */}
                                     <div className="absolute inset-0 bg-linear-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-3xl"></div>
                                 </div>
 
-                                {/* Bottom Content */}
                                 <div className="p-5 space-y-2">
                                     <h3 className="text-lg font-semibold text-gray-900 line-clamp-1">{item.title}</h3>
                                     <p className="text-sm text-gray-500 line-clamp-1">

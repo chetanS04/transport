@@ -9,11 +9,6 @@ export default function Footer() {
 
                     {/* LEFT LOGO + APP BUTTONS */}
                     <div className="space-y-6 col-span-1">
-                        {/* <img 
-              src="/logo.png" 
-              alt="logo" 
-              className="h-10"
-            /> */}
                         <h2 className="text-4xl font-bold ">Trackage.in</h2>
 
                         <div className="space-y-4">

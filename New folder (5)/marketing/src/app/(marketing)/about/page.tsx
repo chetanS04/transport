@@ -11,11 +11,9 @@ import TeamSection from "@/components/(frontend)/teamSection";
 export default function About() {
   return (
     <>
-
       <SmallHeroSection title="About Us" subtitle="Learn more about our mission, vision, and the team behind our success." />
       <section className="relative bg-gray-50 dark:bg-gray-100 py-20 overflow-hidden">
 
-        {/* Background subtle dots */}
         <div className="absolute inset-0 opacity-40 -z-10">
           <svg
             className="w-full h-full"
@@ -36,10 +34,8 @@ export default function About() {
           </svg>
         </div>
 
-        {/* Main Container */}
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-14 items-center">
 
-          {/* LEFT: Text Section */}
           <div>
             <Heading title="About Our Company"  description=" We build intelligent solutions that help businesses track, manage,
                 and scale their operations effortlessly. Our mission is to combine
@@ -69,7 +65,6 @@ export default function About() {
             </div>
           </div>
 
-          {/* RIGHT: Image */}
           <div className="relative rounded-xl shadow-lg overflow-hidden h-80 md:h-[500px]">
             <img
               src="https://images.unsplash.com/photo-1506765515384-028b60a970df?auto=format&fit=crop&w=900&q=80"
@@ -78,7 +73,6 @@ export default function About() {
               className="object-cover w-full h-full"
             />
 
-            {/* Subtle overlay */}
             <div className="absolute inset-0 bg-black/10 hover:bg-black/20 transition"></div>
           </div>
         </div>
@@ -89,15 +83,11 @@ export default function About() {
       <section className="py-20 relative bg-gray-50 dark:bg-gray-100 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
 
-          {/* Heading */}
-
           <Heading title="Our Mission & Vision"  description="Driving innovation and excellence in fleet and delivery management." />
 
 
-          {/* Mission + Vision Boxes */}
           <div className="grid md:grid-cols-2 gap-10">
 
-            {/* Mission Box */}
             <div className="bg-white dark:bg-gray-800 shadow-lg rounded-2xl p-8 border border-gray-200 dark:border-gray-700 hover:shadow-xl transition">
               <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Our Mission</h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
@@ -106,7 +96,6 @@ export default function About() {
               </p>
             </div>
 
-            {/* Vision Box */}
             <div className="bg-white dark:bg-gray-800 shadow-lg rounded-2xl p-8 border border-gray-200 dark:border-gray-700 hover:shadow-xl transition">
               <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Our Vision</h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
@@ -122,14 +111,11 @@ export default function About() {
       <section className="relative bg-gray-50 dark:bg-gray-100 py-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
 
-          {/* Heading */}
           <Heading title="Why Choose Us"  description="We deliver performance, reliability, and innovation to elevate your business." />
 
 
-          {/* Feature Grid */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
 
-            {/* Feature 1 */}
             <div className="p-8 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow hover:shadow-xl transition">
               <div className="p-4 bg-primary/10 rounded-full w-fit mb-4">
                 <FaCheckCircle className="text-primary w-7 h-7" />
@@ -142,7 +128,6 @@ export default function About() {
               </p>
             </div>
 
-            {/* Feature 2 */}
             <div className="p-8 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow hover:shadow-xl transition">
               <div className="p-4 bg-primary/10 rounded-full w-fit mb-4">
                 <FaShieldAlt className="text-primary w-7 h-7" />
@@ -155,7 +140,6 @@ export default function About() {
               </p>
             </div>
 
-            {/* Feature 3 */}
             <div className="p-8 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow hover:shadow-xl transition">
               <div className="p-4 bg-primary/10 rounded-full w-fit mb-4">
                 <FaUsers className="text-primary w-7 h-7" />
@@ -179,7 +163,6 @@ export default function About() {
   );
 }
 
-/* Feature Card */
 interface FeatureCardProps {
   icon: React.ReactNode;
   title: string;
