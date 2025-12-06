@@ -81,15 +81,19 @@ export default function OurServices() {
                             />
                             <div className="absolute inset-0 bg-black/40" />
                             <div className="absolute bottom-0 w-full text-center text-white px-4 pb-4">
-                                <h3 className="text-lg font-semibold">{item.title}</h3>
-                                <p className="text-sm opacity-90">{item.description}</p>
+                                <h3 className="text-lg font-semibold">{item.title || "No Title"}</h3>
+                                <p className="text-sm opacity-90">{item.description || "No Description"}</p>
 
                                 <div className="flex justify-center gap-3 mt-3">
-                                    <button className="px-4 py-2 text-sm bg-white text-black rounded-md font-medium hover:bg-gray-200 transition">
-                                        Button 1
+                                    <button
+                                        onClick={() => window.open(item?.button1_url || "#", item?.button1_url && item?.button1_url !== "#" ? "_blank" : "_self")}
+                                        className="px-4 py-2 text-sm bg-white text-black rounded-md font-medium hover:bg-gray-200 transition">
+                                        {item.button1_text || "Button 1"}
                                     </button>
-                                    <button className="px-4 py-2 text-sm border border-white rounded-md font-medium hover:bg-white hover:text-black transition">
-                                        Button 2
+                                    <button
+                                        onClick={() => window.open(item?.button2_url || "#", item?.button2_url && item?.button2_url !== "#" ? "_blank" : "_self")}
+                                        className="px-4 py-2 text-sm border border-white rounded-md font-medium hover:bg-white hover:text-black transition">
+                                        {item.button2_text || "Button 2"}
                                     </button>
                                 </div>
                             </div>
