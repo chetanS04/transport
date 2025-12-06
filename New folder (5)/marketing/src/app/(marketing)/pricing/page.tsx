@@ -44,11 +44,11 @@ export default function PricingSection() {
   return (
     <>
    <SmallHeroSection title="Pricing" subtitle="Choose the best plan for your needs" />
-    <section className="py-16 bg-gray-50 dark:bg-gray-900">
+    <section className="py-16 bg-gray-50 dark:bg-gray-200">
       <div className="max-w-7xl mx-auto px-6">
         {/* Heading */}
         
-        <Heading title="Our" highlight="Pricing Plans" description="Select the plan that best fits your business needs and scale with ease." />
+        <Heading title="Our Pricing Plans"  description="Select the plan that best fits your business needs and scale with ease." />
 
         {/* Pricing Grid */}
         <div className="grid md:grid-cols-3 gap-8">
@@ -67,7 +67,7 @@ export default function PricingSection() {
 
               <p className="text-primary text-3xl font-bold mt-3">{plan.price}</p>
 
-              <p className="text-gray-600 dark:text-gray-400 mt-3 text-sm">
+              <p className="text-gray-600 dark:text-gray-200 mt-3 text-sm">
                 {plan.desc}
               </p>
 
