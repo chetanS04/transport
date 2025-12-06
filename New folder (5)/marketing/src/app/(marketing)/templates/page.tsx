@@ -45,6 +45,7 @@ export default function Templates() {
             />
 
             <div className="container mx-auto px-6 mt-8">
+
                 <Swiper
                     modules={[Pagination, Navigation, Autoplay]}
                     onSwiper={(swiper) => (mainSwiperRef.current = swiper)}
@@ -57,6 +58,15 @@ export default function Templates() {
                         clickable: true,
                         dynamicBullets: true,
                     }}
+                    style={
+                        {
+                            ["--swiper-pagination-color"]: "rgb(13, 148, 136)",
+                            ["--swiper-pagination-bullet-inactive-color"]: "#d1d5db",
+                            ["--swiper-pagination-bullet-size"]: "8px",
+                            ["--swiper-pagination-bullet-inactive-opacity"]: "0.5",
+
+                        } as React.CSSProperties
+                    }
                     breakpoints={{
                         0: { slidesPerView: 1 },
                         640: { slidesPerView: 2 },
@@ -66,6 +76,8 @@ export default function Templates() {
                     loop={templatesData.length > 3}
                     className="pb-14!"
                 >
+
+
                     {templatesData.map((item) => (
                         <SwiperSlide key={item.id}>
                             <div

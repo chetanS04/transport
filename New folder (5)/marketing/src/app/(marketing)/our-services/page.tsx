@@ -52,8 +52,8 @@ export default function OurServices() {
                   {
                     ["--swiper-pagination-color"]: "rgb(13, 148, 136)",      // Tailwind primary
                     ["--swiper-pagination-bullet-inactive-color"]: "#d1d5db",
-                    ["--swiper-pagination-bullet-size"]: "8px",
-                    ["--swiper-pagination-bullet-inactive-opacity"]: "0.5",
+                    ["--swiper-pagination-bullet-size"]: "12px",
+                    ["--swiper-pagination-bullet-inactive-opacity"]: "0.7",
                     paddingBottom: "3rem",
                   } as React.CSSProperties
                 }
