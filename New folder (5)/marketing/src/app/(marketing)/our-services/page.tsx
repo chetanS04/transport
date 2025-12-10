@@ -49,13 +49,13 @@ export default function OurServices() {
                 }}
                 pagination={{ clickable: true, dynamicBullets: true }}
                 style={
-                  {
-                    ["--swiper-pagination-color"]: "rgb(13, 148, 136)",      // Tailwind primary
-                    ["--swiper-pagination-bullet-inactive-color"]: "#d1d5db",
-                    ["--swiper-pagination-bullet-size"]: "12px",
-                    ["--swiper-pagination-bullet-inactive-opacity"]: "0.7",
-                    paddingBottom: "3rem",
-                  } as React.CSSProperties
+                    {
+                        ["--swiper-pagination-color"]: "rgb(13, 148, 136)",      // Tailwind primary
+                        ["--swiper-pagination-bullet-inactive-color"]: "#d1d5db",
+                        ["--swiper-pagination-bullet-size"]: "12px",
+                        ["--swiper-pagination-bullet-inactive-opacity"]: "0.7",
+                        paddingBottom: "3rem",
+                    } as React.CSSProperties
                 }
                 loop={true}
                 className="container mx-auto pb-16"
@@ -63,31 +63,80 @@ export default function OurServices() {
 
                 {ourServiceData.map((item) => (
                     <SwiperSlide key={item.id}>
-                        <Card className="overflow-hidden rounded-xl shadow-lg relative h-100 flex flex-col justify-end">
+                        <Card
+                            className="
+                            group relative h-80 overflow-hidden rounded-2xl shadow-xl 
+                            bg-gray-900/10 backdrop-blur-xl border border-white/10
+                            transition-all duration-500 hover:shadow-2xl hover:-translate-y-1
+                            "
+                        >
+
+                            {/* Background Image */}
                             <div
-                                className="absolute inset-0 bg-cover bg-center"
+                                className="
+                                absolute inset-0 bg-cover bg-center 
+                                transition-transform duration-700 
+                                group-hover:scale-110
+                            "
                                 style={{ backgroundImage: `url(${imageBaseUrl}${item.image})` }}
                             />
-                            <div className="absolute inset-0 bg-black/40" />
-                            <div className="absolute bottom-0 w-full text-center text-white px-4 pb-4">
-                                <h3 className="text-lg font-semibold">{item.title || "No Title"}</h3>
-                                <p className="text-sm opacity-90">{item.description || "No Description"}</p>
 
-                                <div className="flex justify-center gap-3 mt-3">
+                            {/* Gradient Overlay */}
+                            <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/30 to-transparent" />
+
+                            {/* Content */}
+                            <div className="absolute bottom-0 w-full px-5 pb-6 text-white">
+                                <h3 className="text-xl text-center font-semibold drop-shadow-md">
+                                    {item.title || "No Title"}
+                                </h3>
+
+                                <p className="text-sm mt-1 text-center opacity-90 line-clamp-2">
+                                    {item.description || "No Description"}
+                                </p>
+
+                                {/* Buttons */}
+                                <div className="flex justify-center gap-3 mt-4">
+
+                                    {/* Primary Button */}
                                     <button
-                                        onClick={() => window.open(item?.button1_url || "#", item?.button1_url && item?.button1_url !== "#" ? "_blank" : "_self")}
-                                        className="px-4 py-2 text-sm bg-white text-black rounded-md font-medium hover:bg-gray-200 transition">
+                                        onClick={() =>
+                                            window.open(
+                                                item?.button1_url || "#",
+                                                item?.button1_url && item?.button1_url !== "#" ? "_blank" : "_self"
+                                            )
+                                        }
+                                        className="
+                                                px-4 py-2 text-sm font-medium rounded-lg 
+                                                bg-white/90 text-gray-900 
+                                                hover:bg-white transition
+                                                shadow-md backdrop-blur-lg
+                                            "
+                                    >
                                         {item.button1_text || "Button 1"}
                                     </button>
+
+                                    {/* Secondary Button */}
                                     <button
-                                        onClick={() => window.open(item?.button2_url || "#", item?.button2_url && item?.button2_url !== "#" ? "_blank" : "_self")}
-                                        className="px-4 py-2 text-sm border border-white rounded-md font-medium hover:bg-white hover:text-black transition">
+                                        onClick={() =>
+                                            window.open(
+                                                item?.button2_url || "#",
+                                                item?.button2_url && item?.button2_url !== "#" ? "_blank" : "_self"
+                                            )
+                                        }
+                                        className="
+                                            px-4 py-2 text-sm font-medium rounded-lg
+                                            border border-white/70 text-white 
+                                            hover:bg-white hover:text-black 
+                                            transition shadow-md
+                                        "
+                                    >
                                         {item.button2_text || "Button 2"}
                                     </button>
                                 </div>
                             </div>
                         </Card>
                     </SwiperSlide>
+
                 ))}
             </Swiper>
         </>

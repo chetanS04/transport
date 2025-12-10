@@ -45,7 +45,7 @@ export default function LogoSlider() {
                 src={logo}
                 alt={`Logo ${index}`}
                 className="
-                  h-20 w-auto object-contain 
+                  h-14 w-auto object-contain 
                   grayscale 
                   opacity-60
                   hover:grayscale-0 
@@ -53,6 +53,7 @@ export default function LogoSlider() {
                   transition-all 
                   duration-300 
                   ease-in-out
+                  ml-4 mr-4
                 "
               />
             </SwiperSlide>
