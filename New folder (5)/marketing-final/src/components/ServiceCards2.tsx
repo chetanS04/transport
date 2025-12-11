@@ -56,7 +56,7 @@ const services = [
 
 export default function ServiceCards2() {
   return (
-    <section className="pb-20 bg-[#f8f9fa]">
+    <section className="pb-20">
       <div className="container mx-auto px-6">
 
         {/* Heading Section */}

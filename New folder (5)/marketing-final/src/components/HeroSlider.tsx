@@ -52,7 +52,7 @@ export default function HeroSlider() {
   ];
 
   return (
-    <section className="w-full h-screen relative overflow-hidden">
+    <section className="w-full  relative overflow-hidden">
       {/* LEFT BUTTON */}
       <button
         ref={prevRef}
@@ -84,7 +84,7 @@ export default function HeroSlider() {
             swiper.params.navigation.nextEl = nextRef.current;
           }
         }}
-        className="h-full w-full"
+        className="h-[650px] w-full"
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>

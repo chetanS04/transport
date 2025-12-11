@@ -24,25 +24,29 @@ export default function Navbar() {
     const [hideTopBar, setHideTopBar] = useState(false);
 
     useEffect(() => {
-        let lastScrollY = 0;
-
+        // Show top bar only when the page is inside the hero area (top half).
+        // Main navbar styling also only changes after scrolling past hero section.
         const handleScroll = () => {
             const currentScroll = window.scrollY;
+            const heroThreshold = window.innerHeight * 0.5;
 
-            // Hide top bar when scrolling down, show when scrolling up
-            if (currentScroll > lastScrollY && currentScroll > 80) {
-                setHideTopBar(true);
-            } else if (currentScroll < lastScrollY) {
+            if (currentScroll <= heroThreshold) {
+                // We're in the hero area — show the top bar, keep navbar transparent
                 setHideTopBar(false);
+                setIsScrolled(false);
+                setAddShadow(false);
+            } else {
+                // We're below the hero area — hide top bar, activate navbar white bg
+                setHideTopBar(true);
+                setIsScrolled(true);
+                setAddShadow(true);
             }
-
-            // Update scrolled/shadow states
-            setIsScrolled(currentScroll > 50);
-            setAddShadow(currentScroll > 50);
-            lastScrollY = currentScroll;
         };
 
-        window.addEventListener("scroll", handleScroll);
+        window.addEventListener("scroll", handleScroll, { passive: true });
+
+        // Run once to set initial state correctly
+        handleScroll();
 
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
@@ -139,10 +143,9 @@ export default function Navbar() {
                     {/* Desktop Menu */}
                     <ul className={`hidden lg:flex items-center gap-8 transition-colors duration-300 ${isScrolled ? 'text-gray-700' : 'text-white'}`}>
                         <a href="/"><li className="cursor-pointer hover:underline text-base xl:text-xl lg:text-[15px] font-semibold">Home</li></a>
-                        <a href="/"><li className="cursor-pointer hover:underline text-base xl:text-xl lg:text-[15px] font-semibold">About us</li></a>
                         <a href="/"><li className="cursor-pointer hover:underline text-base xl:text-xl lg:text-[15px] font-semibold">Services</li></a>
-                        <a href="/"><li className="cursor-pointer hover:underline text-base xl:text-xl lg:text-[15px] font-semibold">Jobs & Career</li></a>
-                        <a href="/"><li className="cursor-pointer hover:underline text-base xl:text-xl lg:text-[15px] font-semibold">Contact Us</li></a>
+                        <a href="/"><li className="cursor-pointer hover:underline text-base xl:text-xl lg:text-[15px] font-semibold">About</li></a>
+                        <a href="/"><li className="cursor-pointer hover:underline text-base xl:text-xl lg:text-[15px] font-semibold">Contact us</li></a>
                         <a href="/"><li className="cursor-pointer hover:underline text-base xl:text-xl lg:text-[15px] font-semibold">Blog & News</li></a>
                     </ul>
 
@@ -186,10 +189,9 @@ export default function Navbar() {
                             {/* Mobile Links */}
                             <ul className="flex flex-col gap-4 text-lg font-semibold">
                                 <a href="/"><li className="hover-text-primary">Home</li></a>
-                                <a href="/"><li className="hover-text-primary">About us</li></a>
                                 <a href="/"><li className="hover-text-primary">Services</li></a>
-                                <a href="/"><li className="hover-text-primary">Jobs & Career</li></a>
-                                <a href="/"><li className="hover-text-primary">Contact Us</li></a>
+                                <a href="/"><li className="hover-text-primary">About</li></a>
+                                <a href="/"><li className="hover-text-primary">Contact us</li></a>                              
                                 <a href="/"><li className="hover-text-primary">Blog & News</li></a>
                             </ul>
 
