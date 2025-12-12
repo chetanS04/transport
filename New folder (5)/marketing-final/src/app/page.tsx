@@ -1,24 +1,23 @@
 import Navbar from "../components/Navbar";
 import HeroSlider from "../components/HeroSlider";
 import ServiceCards from "../components/ServiceCards";
-import ServiceCards2 from "../components/ServiceCards2";
 import Footer from "../components/Footer";
 import Pricing from "../components/Pricing";
-import StatsSection1 from "../components/StatsSection";
-import { Check, Zap } from "lucide-react";
+
 import ModernStatsSection from "../components/ModernStatsSection";
 import TestimonialSlider from "../components/TestimonialSlider";
+import VideoSection from "../components/VideoSection";
 
 export default function Home() {
   return (
     <div className="relative">
       <Navbar />
-      <HeroSlider />
-      
+      <HeroSlider />      
       <ModernStatsSection />
       <ServiceCards />      
       <Pricing />
       <TestimonialSlider />
+      <VideoSection />
       <Footer />
     </div>
   );

@@ -143,7 +143,7 @@ export default function Navbar() {
                     {/* Desktop Menu */}
                     <ul className={`hidden lg:flex items-center gap-8 transition-colors duration-300 ${isScrolled ? 'text-gray-700' : 'text-white'}`}>
                         <a href="/"><li className="cursor-pointer hover:underline text-base xl:text-xl lg:text-[15px] font-semibold">Home</li></a>
-                        <a href="/"><li className="cursor-pointer hover:underline text-base xl:text-xl lg:text-[15px] font-semibold">Services</li></a>
+                        <a href="/Services"><li className="cursor-pointer hover:underline text-base xl:text-xl lg:text-[15px] font-semibold">Services</li></a>
                         <a href="/"><li className="cursor-pointer hover:underline text-base xl:text-xl lg:text-[15px] font-semibold">About</li></a>
                         <a href="/"><li className="cursor-pointer hover:underline text-base xl:text-xl lg:text-[15px] font-semibold">Contact us</li></a>
                         <a href="/"><li className="cursor-pointer hover:underline text-base xl:text-xl lg:text-[15px] font-semibold">Blog & News</li></a>
