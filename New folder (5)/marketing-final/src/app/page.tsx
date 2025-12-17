@@ -7,6 +7,7 @@ import Pricing from "../components/Pricing";
 import ModernStatsSection from "../components/ModernStatsSection";
 import TestimonialSlider from "../components/TestimonialSlider";
 import VideoSection from "../components/VideoSection";
+import Pricing1 from "../components/Pricing1";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <ModernStatsSection />
       <ServiceCards />      
       <Pricing />
+      <Pricing1 />
       <TestimonialSlider />
       <VideoSection />
       <Footer />

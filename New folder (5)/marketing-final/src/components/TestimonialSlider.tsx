@@ -41,7 +41,7 @@ export default function TestimonialSlider() {
     ];
 
     return (
-        <section className="relative overflow-hidden bg-gray-50 py-24 sm:py-32">
+        <section className="relative overflow-hidden bg-gray-50 py-10 pb-30">
 
              {/* ---- SECTION HEADER ---- */}
         <div className="container mx-auto text-center mb-16">

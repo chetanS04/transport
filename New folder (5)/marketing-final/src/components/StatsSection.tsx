@@ -12,7 +12,7 @@ const stats = [
 export default function StatsSection() {
   return (
     <>
-      <section className="w-full bg-gray-100 py-20 px-6">
+      <section className="w-full bg-gray-100 py-10 px-6">
 
         {/* ---- SECTION HEADER ---- */}
         <div className="container mx-auto text-center mb-16">

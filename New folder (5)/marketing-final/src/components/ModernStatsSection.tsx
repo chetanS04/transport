@@ -35,7 +35,7 @@ const stats = [
 
 export default function ModernStatsSection() {
   return (
-    <section className="w-full py-24 bg-gray-50">
+    <section className="w-full py-10 bg-gray-50">
 
       {/* ---- SECTION HEADER ---- */}
         <div className="container mx-auto text-center mb-16">

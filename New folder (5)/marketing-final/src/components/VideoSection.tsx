@@ -12,7 +12,7 @@ export default function VideoSection() {
   const youtubeId = "0rjEmtyZhzs";
 
   return (
-    <section className="relative isolate overflow-hidden py-24 sm:py-32 bg-linear-to-b from-gray-50 to-white">
+    <section className="relative isolate overflow-hidden py-10 sm:py-16 bg-linear-to-b from-gray-50 to-white">
 
       {/* BACKGROUND ELEMENTS */}
       <div className="absolute inset-0 -z-10">
